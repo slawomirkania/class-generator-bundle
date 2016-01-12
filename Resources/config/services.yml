@@ -1,0 +1,12 @@
+services:
+    seg.yaml_parser:
+        class: Symfony\Component\Yaml\Parser
+        public: false
+    seg.files_manager:
+        class: HelloWordPl\SimpleEntityGeneratorBundle\Lib\FilesManager
+        arguments: ['@kernel']
+    seg.structure_resolver:
+        class: HelloWordPl\SimpleEntityGeneratorBundle\Lib\StructureResolver
+    seg.structure_generator:
+        class: HelloWordPl\SimpleEntityGeneratorBundle\Lib\StructureGenerator
+        arguments: ['@jms_serializer', '@seg.yaml_parser']        

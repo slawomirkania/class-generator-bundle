@@ -1,0 +1,41 @@
+{
+    "name" : "slawomir-kania/simple-entity-generator-bundle",
+    "description" : "Simple Entity Generator",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "Slawomir Kania",
+        "email" : "slawomir.kania1@gmail.com"
+    }],
+    "keywords" : [
+        "entity", "generator", "test"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+        "php": ">=5.3.9",
+        "symfony/framework-bundle": "~2.3|~3.0",
+        
+        "doctrine/common": "~2.2",
+        "jms/serializer-bundle": "~1.0",
+        "symfony/console": "~2.3|~3.0",
+        "symfony/filesystem": "~2.3|~3.0",
+        "symfony/yaml": "~2.2|~3.0"
+    },
+    "require-dev" : {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "HelloWordPl\\SimpleEntityGeneratorBundle" : ""
+        }
+    },
+    "target-dir" : "HelloWordPl/SimpleEntityGeneratorBundle",
+    "repositories" : [{
+    }],
+    "extra" : {
+    "branch-alias" : {
+            "dev-master" : "1.0.x-dev"
+        }
+    }
+}
