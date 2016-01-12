@@ -2,8 +2,8 @@
 
 Simple Entity Generator Bundle
 - Generate classes, interfaces and PHPUnit test class skeletons from YAML schema.
-- Generator does not overwrites existing methods and properties, only render new elements.
-- Generated entity class is compatible with JMS Serializer, every property has anotation based on property type.
+- Generator does not overwrite existing methods or properties, only render new elements.
+- Generated entity class is compatible with JMS Serializer, each property has anotation @Type based on property type.
 - Generator allows to add Symfony constraints to property.
 
 # Usage
