@@ -1,4 +1,4 @@
-## About
+# About
 
 Simple Entity Generator Bundle
 Generate classes, interfaces and PHPUnit test class skeletons from YAML schema.
@@ -6,9 +6,9 @@ Generator does not overwrites existing methods and properties, only render new e
 Generated entity class is compatible with JMS Serializer, every property has anotation based on property type.
 Generator allows to add Symfony constraints to property.
 
-## Usage
+# Usage
 
-1. Configuring Symfony
+### Configuring Symfony
 
  app/config/config.yml
 ```yml
@@ -29,7 +29,7 @@ public function registerBundles()
 }
 ```
 
-2. Create YAML structure as below
+### Create YAML structure as below
 
 ```yml
 -
@@ -92,9 +92,9 @@ public function registerBundles()
       type: DateTime
 ```
 
-3. Put {file_name_with_extension} YAML file into {bundle_name}\Resources\config\
-4. Run Symfony command ./bin/console simple_entity_generator:generate {bundle_name} {file_name_with_extension}
-5. Output structure namespaces:
+### Put {file_name_with_extension} YAML file into {bundle_name}\Resources\config\
+### Run Symfony command ./bin/console simple_entity_generator:generate {bundle_name} {file_name_with_extension}
+### Output structure namespaces:
 
 - \AppBundle\Entity\User
 - \AppBundle\Entity\UserInterface
