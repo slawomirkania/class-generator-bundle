@@ -188,4 +188,26 @@ class Tools
 
         return implode("\n", $array);
     }
+
+    /**
+     * Check existance of constraint
+     * proper annotation eg. @\Symfony\Component\Validator\Constraints\Valid()
+     *
+     * @param string $constraintAnnotation
+     * @return boolean
+     */
+    public static function isCallableConstraintAnnotation($constraintAnnotation)
+    {
+        $output = [];
+        preg_match("/\@(.*?)\(.*?\)/", $constraintAnnotation, $output);
+
+        if ($output < 2) {
+            return false;
+        }
+        if (false == class_exists(end($output))) {
+            return false;
+        }
+
+        return true;
+    }
 }

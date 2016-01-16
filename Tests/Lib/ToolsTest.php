@@ -278,4 +278,36 @@ class ToolsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("foo", Tools::implodeArrayToTemplate(["foo"]));
         $this->assertEquals("foo\n", Tools::implodeArrayToTemplate(["foo", ""]));
     }
+
+    /**
+     * @dataProvider dataForTestIsCallableConstraintAnnotation
+     */
+    public function testIsCallableConstraintAnnotation($constraint, $result)
+    {
+        $this->assertEquals($result, Tools::isCallableConstraintAnnotation($constraint));
+    }
+
+    public function dataForTestIsCallableConstraintAnnotation()
+    {
+        return [
+            ["@\Symfony\Component\Validator\Constraints\Valid()", true],
+            ["@\Symfony\Component\Validator\Constraints\Valid(message='Has to be valid!')", true],
+            ["@Symfony\Component\Validator\Constraints\Valid()", true],
+            ["@Symfony\Component\Validator\Constraints\Valid(message='Has to be valid!')", true],
+            ["@Symfony\Component\Validator\Constraints\Valid(sdfgsdfgsdfgsdgsdg)", true], // @todo in the future
+
+            ["@Symfony\Component\Validator\Constraints\NotExistConstraint()", false],
+            ["@Symfony\Component\Validator\Constraints\Valid", false],
+            ["@Symfony\Component\Validator\Constraints\Valid(", false],
+            ["@Symfony\Component\Validator\Constraints\Valid)", false],
+            ["Symfony\Component\Validator\Constraints\Valid()", false],
+            ["@Symfony-Component\Validator\Constraints\Valid()", false],
+            ["@Symfony-Component\Validator\Constraints", false],
+            [null, false],
+            ["", false],
+            ["4l594276974569-0df70-trt7wre", false],
+            ['', false],
+            ["@\Symfony\Component\Validator\Constraints\@\Symfony\Component\Validator\Constraints\Valid()", false],
+        ];
+    }
 }

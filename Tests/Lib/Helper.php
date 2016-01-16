@@ -15,22 +15,22 @@ class Helper
      * @param string $name
      * @param string $type
      * @param string $comment
-     * @param array $validators
+     * @param array $constraintsParts
      * @return PropertyManager
      */
-    public static function prepareProperty($name, $type, $comment = "", array $validators = [])
+    public static function prepareProperty($name, $type, $comment = "", array $constraintsParts = [])
     {
         $propertyManager = new PropertyManager();
         $propertyManager->setName($name);
         $propertyManager->setType($type);
         $propertyManager->setComment($comment);
 
-        $validatorsCollection = new ArrayCollection();
-        foreach ($validators as $validator) {
-            $validatorsCollection->add($validator);
+        $constraintCollection = new ArrayCollection();
+        foreach ($constraintsParts as $constraintPart) {
+            $constraintCollection->add($constraintPart);
         }
 
-        $propertyManager->setValidators($validatorsCollection);
+        $propertyManager->setConstraints($constraintCollection);
 
         return $propertyManager;
     }
@@ -49,21 +49,21 @@ class Helper
       name: username
       type: string
       comment: "Username for login"
-      validators:
+      constraints:
         - NotBlank(message = \'Login can not be empty\')
         - NotNull(message = \'Login can not be null\')
     -
       name: email
       type: string
       comment: "User email"
-      validators:
+      constraints:
         - NotBlank()
         - Email(message = \'Invalid email\')
     -
       name: active
       type: boolean
       comment: "Wether user is active or not"
-      validators:
+      constraints:
         - IsTrue()
     -
       name: posts
@@ -89,7 +89,7 @@ class Helper
       name: content
       type: string
       comment: "Post content"
-      validators:
+      constraints:
         - NotBlank()
     -
       # default comment

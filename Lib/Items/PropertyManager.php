@@ -36,11 +36,11 @@ class PropertyManager implements RenderableInterface
     private $comment = '';
 
     /**
-     * Collection of Validators
+     * Collection of Constraints
      *
      * @Type("Doctrine\Common\Collections\ArrayCollection<string>")
      */
-    private $validators = null;
+    private $constraints = null;
 
     /**
      * Property name
@@ -63,7 +63,7 @@ class PropertyManager implements RenderableInterface
      */
     public function __construct()
     {
-        $this->validators = new ArrayCollection();
+        $this->constraints = new ArrayCollection();
     }
 
     /**
@@ -87,6 +87,24 @@ class PropertyManager implements RenderableInterface
     {
         if (false == Tools::isValidPropertyTypeString($this->getType())) {
             return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @Assert\IsTrue(message = "Property has invalid validation constraint! Insert only constraint class with parameters eg. NotBlank() or Email(message = 'Invalid email')")
+     */
+    public function hasAllCallableConstraintIfHasAny()
+    {
+        if (false == $this->hasConstraints()) {
+            return true;
+        }
+
+        foreach ($this->getConstraintAnnotationCollection() as $constraintAnnotation) {
+            if (false == Tools::isCallableConstraintAnnotation($constraintAnnotation)) {
+                return false;
+            }
         }
 
         return true;
@@ -135,28 +153,53 @@ class PropertyManager implements RenderableInterface
     }
 
     /**
-     * Return validators names array
+     * Return constraints parts array
      *
      * @return ArrayCollection
      */
-    public function getValidators()
+    public function getConstraints()
     {
-        if (false == ($this->validators instanceof ArrayCollection)) {
+        if (false == ($this->constraints instanceof ArrayCollection)) {
             return new ArrayCollection();
         }
 
-        return $this->validators;
+        return $this->constraints;
     }
 
     /**
-     * Set validators names array
+     * Check that property has constraints
      *
-     * @param ArrayCollection $validators
+     * @return boolean
+     */
+    public function hasConstraints()
+    {
+        return (false == $this->getConstraints()->isEmpty());
+    }
+
+    /**
+     * Return constraints names array
+     *
+     * @return ArrayCollection
+     */
+    public function getConstraintAnnotationCollection()
+    {
+        $constraintsFull = new ArrayCollection();
+        foreach ($this->getConstraints() as $constraintPart) {
+            $constraintsFull->add(sprintf("@\Symfony\Component\Validator\Constraints\%s", $constraintPart));
+        }
+
+        return $constraintsFull;
+    }
+
+    /**
+     * Set constraints names array
+     *
+     * @param ArrayCollection $constraints
      * @return PropertyManager
      */
-    public function setValidators(ArrayCollection $validators)
+    public function setConstraints(ArrayCollection $constraints)
     {
-        $this->validators = $validators;
+        $this->constraints = $constraints;
         return $this;
     }
 
@@ -244,7 +287,7 @@ class PropertyManager implements RenderableInterface
             ."/**\n"
             ." * <comment>\n"
             ." *\n"
-            ."<validators>"
+            ."<constraints>"
             ." * @\JMS\Serializer\Annotation\Type(\"<type>\")\n"
             ." * @var <type>\n"
             ." */\n"
@@ -260,7 +303,7 @@ class PropertyManager implements RenderableInterface
     {
         return [
             self::TAG_COMMENT,
-            self::TAG_VALIDATORS,
+            self::TAG_CONSTRAINTS,
             self::TAG_TYPE,
             self::TAG_NAME
         ];

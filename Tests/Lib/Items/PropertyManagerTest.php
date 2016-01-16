@@ -35,7 +35,7 @@ class PropertyManagerTest extends BaseManager
         $this->assertEquals('newPosts', $this->propertyManager->getPreparedName());
         $this->assertEquals('Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>', $this->propertyManager->getType());
         $this->assertEquals('Doctrine\Common\Collections\ArrayCollection', $this->propertyManager->getTypeName());
-        $this->assertEquals(2, count($this->propertyManager->getValidators()));
+        $this->assertEquals(2, count($this->propertyManager->getConstraints()));
     }
 
     public function testValidManagerWhenValid()

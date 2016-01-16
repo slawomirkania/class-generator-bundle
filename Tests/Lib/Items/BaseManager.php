@@ -50,7 +50,7 @@ class BaseManager extends KernelTestCase
         $propertiesCollection = new ArrayCollection();
         $propertiesCollection->add(Helper::prepareProperty("full_name", "string", "", ["NotBlank()"]));
         $propertiesCollection->add(Helper::prepareProperty("email", "string", "", ["Email(message = 'Invalid email!')"]));
-        $propertiesCollection->add(Helper::prepareProperty("active", "boolean", "Wether user active", ["Type(type='boolean')", "True()"]));
+        $propertiesCollection->add(Helper::prepareProperty("active", "boolean", "Wether user active", ["Type(type='boolean')", "IsTrue()"]));
         $propertiesCollection->add(Helper::prepareProperty("new_posts", "Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>", "User new posts", ["NotNull()", "Valid()"]));
 
         $classManager->setProperties($propertiesCollection);

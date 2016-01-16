@@ -267,15 +267,15 @@ class Renderer
         $template = $property->getTemplate();
         $tags = $property->getTemplateTags();
 
-        $validatorsPart = '';
-        $validators = $property->getValidators();
-        if ($validators->count() > 0) {
-            $validatorsStringArray = [];
-            foreach ($validators as $validator) {
-                $validatorsStringArray[] = sprintf(" * @\Symfony\Component\Validator\Constraints\%s", $validator);
+        $constraintsPart = '';
+        if ($property->hasConstraints()) {
+            $constraints = $property->getConstraintAnnotationCollection();
+            $constraintsStringArray = [];
+            foreach ($constraints as $constraint) {
+                $constraintsStringArray[] = sprintf(" * %s", $constraint);
             }
 
-            $validatorsPart = $this->addNewLineAfter(Tools::implodeArrayToTemplate($validatorsStringArray));
+            $constraintsPart = $this->addNewLineAfter(Tools::implodeArrayToTemplate($constraintsStringArray));
         }
 
         $comment = $property->getComment();
@@ -284,7 +284,7 @@ class Renderer
         }
 
         $args[RenderableInterface::TAG_COMMENT] = $comment;
-        $args[RenderableInterface::TAG_VALIDATORS] = $validatorsPart;
+        $args[RenderableInterface::TAG_CONSTRAINTS] = $constraintsPart;
         $args[RenderableInterface::TAG_TYPE] = $property->getType();
         $args[RenderableInterface::TAG_NAME] = $property->getPreparedName();
 

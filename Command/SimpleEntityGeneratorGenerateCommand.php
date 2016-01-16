@@ -94,7 +94,7 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
         $filesManager = $this->getFilesManager();
         $interfaceManager = $classManager->getInterface();
         $filesManager->dump($interfaceManager);
-        $output->writeln('<question>Processing: '.$interfaceManager->getNamespace()."</question>");
+        $output->writeln('<question>Processed: '.$interfaceManager->getNamespace()."</question>");
         $this->outputProcessMethods($output, $interfaceManager);
 
         $output->writeln('');
@@ -111,7 +111,7 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
 
         $filesManager = $this->getFilesManager();
         $filesManager->dump($classManager);
-        $output->writeln('<question>Processing: '.$classManager->getNamespace().'</question>');
+        $output->writeln('<question>Processed: '.$classManager->getNamespace().'</question>');
         if ($classManager->getProperties()->isEmpty()) {
             $output->writeln('No properties to add');
         } else {
@@ -142,7 +142,7 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
         $testClassManager = $classManager->getTestClass();
         $filesManager = $this->getFilesManager();
         $filesManager->dump($testClassManager);
-        $output->writeln('<question>Processing: '.$classManager->getTestClass()->getNamespace().'</question>');
+        $output->writeln('<question>Processed: '.$classManager->getTestClass()->getNamespace().'</question>');
         $this->outputProcessMethods($output, $testClassManager);
         $output->writeln('');
     }

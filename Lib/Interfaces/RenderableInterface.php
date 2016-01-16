@@ -22,7 +22,7 @@ interface RenderableInterface
     const TAG_NAME = '<name>';
     const TAG_METHODS = '<methods>';
     const TAG_TYPE = '<type>';
-    const TAG_VALIDATORS = '<validators>';
+    const TAG_CONSTRAINTS = '<constraints>';
     const TAG_PROPERTY_TYPE = '<property_type>';
     const TAG_TYPE_HINTING = '<type_hinting>';
     const TAG_METHOD_NAME = '<method_name>';

@@ -1,12 +1,14 @@
 # About
 
 Class Generator Bundle
-- Generate classes, interfaces and PHPUnit test class skeletons from YAML schema.
+- Generate classes, interfaces and PHPUnit test classes from YAML schema.
 - Generator does not overwrite existing methods or properties, only render new elements.
 - Generated entity class is compatible with JMS Serializer, each property has anotation @Type based on property type.
 - Generator allows to add Symfony constraints to property.
 
-# Usage
+# Installation
+
+...
 
 ### Symfony configuration
 
@@ -28,6 +30,8 @@ public function registerBundles()
 }
 ```
 
+# Usage
+
 ### Create YAML structure as below
 
 ```yml
@@ -39,21 +43,21 @@ public function registerBundles()
       name: username
       type: string
       comment: "Username for login"
-      validators:
+      constraints:
         - NotBlank(message = 'Login can not be empty')
         - NotNull(message = 'Login can not be null')
     -
       name: email
       type: string
       comment: "User email"
-      validators:
+      constraints:
         - NotBlank()
         - Email(message = 'Invalid email')
     -
       name: active
       type: boolean
       comment: "Wether user is active or not"
-      validators:
+      constraints:
         - IsTrue()
     -
       name: posts
@@ -79,7 +83,7 @@ public function registerBundles()
       name: content
       type: string
       comment: "Post content"
-      validators:
+      constraints:
         - NotBlank()
     -
       # default comment
