@@ -168,10 +168,10 @@ class TestClassManager implements RenderableInterface, DumpableInterface, Struct
             ."{\n"
             ."\n"
             ."    /**\n"
-            ."     * Entity to test \n"
+            ."     * Entity to test\n"
             ."     * @var <interface>\n"
             ."     */\n"
-            ."    private \$object = null; \n"
+            ."    private \$object = null;\n"
             ."\n"
             ."    public function setUp()\n"
             ."    {\n"
@@ -180,14 +180,14 @@ class TestClassManager implements RenderableInterface, DumpableInterface, Struct
             ."\n"
             ."    public function testConstructor()\n"
             ."    {\n"
-            ."        \$this->assertNotNull(\$this->object); \n"
-            ."        \$this->assertInstanceof('<interface>', \$this->object); \n"
-            ."        \$this->assertInstanceof('<class>', \$this->object); \n"
+            ."        \$this->assertNotNull(\$this->object);\n"
+            ."        \$this->assertInstanceof('<interface>', \$this->object);\n"
+            ."        \$this->assertInstanceof('<class>', \$this->object);\n"
             ."    }\n"
             ."\n"
-            ."<methods>\n"
-            ."}\n"
-            ."\n";
+            ."<methods>"
+            ."\n"
+            ."}";
     }
 
     /**

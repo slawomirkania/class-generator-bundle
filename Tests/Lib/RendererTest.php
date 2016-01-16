@@ -20,7 +20,8 @@ class RendererTest extends KernelTestCase
     /**
      * @var string
      */
-    private $postClassWithUpdatedConstructor = '<?php
+    private $postClassWithUpdatedConstructor = <<<EOT
+<?php
 
 namespace AppBundle\Entity;
 
@@ -37,45 +38,43 @@ class Post implements \AppBundle\Entity\PostInterface
      * @\JMS\Serializer\Annotation\Type("string")
      * @var string
      */
-    private $content;
+    private \$content;
 
     /**
-     * \'created_at\' property
+     * 'created_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @var DateTime
      */
-    private $createdAt;
+    private \$createdAt;
 
     /**
-     * \'updated_at\' property
+     * 'updated_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @var DateTime
      */
-    private $updatedAt;
-
+    private \$updatedAt;
 
     /**
      * Constructor.
      */
     public function __constructor()
     {
-        $this->collection = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->collection2 = new \Doctrine\Common\Collections\ArrayCollection();
-
+        \$this->collection = new \Doctrine\Common\Collections\ArrayCollection();
+        \$this->collection2 = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * For property "content"
      *
-     * @param string $content
+     * @param string \$content
      * @return this
      */
-    public function setContent($content)
+    public function setContent(\$content)
     {
-        $this->content = $content;
-        return $this;
+        \$this->content = \$content;
+        return \$this;
     }
 
     /**
@@ -85,19 +84,19 @@ class Post implements \AppBundle\Entity\PostInterface
      */
     public function getContent()
     {
-        return $this->content;
+        return \$this->content;
     }
 
     /**
      * For property "createdAt"
      *
-     * @param DateTime $createdAt
+     * @param DateTime \$createdAt
      * @return this
      */
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setCreatedAt(\DateTime \$createdAt)
     {
-        $this->createdAt = $createdAt;
-        return $this;
+        \$this->createdAt = \$createdAt;
+        return \$this;
     }
 
     /**
@@ -107,19 +106,19 @@ class Post implements \AppBundle\Entity\PostInterface
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        return \$this->createdAt;
     }
 
     /**
      * For property "updatedAt"
      *
-     * @param DateTime $updatedAt
+     * @param DateTime \$updatedAt
      * @return this
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function setUpdatedAt(\DateTime \$updatedAt)
     {
-        $this->updatedAt = $updatedAt;
-        return $this;
+        \$this->updatedAt = \$updatedAt;
+        return \$this;
     }
 
     /**
@@ -129,16 +128,18 @@ class Post implements \AppBundle\Entity\PostInterface
      */
     public function getUpdatedAt()
     {
-        return $this->updatedAt;
+        return \$this->updatedAt;
     }
 
 }
-';
+
+EOT;
 
     /**
      * @var string
      */
-    private $postClassWithNewPropertyExpected = '<?php
+    private $postClassWithNewPropertyExpected = <<<EOT
+<?php
 
 namespace AppBundle\Entity;
 
@@ -155,23 +156,23 @@ class Post implements \AppBundle\Entity\PostInterface
      * @\JMS\Serializer\Annotation\Type("string")
      * @var string
      */
-    private $content;
+    private \$content;
 
     /**
-     * \'created_at\' property
+     * 'created_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @var DateTime
      */
-    private $createdAt;
+    private \$createdAt;
 
     /**
-     * \'updated_at\' property
+     * 'updated_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @var DateTime
      */
-    private $updatedAt;
+    private \$updatedAt;
 
     /**
      * is post active
@@ -180,27 +181,25 @@ class Post implements \AppBundle\Entity\PostInterface
      * @\JMS\Serializer\Annotation\Type("boolean")
      * @var boolean
      */
-    private $active;
-
+    private \$active;
 
     /**
      * Constructor.
      */
     public function __constructor()
     {
-
     }
 
     /**
      * For property "content"
      *
-     * @param string $content
+     * @param string \$content
      * @return this
      */
-    public function setContent($content)
+    public function setContent(\$content)
     {
-        $this->content = $content;
-        return $this;
+        \$this->content = \$content;
+        return \$this;
     }
 
     /**
@@ -210,19 +209,19 @@ class Post implements \AppBundle\Entity\PostInterface
      */
     public function getContent()
     {
-        return $this->content;
+        return \$this->content;
     }
 
     /**
      * For property "createdAt"
      *
-     * @param DateTime $createdAt
+     * @param DateTime \$createdAt
      * @return this
      */
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setCreatedAt(\DateTime \$createdAt)
     {
-        $this->createdAt = $createdAt;
-        return $this;
+        \$this->createdAt = \$createdAt;
+        return \$this;
     }
 
     /**
@@ -232,19 +231,19 @@ class Post implements \AppBundle\Entity\PostInterface
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        return \$this->createdAt;
     }
 
     /**
      * For property "updatedAt"
      *
-     * @param DateTime $updatedAt
+     * @param DateTime \$updatedAt
      * @return this
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function setUpdatedAt(\DateTime \$updatedAt)
     {
-        $this->updatedAt = $updatedAt;
-        return $this;
+        \$this->updatedAt = \$updatedAt;
+        return \$this;
     }
 
     /**
@@ -254,16 +253,18 @@ class Post implements \AppBundle\Entity\PostInterface
      */
     public function getUpdatedAt()
     {
-        return $this->updatedAt;
+        return \$this->updatedAt;
     }
 
 }
-';
+
+EOT;
 
     /**
      * @var string
      */
-    private $postClassExpected = '<?php
+    private $postClassExpected = <<<EOT
+<?php
 
 namespace AppBundle\Entity;
 
@@ -280,43 +281,41 @@ class Post implements \AppBundle\Entity\PostInterface
      * @\JMS\Serializer\Annotation\Type("string")
      * @var string
      */
-    private $content;
+    private \$content;
 
     /**
-     * \'created_at\' property
+     * 'created_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @var DateTime
      */
-    private $createdAt;
+    private \$createdAt;
 
     /**
-     * \'updated_at\' property
+     * 'updated_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @var DateTime
      */
-    private $updatedAt;
-
+    private \$updatedAt;
 
     /**
      * Constructor.
      */
     public function __constructor()
     {
-
     }
 
     /**
      * For property "content"
      *
-     * @param string $content
+     * @param string \$content
      * @return this
      */
-    public function setContent($content)
+    public function setContent(\$content)
     {
-        $this->content = $content;
-        return $this;
+        \$this->content = \$content;
+        return \$this;
     }
 
     /**
@@ -326,19 +325,19 @@ class Post implements \AppBundle\Entity\PostInterface
      */
     public function getContent()
     {
-        return $this->content;
+        return \$this->content;
     }
 
     /**
      * For property "createdAt"
      *
-     * @param DateTime $createdAt
+     * @param DateTime \$createdAt
      * @return this
      */
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setCreatedAt(\DateTime \$createdAt)
     {
-        $this->createdAt = $createdAt;
-        return $this;
+        \$this->createdAt = \$createdAt;
+        return \$this;
     }
 
     /**
@@ -348,19 +347,19 @@ class Post implements \AppBundle\Entity\PostInterface
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        return \$this->createdAt;
     }
 
     /**
      * For property "updatedAt"
      *
-     * @param DateTime $updatedAt
+     * @param DateTime \$updatedAt
      * @return this
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function setUpdatedAt(\DateTime \$updatedAt)
     {
-        $this->updatedAt = $updatedAt;
-        return $this;
+        \$this->updatedAt = \$updatedAt;
+        return \$this;
     }
 
     /**
@@ -370,16 +369,18 @@ class Post implements \AppBundle\Entity\PostInterface
      */
     public function getUpdatedAt()
     {
-        return $this->updatedAt;
+        return \$this->updatedAt;
     }
 
 }
-';
+
+EOT;
 
     /**
      * @var string
      */
-    private $userClassExpected = '<?php
+    private $userClassExpected = <<<EOT
+<?php
 
 namespace AppBundle\Entity;
 
@@ -392,22 +393,22 @@ class User implements \AppBundle\Entity\UserInterface
     /**
      * Username for login
      *
-     * @\Symfony\Component\Validator\Constraints\NotBlank(message = \'Login can not be empty\')
-     * @\Symfony\Component\Validator\Constraints\NotNull(message = \'Login can not be null\')
+     * @\Symfony\Component\Validator\Constraints\NotBlank(message = 'Login can not be empty')
+     * @\Symfony\Component\Validator\Constraints\NotNull(message = 'Login can not be null')
      * @\JMS\Serializer\Annotation\Type("string")
      * @var string
      */
-    private $username;
+    private \$username;
 
     /**
      * User email
      *
      * @\Symfony\Component\Validator\Constraints\NotBlank()
-     * @\Symfony\Component\Validator\Constraints\Email(message = \'Invalid email\')
+     * @\Symfony\Component\Validator\Constraints\Email(message = 'Invalid email')
      * @\JMS\Serializer\Annotation\Type("string")
      * @var string
      */
-    private $email;
+    private \$email;
 
     /**
      * Wether user is active or not
@@ -416,7 +417,7 @@ class User implements \AppBundle\Entity\UserInterface
      * @\JMS\Serializer\Annotation\Type("boolean")
      * @var boolean
      */
-    private $active;
+    private \$active;
 
     /**
      * User posts
@@ -424,51 +425,50 @@ class User implements \AppBundle\Entity\UserInterface
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
      * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
      */
-    private $posts;
+    private \$posts;
 
     /**
-     * \'created_at\' property
+     * 'created_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @var DateTime
      */
-    private $createdAt;
+    private \$createdAt;
 
     /**
-     * \'updated_at\' property
+     * 'updated_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @var DateTime
      */
-    private $updatedAt;
+    private \$updatedAt;
 
     /**
-     * \'last_post\' property
+     * 'last_post' property
      *
      * @\JMS\Serializer\Annotation\Type("AppBundle\Entity\Post")
      * @var AppBundle\Entity\Post
      */
-    private $lastPost;
-
+    private \$lastPost;
 
     /**
      * Constructor.
      */
     public function __constructor()
     {
-        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+        \$this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * For property "username"
      *
-     * @param string $username
+     * @param string \$username
      * @return this
      */
-    public function setUsername($username)
+    public function setUsername(\$username)
     {
-        $this->username = $username;
-        return $this;
+        \$this->username = \$username;
+        return \$this;
     }
 
     /**
@@ -478,19 +478,19 @@ class User implements \AppBundle\Entity\UserInterface
      */
     public function getUsername()
     {
-        return $this->username;
+        return \$this->username;
     }
 
     /**
      * For property "email"
      *
-     * @param string $email
+     * @param string \$email
      * @return this
      */
-    public function setEmail($email)
+    public function setEmail(\$email)
     {
-        $this->email = $email;
-        return $this;
+        \$this->email = \$email;
+        return \$this;
     }
 
     /**
@@ -500,7 +500,7 @@ class User implements \AppBundle\Entity\UserInterface
      */
     public function getEmail()
     {
-        return $this->email;
+        return \$this->email;
     }
 
     /**
@@ -510,19 +510,19 @@ class User implements \AppBundle\Entity\UserInterface
      */
     public function isActive()
     {
-        return $this->active;
+        return (bool) \$this->active;
     }
 
     /**
      * For property "active"
      *
-     * @param boolean $active
+     * @param boolean \$active
      * @return this
      */
-    public function setActive($active)
+    public function setActive(\$active)
     {
-        $this->active = $active;
-        return $this;
+        \$this->active = \$active;
+        return \$this;
     }
 
     /**
@@ -532,19 +532,19 @@ class User implements \AppBundle\Entity\UserInterface
      */
     public function getActive()
     {
-        return $this->active;
+        return \$this->active;
     }
 
     /**
      * For property "posts"
      *
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> $posts
+     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> \$posts
      * @return this
      */
-    public function setPosts(\Doctrine\Common\Collections\ArrayCollection $posts)
+    public function setPosts(\Doctrine\Common\Collections\ArrayCollection \$posts)
     {
-        $this->posts = $posts;
-        return $this;
+        \$this->posts = \$posts;
+        return \$this;
     }
 
     /**
@@ -554,19 +554,19 @@ class User implements \AppBundle\Entity\UserInterface
      */
     public function getPosts()
     {
-        return $this->posts;
+        return \$this->posts;
     }
 
     /**
      * For property "createdAt"
      *
-     * @param DateTime $createdAt
+     * @param DateTime \$createdAt
      * @return this
      */
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setCreatedAt(\DateTime \$createdAt)
     {
-        $this->createdAt = $createdAt;
-        return $this;
+        \$this->createdAt = \$createdAt;
+        return \$this;
     }
 
     /**
@@ -576,19 +576,19 @@ class User implements \AppBundle\Entity\UserInterface
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        return \$this->createdAt;
     }
 
     /**
      * For property "updatedAt"
      *
-     * @param DateTime $updatedAt
+     * @param DateTime \$updatedAt
      * @return this
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function setUpdatedAt(\DateTime \$updatedAt)
     {
-        $this->updatedAt = $updatedAt;
-        return $this;
+        \$this->updatedAt = \$updatedAt;
+        return \$this;
     }
 
     /**
@@ -598,19 +598,19 @@ class User implements \AppBundle\Entity\UserInterface
      */
     public function getUpdatedAt()
     {
-        return $this->updatedAt;
+        return \$this->updatedAt;
     }
 
     /**
      * For property "lastPost"
      *
-     * @param AppBundle\Entity\Post $lastPost
+     * @param AppBundle\Entity\Post \$lastPost
      * @return this
      */
-    public function setLastPost(\AppBundle\Entity\Post $lastPost)
+    public function setLastPost(\AppBundle\Entity\Post \$lastPost)
     {
-        $this->lastPost = $lastPost;
-        return $this;
+        \$this->lastPost = \$lastPost;
+        return \$this;
     }
 
     /**
@@ -620,16 +620,18 @@ class User implements \AppBundle\Entity\UserInterface
      */
     public function getLastPost()
     {
-        return $this->lastPost;
+        return \$this->lastPost;
     }
 
 }
-';
+
+EOT;
 
     /**
      * @var string
      */
-    private $userInterfaceExpected = '<?php
+    private $userInterfaceExpected = <<<EOT
+<?php
 
 namespace AppBundle\Entity;
 
@@ -641,10 +643,10 @@ interface UserInterface
 
     /**
      * For property "username"
-     * @param string $username
+     * @param string \$username
      * @return this
      */
-    public function setUsername($username);
+    public function setUsername(\$username);
 
     /**
      * For property "username"
@@ -654,10 +656,10 @@ interface UserInterface
 
     /**
      * For property "email"
-     * @param string $email
+     * @param string \$email
      * @return this
      */
-    public function setEmail($email);
+    public function setEmail(\$email);
 
     /**
      * For property "email"
@@ -674,10 +676,10 @@ interface UserInterface
 
     /**
      * For property "active"
-     * @param boolean $active
+     * @param boolean \$active
      * @return this
      */
-    public function setActive($active);
+    public function setActive(\$active);
 
     /**
      * For property "active"
@@ -687,10 +689,10 @@ interface UserInterface
 
     /**
      * For property "posts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> $posts
+     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> \$posts
      * @return this
      */
-    public function setPosts(\Doctrine\Common\Collections\ArrayCollection $posts);
+    public function setPosts(\Doctrine\Common\Collections\ArrayCollection \$posts);
 
     /**
      * For property "posts"
@@ -700,10 +702,10 @@ interface UserInterface
 
     /**
      * For property "createdAt"
-     * @param DateTime $createdAt
+     * @param DateTime \$createdAt
      * @return this
      */
-    public function setCreatedAt(\DateTime $createdAt);
+    public function setCreatedAt(\DateTime \$createdAt);
 
     /**
      * For property "createdAt"
@@ -713,10 +715,10 @@ interface UserInterface
 
     /**
      * For property "updatedAt"
-     * @param DateTime $updatedAt
+     * @param DateTime \$updatedAt
      * @return this
      */
-    public function setUpdatedAt(\DateTime $updatedAt);
+    public function setUpdatedAt(\DateTime \$updatedAt);
 
     /**
      * For property "updatedAt"
@@ -726,10 +728,10 @@ interface UserInterface
 
     /**
      * For property "lastPost"
-     * @param AppBundle\Entity\Post $lastPost
+     * @param AppBundle\Entity\Post \$lastPost
      * @return this
      */
-    public function setLastPost(\AppBundle\Entity\Post $lastPost);
+    public function setLastPost(\AppBundle\Entity\Post \$lastPost);
 
     /**
      * For property "lastPost"
@@ -738,12 +740,14 @@ interface UserInterface
     public function getLastPost();
 
 }
-';
+
+EOT;
 
     /**
      * @var string
      */
-    private $postInterfaceExpected = '<?php
+    private $postInterfaceExpected = <<<EOT
+<?php
 
 namespace AppBundle\Entity;
 
@@ -755,10 +759,10 @@ interface PostInterface
 
     /**
      * For property "content"
-     * @param string $content
+     * @param string \$content
      * @return this
      */
-    public function setContent($content);
+    public function setContent(\$content);
 
     /**
      * For property "content"
@@ -768,10 +772,10 @@ interface PostInterface
 
     /**
      * For property "createdAt"
-     * @param DateTime $createdAt
+     * @param DateTime \$createdAt
      * @return this
      */
-    public function setCreatedAt(\DateTime $createdAt);
+    public function setCreatedAt(\DateTime \$createdAt);
 
     /**
      * For property "createdAt"
@@ -781,10 +785,10 @@ interface PostInterface
 
     /**
      * For property "updatedAt"
-     * @param DateTime $updatedAt
+     * @param DateTime \$updatedAt
      * @return this
      */
-    public function setUpdatedAt(\DateTime $updatedAt);
+    public function setUpdatedAt(\DateTime \$updatedAt);
 
     /**
      * For property "updatedAt"
@@ -793,12 +797,14 @@ interface PostInterface
     public function getUpdatedAt();
 
 }
-';
+
+EOT;
 
     /**
      * @var string
      */
-    private $userTestClassExpected = '<?php
+    private $userTestClassExpected = <<<EOT
+<?php
 
 namespace AppBundle\Tests\Entity;
 
@@ -812,18 +818,18 @@ class UserTest extends \PHPUnit_Framework_TestCase
      * Entity to test
      * @var \AppBundle\Entity\UserInterface
      */
-    private $object = null;
+    private \$object = null;
 
     public function setUp()
     {
-        $this->object = new \AppBundle\Entity\User();
+        \$this->object = new \AppBundle\Entity\User();
     }
 
     public function testConstructor()
     {
-        $this->assertNotNull($this->object);
-        $this->assertInstanceof(\'\AppBundle\Entity\UserInterface\', $this->object);
-        $this->assertInstanceof(\'\AppBundle\Entity\User\', $this->object);
+        \$this->assertNotNull(\$this->object);
+        \$this->assertInstanceof('\AppBundle\Entity\UserInterface', \$this->object);
+        \$this->assertInstanceof('\AppBundle\Entity\User', \$this->object);
     }
 
     /**
@@ -831,8 +837,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetUsername()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -841,8 +847,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUsername()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -851,8 +857,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetEmail()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -861,8 +867,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetEmail()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -871,8 +877,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsActive()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -881,8 +887,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetActive()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -891,8 +897,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetActive()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -901,8 +907,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetPosts()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -911,8 +917,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPosts()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -921,8 +927,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetCreatedAt()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -931,8 +937,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCreatedAt()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -941,8 +947,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetUpdatedAt()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -951,8 +957,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUpdatedAt()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -961,8 +967,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetLastPost()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -971,19 +977,20 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLastPost()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
 }
 
-';
+EOT;
 
     /**
      * @var string
      */
-    private $postTestClassExpected = '<?php
+    private $postTestClassExpected = <<<EOT
+<?php
 
 namespace AppBundle\Tests\Entity;
 
@@ -997,18 +1004,18 @@ class PostTest extends \PHPUnit_Framework_TestCase
      * Entity to test
      * @var \AppBundle\Entity\PostInterface
      */
-    private $object = null;
+    private \$object = null;
 
     public function setUp()
     {
-        $this->object = new \AppBundle\Entity\Post();
+        \$this->object = new \AppBundle\Entity\Post();
     }
 
     public function testConstructor()
     {
-        $this->assertNotNull($this->object);
-        $this->assertInstanceof(\'\AppBundle\Entity\PostInterface\', $this->object);
-        $this->assertInstanceof(\'\AppBundle\Entity\Post\', $this->object);
+        \$this->assertNotNull(\$this->object);
+        \$this->assertInstanceof('\AppBundle\Entity\PostInterface', \$this->object);
+        \$this->assertInstanceof('\AppBundle\Entity\Post', \$this->object);
     }
 
     /**
@@ -1016,8 +1023,8 @@ class PostTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetContent()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -1026,8 +1033,8 @@ class PostTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetContent()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -1036,8 +1043,8 @@ class PostTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetCreatedAt()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -1046,8 +1053,8 @@ class PostTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCreatedAt()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -1056,8 +1063,8 @@ class PostTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetUpdatedAt()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
@@ -1066,14 +1073,14 @@ class PostTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUpdatedAt()
     {
-        $this->markTestIncomplete(
-            \'This test has not been implemented yet.\'
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
         );
     }
 
 }
 
-';
+EOT;
 
     /**
      * @var Renderer
@@ -1099,7 +1106,7 @@ class PostTest extends \PHPUnit_Framework_TestCase
     public function testRender($item, $expectedOutput)
     {
         $result = $this->renderer->render($item);
-        $this->assertEquals($result, $expectedOutput);
+        $this->assertEquals($expectedOutput, $result);
     }
 
     public function dataForTestRender()
@@ -1120,7 +1127,7 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $itemsToRender = new ArrayCollection();
         $itemsToRender->add(Helper::prepareProperty("active", "boolean", "is post active", ["IsTrue()"]));
         $result = $this->renderer->renderAndPutItemsToContent($this->postClassExpected, $itemsToRender, 35);
-        $this->assertEquals($result, $this->postClassWithNewPropertyExpected);
+        $this->assertEquals($this->postClassWithNewPropertyExpected, $result);
     }
 
     public function testRenderAndPutConstructorBodyToContent()
@@ -1134,8 +1141,8 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $initProperties->add($initProperty2);
         $initProperties->add($initProperty);
         $constructorManager->setInitProperties($initProperties);
-        $result = $this->renderer->renderAndPutConstructorBodyToContent($this->postClassExpected, $constructorManager, 41);
-        $this->assertEquals($result, $this->postClassWithUpdatedConstructor);
+        $result = $this->renderer->renderAndPutConstructorBodyToContent($this->postClassExpected, $constructorManager, 40);
+        $this->assertEquals($this->postClassWithUpdatedConstructor, $result);
     }
 
     private function initDataFromYaml()

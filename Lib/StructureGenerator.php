@@ -15,6 +15,7 @@ use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\MethodSetterInterfaceManag
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\MethodSetterManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\TestClassManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\TestMethodManager;
+use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\Yaml\Parser;
 
@@ -46,28 +47,27 @@ class StructureGenerator
     /**
      * CONSTR
      *
-     * @param SerializerInterface $serializer
      * @param Parser $parser
      */
-    public function __construct(SerializerInterface $serializer, Parser $parser)
+    public function __construct(Parser $parser)
     {
         $this->parser = $parser;
-        $this->serializer = $serializer;
+        $this->serializer = SerializerBuilder::create()->build();
     }
 
     /**
      * Parse yaml string to array of JSONs
      *
      * @param string $fileContent
-     * @return array
+     * @return ArrayCollection
      */
     public function parseToArray($fileContent)
     {
         $parser = $this->getParser();
         $entitiesDataArray = $parser->parse($fileContent);
-        $entitiesData = [];
+        $entitiesData = new ArrayCollection();
         foreach ($entitiesDataArray as $entityDataArray) {
-            $entitiesData[] = json_encode($entityDataArray, true);
+            $entitiesData->add(json_encode($entityDataArray, true));
         }
 
         return $entitiesData;
@@ -76,18 +76,18 @@ class StructureGenerator
     /**
      * Build Entities Class Structures from array array('{"data":"data"}', '{"data":"data"}')
      *
-     * @param array $entitiesData
-     * @return array
+     * @param ArrayCollection $entitiesData
+     * @return ArrayCollection
      */
-    public function buildEntitiesClassStructure(array $entitiesData = [])
+    public function buildEntitiesClassStructure(ArrayCollection $entitiesData)
     {
-        $classesManagers = [];
-        foreach ($entitiesData as $jsonData) {
-            $classesManagers[] = $this->deserializeJsonDataToClassManager($jsonData);
+        $classesManagers = new ArrayCollection();
+        foreach ($entitiesData->toArray() as $jsonData) {
+            $classesManagers->add($this->deserializeJsonDataToClassManager($jsonData));
         }
 
         // building class environment
-        foreach ($classesManagers as $classManager) {
+        foreach ($classesManagers->toArray() as $classManager) {
             $this->preapareClassManager($classManager); // reference
         }
 

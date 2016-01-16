@@ -1,6 +1,6 @@
 # About
 
-Simple Entity Generator Bundle
+Class Generator Bundle
 - Generate classes, interfaces and PHPUnit test class skeletons from YAML schema.
 - Generator does not overwrite existing methods or properties, only render new elements.
 - Generated entity class is compatible with JMS Serializer, each property has anotation @Type based on property type.
@@ -22,7 +22,6 @@ public function registerBundles()
     $bundles = array(
         //...
             new HelloWordPl\SimpleEntityGeneratorBundle\HelloWordPlSimpleEntityGeneratorBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
         //...
     );
     //...

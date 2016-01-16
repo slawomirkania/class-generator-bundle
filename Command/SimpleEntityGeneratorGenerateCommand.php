@@ -2,6 +2,7 @@
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Command;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Exception;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\StructureWithMethodsInterface;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
@@ -57,9 +58,11 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
     /**
      * Dump structures into files
      *
-     * @param array $classManagers
+     * @param OutputInterface $output
+     * @param ArrayCollection $classManagers
+     * @throws Exception
      */
-    protected function processStructures(OutputInterface $output, array $classManagers = [])
+    protected function processStructures(OutputInterface $output, ArrayCollection $classManagers)
     {
         foreach ($classManagers as $classManager) {
             /* @var $classManager \HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager */
@@ -147,10 +150,10 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
     /**
      * Throw Exception when duplicated classes
      *
-     * @param array $classManagers
+     * @param ArrayCollection $classManagers
      * @throws Exception
      */
-    protected function checkClassesDuplicate(array $classManagers = [])
+    protected function checkClassesDuplicate(ArrayCollection $classManagers)
     {
         $checkDuplicateArray = [];
         foreach ($classManagers as $classManager) {
@@ -165,19 +168,16 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
     /**
      * Throw Exception when class entities invalid
      *
-     * @param array $classManagers
+     * @param ArrayCollection $classManagers
      * @throws Exception
      */
-    protected function validateClasses(array $classManagers = [])
+    protected function validateClasses(ArrayCollection $classManagers)
     {
         $validator = $this->getValidator();
-        foreach ($classManagers as $classManager) {
-            /* @var $classManager \HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager */
-            $constraintViolationList = $validator->validate($classManager);
+        $constraintViolationList = $validator->validate($classManagers);
 
-            if ($constraintViolationList->count() > 0) {
-                throw new Exception(sprintf("Structure validation errors: %s", $constraintViolationList));
-            }
+        if ($constraintViolationList->count() > 0) {
+            throw new Exception(sprintf("Structure validation errors: %s", $constraintViolationList));
         }
     }
 

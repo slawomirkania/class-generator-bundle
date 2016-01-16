@@ -320,17 +320,18 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
             ."namespace <namespace>;\n"
             ."\n"
             ."/**\n"
-            ." * <comment>\n"
+            ." *<comment>\n"
             ." */\n"
             ."class <name> <interface>\n"
             ."{\n"
             ."\n"
-            ."<properties>\n"
+            ."<properties>"
             ."\n"
             ."<constructor>"
             ."\n"
-            ."<methods>\n"
-            ."}\n";
+            ."<methods>"
+            ."\n"
+            ."}";
     }
 
     /**

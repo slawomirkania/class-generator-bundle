@@ -136,8 +136,9 @@ class Renderer
             $initProperties[] = $this->render($initProperty);
         }
 
-        $args[RenderableInterface::TAG_INIT_PROPERTIES] = Tools::implodeArrayToTemplate($initProperties);
-        return $this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES);
+        $initPropertiesRendered = empty($initProperties) ? "" : $this->addNewLineAfter(Tools::implodeArrayToTemplate($initProperties));
+        $args[RenderableInterface::TAG_INIT_PROPERTIES] = $initPropertiesRendered;
+        return $this->addNewLineAfter($this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES));
     }
 
     /**
@@ -196,7 +197,7 @@ class Renderer
                 throw $this->getExceptionUnrecognizedItem($method);
         }
 
-        return $this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES);
+        return $this->addNewLineAfter($this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES));
     }
 
     /**
@@ -223,14 +224,14 @@ class Renderer
         }
 
         $args[RenderableInterface::TAG_NAMESPACE] = $class->getNamespaceWithoutNameAndBackslashPrefix();
-        $args[RenderableInterface::TAG_COMMENT] = $class->getComment();
+        $args[RenderableInterface::TAG_COMMENT] = empty($class->getComment()) ? "" : sprintf(" %s", $class->getComment());
         $args[RenderableInterface::TAG_NAME] = $class->getName();
         $args[RenderableInterface::TAG_INTERFACE] = $interfacePart;
         $args[RenderableInterface::TAG_CONSTRUCTOR] = $this->render($class->getConstructor());
         $args[RenderableInterface::TAG_PROPERTIES] = Tools::implodeArrayToTemplate($properties);
         $args[RenderableInterface::TAG_METHODS] = Tools::implodeArrayToTemplate($methods);
 
-        return $this->replace($tags, $args, $template);
+        return $this->addNewLineAfter($this->replace($tags, $args, $template));
     }
 
     /**
@@ -253,7 +254,7 @@ class Renderer
         $args[RenderableInterface::TAG_NAME] = $interface->getName();
         $args[RenderableInterface::TAG_METHODS] = Tools::implodeArrayToTemplate($methods);
 
-        return $this->replace($tags, $args, $template);
+        return $this->addNewLineAfter($this->replace($tags, $args, $template));
     }
 
     /**
@@ -274,12 +275,12 @@ class Renderer
                 $validatorsStringArray[] = sprintf(" * @\Symfony\Component\Validator\Constraints\%s", $validator);
             }
 
-            $validatorsPart = Tools::implodeArrayToTemplate($validatorsStringArray)."\n";
+            $validatorsPart = $this->addNewLineAfter(Tools::implodeArrayToTemplate($validatorsStringArray));
         }
 
         $comment = $property->getComment();
         if (empty($comment)) {
-            $comment = "'".$property->getName()."' property";
+            $comment = sprintf("'%s' property", $property->getName());
         }
 
         $args[RenderableInterface::TAG_COMMENT] = $comment;
@@ -287,7 +288,7 @@ class Renderer
         $args[RenderableInterface::TAG_TYPE] = $property->getType();
         $args[RenderableInterface::TAG_NAME] = $property->getPreparedName();
 
-        return $this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES);
+        return $this->addNewLineAfter($this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES));
     }
 
     /**
@@ -313,7 +314,7 @@ class Renderer
         $args[RenderableInterface::TAG_CLASS] = $class->getNamespace();
         $args[RenderableInterface::TAG_METHODS] = Tools::implodeArrayToTemplate($methods);
 
-        return $this->replace($tags, $args, $template);
+        return $this->addNewLineAfter($this->replace($tags, $args, $template));
     }
 
     /**
@@ -330,7 +331,7 @@ class Renderer
         $args[RenderableInterface::TAG_METHOD_NAME] = $testMethod->getMethod()->getPreparedName();
         $args[RenderableInterface::TAG_TEST_METHOD_NAME] = $testMethod->getPreparedName();
 
-        return $this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES);
+        return $this->addNewLineAfter($this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES));
     }
 
     /**
@@ -405,5 +406,21 @@ class Renderer
     protected function putElementIntoSource(&$source, $offset, $element)
     {
         array_splice($source, $offset, 0, [$element]);
+    }
+
+    /**
+     * Put new line to the end of conent
+     *
+     * @param string $content
+     * @return string
+     * @throws RendererException
+     */
+    protected function addNewLineAfter($content)
+    {
+        if (false == is_string($content)) {
+            throw new RendererException("Invalid string!");
+        }
+
+        return sprintf("%s\n", $content);
     }
 }

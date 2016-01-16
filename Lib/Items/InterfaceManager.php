@@ -162,7 +162,7 @@ class InterfaceManager implements RenderableInterface, DumpableInterface, Struct
     public function getTemplate()
     {
         return
-            "<?php \n"
+            "<?php\n"
             ."\n"
             ."namespace <namespace>;\n"
             ."\n"
@@ -172,8 +172,9 @@ class InterfaceManager implements RenderableInterface, DumpableInterface, Struct
             ."interface <name>\n"
             ."{\n"
             ."\n"
-            ."<methods>\n"
-            ."}\n";
+            ."<methods>"
+            ."\n"
+            ."}";
     }
 
     /**

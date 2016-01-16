@@ -51,7 +51,7 @@ class MethodSetterInterfaceManager extends MethodManager implements SetterMethod
             ." * @param <property_type> $<property_name>\n"
             ." * @return this\n"
             ." */\n"
-            ."public function <method_name>(<type_hinting>$<property_name>);\n";
+            ."public function <method_name>(<type_hinting>$<property_name>);";
     }
 
     /**

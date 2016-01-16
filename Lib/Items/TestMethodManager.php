@@ -66,7 +66,7 @@ class TestMethodManager implements RenderableInterface, MethodInterface
             ."    \$this->markTestIncomplete(\n"
             ."        'This test has not been implemented yet.'\n"
             ."    );\n"
-            ."}\n";
+            ."}";
     }
 
     /**

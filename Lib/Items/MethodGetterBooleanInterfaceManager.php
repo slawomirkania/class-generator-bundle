@@ -33,7 +33,7 @@ class MethodGetterBooleanInterfaceManager extends MethodManager
             ." *\n"
             ." * @return <property_type>\n"
             ." */\n"
-            ."public function <method_name>();\n";
+            ."public function <method_name>();";
     }
 
     /**

@@ -9,4 +9,4 @@ services:
         class: HelloWordPl\SimpleEntityGeneratorBundle\Lib\StructureResolver
     seg.structure_generator:
         class: HelloWordPl\SimpleEntityGeneratorBundle\Lib\StructureGenerator
-        arguments: ['@jms_serializer', '@seg.yaml_parser']        
+        arguments: ['@seg.yaml_parser']        

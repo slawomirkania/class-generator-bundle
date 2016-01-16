@@ -1,13 +1,13 @@
 {
-    "name" : "slawomir-kania/simple-entity-generator-bundle",
-    "description" : "Simple Entity Generator",
+    "name" : "slawomirkania/class-generator-bundle",
+    "description" : "Class Generator",
     "type" : "symfony-bundle",
     "authors" : [{
         "name" : "Slawomir Kania",
         "email" : "slawomir.kania1@gmail.com"
     }],
     "keywords" : [
-        "entity", "generator", "test"
+        "class", "entity", "generator", "test", "interface"
     ],
     "license" : [
         "MIT"
@@ -17,7 +17,7 @@
         "symfony/framework-bundle": "~2.3|~3.0",
         
         "doctrine/common": "~2.2",
-        "jms/serializer-bundle": "~1.0",
+        "jms/serializer": "~1.0",
         "symfony/console": "~2.3|~3.0",
         "symfony/filesystem": "~2.3|~3.0",
         "symfony/yaml": "~2.2|~3.0"

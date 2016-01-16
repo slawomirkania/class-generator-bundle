@@ -36,7 +36,7 @@ class MethodGetterManager extends MethodManager
             ."public function <method_name>()\n"
             ."{\n"
             ."    return \$this-><property_name>;\n"
-            ."}\n";
+            ."}";
     }
 
     /**

@@ -270,7 +270,7 @@ class ToolsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, count(Tools::explodeTemplateStringToArray("foo")));
     }
 
-    public function testImplodeArrayByNewLine()
+    public function testImplodeArrayToTemplate()
     {
         $this->assertEquals("foo\nbar", Tools::implodeArrayToTemplate(["foo", "bar"]));
         $this->assertEquals("foo\nbar\n", Tools::implodeArrayToTemplate(["foo", "bar", ""]));

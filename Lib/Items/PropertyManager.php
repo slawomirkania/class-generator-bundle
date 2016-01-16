@@ -248,7 +248,7 @@ class PropertyManager implements RenderableInterface
             ." * @\JMS\Serializer\Annotation\Type(\"<type>\")\n"
             ." * @var <type>\n"
             ." */\n"
-            ."private $<name>;\n";
+            ."private $<name>;";
     }
 
     /**

@@ -35,8 +35,8 @@ class MethodGetterBooleanManager extends MethodManager
             ." */\n"
             ."public function <method_name>()\n"
             ."{\n"
-            ."    return \$this-><property_name>;\n"
-            ."}\n";
+            ."    return (bool) \$this-><property_name>;\n"
+            ."}";
     }
 
     /**

@@ -56,7 +56,7 @@ class MethodSetterManager extends MethodManager implements SetterMethodInterface
             ."{\n"
             ."    \$this-><property_name> = $<property_name>;\n"
             ."    return \$this;\n"
-            ."}\n";
+            ."}";
     }
 
     /**

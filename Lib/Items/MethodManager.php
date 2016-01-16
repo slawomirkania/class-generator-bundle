@@ -31,7 +31,7 @@ abstract class MethodManager implements RenderableInterface, MethodInterface
 
     /**
      * Construct.
-     * 
+     *
      * @param ClassManager $classManager
      */
     public function __construct(ClassManager $classManager)
