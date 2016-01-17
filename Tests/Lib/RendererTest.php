@@ -393,8 +393,8 @@ class User implements \AppBundle\Entity\UserInterface
     /**
      * Username for login
      *
-     * @\Symfony\Component\Validator\Constraints\NotBlank(message = 'Login can not be empty')
-     * @\Symfony\Component\Validator\Constraints\NotNull(message = 'Login can not be null')
+     * @\Symfony\Component\Validator\Constraints\NotBlank(message = "Login can not be empty")
+     * @\Symfony\Component\Validator\Constraints\NotNull(message = "Login can not be null")
      * @\JMS\Serializer\Annotation\Type("string")
      * @var string
      */
@@ -404,7 +404,7 @@ class User implements \AppBundle\Entity\UserInterface
      * User email
      *
      * @\Symfony\Component\Validator\Constraints\NotBlank()
-     * @\Symfony\Component\Validator\Constraints\Email(message = 'Invalid email')
+     * @\Symfony\Component\Validator\Constraints\Email(message = "Invalid email")
      * @\JMS\Serializer\Annotation\Type("string")
      * @var string
      */
@@ -1135,9 +1135,9 @@ EOT;
         $constructorManager = new ClassConstructorManager(new ClassManager());
         $initProperties = new ArrayCollection();
         $initProperty = new InitPropertyManager();
-        $initProperty->setProperty(Helper::prepareProperty("collection", "Doctrine\Common\Collections\ArrayCollection", "items collection", ["Valid(message = 'Collection has to be valid!')"]));
+        $initProperty->setProperty(Helper::prepareProperty("collection", "Doctrine\Common\Collections\ArrayCollection", "items collection", ["Valid(message = \"Collection has to be valid!\")"]));
         $initProperty2 = new InitPropertyManager();
-        $initProperty2->setProperty(Helper::prepareProperty("collection2", "Doctrine\Common\Collections\ArrayCollection", "items collection 2", ["Valid(message = 'Collection has to be valid!')"]));
+        $initProperty2->setProperty(Helper::prepareProperty("collection2", "Doctrine\Common\Collections\ArrayCollection", "items collection 2", ["Valid(message = \"Collection has to be valid!\")"]));
         $initProperties->add($initProperty2);
         $initProperties->add($initProperty);
         $constructorManager->setInitProperties($initProperties);

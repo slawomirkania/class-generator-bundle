@@ -48,7 +48,7 @@ class Helper
 
         $propertiesCollection = new ArrayCollection();
         $propertiesCollection->add(self::prepareProperty("full_name", "string", "", ["NotBlank()"]));
-        $propertiesCollection->add(self::prepareProperty("email", "string", "", ["Email(message = 'Invalid email!')"]));
+        $propertiesCollection->add(self::prepareProperty("email", "string", "", ["Email(message = \"Invalid email!\")"]));
         $propertiesCollection->add(self::prepareProperty("active", "boolean", "Wether user active", ["Type(type='boolean')", "IsTrue()"]));
         $propertiesCollection->add(self::prepareProperty("new_posts", "Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>", "User new posts", ["NotNull()", "Valid()"]));
 
@@ -72,15 +72,15 @@ class Helper
       type: string
       comment: "Username for login"
       constraints:
-        - NotBlank(message = \'Login can not be empty\')
-        - NotNull(message = \'Login can not be null\')
+        - NotBlank(message = "Login can not be empty")
+        - NotNull(message = "Login can not be null")
     -
       name: email
       type: string
       comment: "User email"
       constraints:
         - NotBlank()
-        - Email(message = \'Invalid email\')
+        - Email(message = "Invalid email")
     -
       name: active
       type: boolean

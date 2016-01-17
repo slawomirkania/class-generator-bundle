@@ -20,7 +20,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * 'email' property
      *
-     * @\Symfony\Component\Validator\Constraints\Email(message = 'Invalid email!')
+     * @\Symfony\Component\Validator\Constraints\Email(message = "Invalid email!")
      * @\JMS\Serializer\Annotation\Type("string")
      * @var string
      */

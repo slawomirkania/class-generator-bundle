@@ -291,9 +291,9 @@ class ToolsTest extends \PHPUnit_Framework_TestCase
     {
         return [
             ["@\Symfony\Component\Validator\Constraints\Valid()", true],
-            ["@\Symfony\Component\Validator\Constraints\Valid(message='Has to be valid!')", true],
+            ["@\Symfony\Component\Validator\Constraints\Valid(message=\"Has to be valid!\")", true],
             ["@Symfony\Component\Validator\Constraints\Valid()", true],
-            ["@Symfony\Component\Validator\Constraints\Valid(message='Has to be valid!')", true],
+            ["@Symfony\Component\Validator\Constraints\Valid(message=\"Has to be valid!\")", true],
             ["@Symfony\Component\Validator\Constraints\Valid(sdfgsdfgsdfgsdgsdg)", true], // @todo in the future
 
             ["@Symfony\Component\Validator\Constraints\NotExistConstraint()", false],
