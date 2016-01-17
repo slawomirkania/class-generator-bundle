@@ -100,7 +100,7 @@ Put {file_name_with_extension} YAML file into {bundle_name}\Resources\config\
 Run Symfony command
 
 ```sh
-$ ./bin/console simple_entity_generator:generate {bundle_name} {file_name_with_extension}
+$ ./bin/console class_generator:generate {bundle_name} {file_name_with_extension}
 ```
 ### Output structure namespaces:
 

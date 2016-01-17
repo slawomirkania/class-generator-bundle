@@ -178,7 +178,7 @@ class StructureResolver
     protected function resolveConstructorToRender($content, ClassManager $item, ReflectionClass $reflectionClass)
     {
         $constructor = $item->getConstructor();
-        $constructorFromFile = $reflectionClass->getMethod('__constructor');
+        $constructorFromFile = $reflectionClass->getConstructor();
         $source = Tools::explodeTemplateStringToArray($content);
 
         $constructorBody = implode("", array_slice($source, $constructorFromFile->getStartLine(), $constructorFromFile->getEndLine() - $constructorFromFile->getStartLine()));
@@ -223,7 +223,7 @@ class StructureResolver
      */
     protected function getNewInitPropertyPosition(ReflectionClass $reflectionClass)
     {
-        $constructor = $reflectionClass->getMethod('__constructor');
+        $constructor = $reflectionClass->getConstructor();
 
         if ($constructor instanceof ReflectionMethod) {
             return $constructor->getEndLine() - 1;
@@ -238,7 +238,7 @@ class StructureResolver
      */
     protected function getNewPropertyPosition(ReflectionClass $reflectionClass)
     {
-        $constructor = $reflectionClass->getMethod("__constructor");
+        $constructor = $reflectionClass->getConstructor();
         if ($constructor instanceof ReflectionMethod) {
             $commentParts = Tools::explodeTemplateStringToArray($constructor->getDocComment());
             return ($constructor->getStartLine() - count($commentParts)) - 1;

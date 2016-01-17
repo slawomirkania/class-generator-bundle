@@ -86,7 +86,7 @@ class ClassConstructorManager implements RenderableInterface
             ."/**\n"
             ." * Constructor.\n"
             ." */\n"
-            ."public function __constructor()\n"
+            ."public function __construct()\n"
             ."{\n"
             ."<init_properties>"
             ."}";

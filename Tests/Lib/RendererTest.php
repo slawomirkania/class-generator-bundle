@@ -59,7 +59,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * Constructor.
      */
-    public function __constructor()
+    public function __construct()
     {
         \$this->collection = new \Doctrine\Common\Collections\ArrayCollection();
         \$this->collection2 = new \Doctrine\Common\Collections\ArrayCollection();
@@ -186,7 +186,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * Constructor.
      */
-    public function __constructor()
+    public function __construct()
     {
     }
 
@@ -302,7 +302,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * Constructor.
      */
-    public function __constructor()
+    public function __construct()
     {
     }
 
@@ -454,7 +454,7 @@ class User implements \AppBundle\Entity\UserInterface
     /**
      * Constructor.
      */
-    public function __constructor()
+    public function __construct()
     {
         \$this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }

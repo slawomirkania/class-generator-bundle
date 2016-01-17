@@ -2,7 +2,7 @@
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Items;
 
-use Doctrine\Common\Collections\ArrayCollection;
+
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Helper;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -22,6 +22,9 @@ class BaseManager extends KernelTestCase
      */
     private $container;
 
+    /**
+     * SET UP
+     */
     public function setUp()
     {
         self::bootKernel();
@@ -43,18 +46,6 @@ class BaseManager extends KernelTestCase
      */
     protected function preapareClassManager()
     {
-        $classManager = new ClassManager();
-        $classManager->setNamespace("\AppBundle\Entity\User");
-        $classManager->setComment("User entity for tests");
-
-        $propertiesCollection = new ArrayCollection();
-        $propertiesCollection->add(Helper::prepareProperty("full_name", "string", "", ["NotBlank()"]));
-        $propertiesCollection->add(Helper::prepareProperty("email", "string", "", ["Email(message = 'Invalid email!')"]));
-        $propertiesCollection->add(Helper::prepareProperty("active", "boolean", "Wether user active", ["Type(type='boolean')", "IsTrue()"]));
-        $propertiesCollection->add(Helper::prepareProperty("new_posts", "Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>", "User new posts", ["NotNull()", "Valid()"]));
-
-        $classManager->setProperties($propertiesCollection);
-
-        return $this->container->get('seg.structure_generator')->preapareClassManager($classManager);
+        return $this->container->get('seg.structure_generator')->preapareClassManager(Helper::prepareBasicClassManager());
     }
 }

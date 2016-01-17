@@ -3,6 +3,7 @@
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\PropertyManager;
 
 /**
@@ -33,6 +34,27 @@ class Helper
         $propertyManager->setConstraints($constraintCollection);
 
         return $propertyManager;
+    }
+
+    /**
+     * @param string $namespace
+     * @return ClassManager
+     */
+    public static function prepareBasicClassManager($namespace = "\AppBundle\Entity\User")
+    {
+        $classManager = new ClassManager();
+        $classManager->setNamespace($namespace);
+        $classManager->setComment("User entity for tests");
+
+        $propertiesCollection = new ArrayCollection();
+        $propertiesCollection->add(self::prepareProperty("full_name", "string", "", ["NotBlank()"]));
+        $propertiesCollection->add(self::prepareProperty("email", "string", "", ["Email(message = 'Invalid email!')"]));
+        $propertiesCollection->add(self::prepareProperty("active", "boolean", "Wether user active", ["Type(type='boolean')", "IsTrue()"]));
+        $propertiesCollection->add(self::prepareProperty("new_posts", "Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>", "User new posts", ["NotNull()", "Valid()"]));
+
+        $classManager->setProperties($propertiesCollection);
+
+        return $classManager;
     }
 
     /**

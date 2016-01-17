@@ -23,7 +23,7 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('simple_entity_generator:generate')
+            ->setName('class_generator:generate')
             ->setDescription('Generate entities from yaml bundle config file')
             ->addArgument(self::PARAM_BUNDLE_NAME, InputArgument::REQUIRED, 'Name of bundle where config file is placed eg. AppBundle')
             ->addArgument(self::PARAM_FILE_NAME, InputArgument::REQUIRED, sprintf('Name of yaml config file eg. entities.yml placed in /{%s}/Resources/config/{%s}', self::PARAM_BUNDLE_NAME, self::PARAM_FILE_NAME));
@@ -44,7 +44,9 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
             $this->checkClassesDuplicate($classManagers);
             $this->validateClasses($classManagers);
 
-            $output->writeln(sprintf('<info>Start generating entities from config file: %s, in bundle: %s</info>', $fileName, $bundleName));
+            $output->writeln('ClassGenerator by Slawomir Kania and contributors.');
+            $output->writeln('');
+            $output->writeln(sprintf('<info>Start generating classes from config file: %s, in bundle: %s. Please wait...</info>', $fileName, $bundleName));
             $output->writeln('');
 
             $this->processStructures($output, $classManagers);

@@ -102,6 +102,29 @@ class FilesManager
 
     /**
      * @param DumpableInterface $item
+     * @return ReflectionClass
+     * @throws FilesManagerException
+     */
+    public function getReflectionClassForItem(DumpableInterface $item)
+    {
+        $this->checkItemFileExists($item);
+        return new ReflectionClass($item->getNamespace());
+    }
+
+    /**
+     * @param DumpableInterface $item
+     * @return string
+     * @throws FilesManagerException
+     */
+    public function getContentFromItemFile(DumpableInterface $item)
+    {
+        $this->checkItemFileExists($item);
+        $fullFileDirectory = $this->getItemDirectoryWithClassNameAndExtension($item);
+        return file_get_contents($fullFileDirectory);
+    }
+
+    /**
+     * @param DumpableInterface $item
      * @throws FilesManagerException
      */
     protected function updateExistingFile(DumpableInterface $item)
@@ -115,17 +138,6 @@ class FilesManager
         }
 
         return $item;
-    }
-
-    /**
-     * @param DumpableInterface $item
-     * @return ReflectionClass
-     * @throws FilesManagerException
-     */
-    protected function getReflectionClassForItem(DumpableInterface $item)
-    {
-        $this->checkItemFileExists($item);
-        return new ReflectionClass($item->getNamespace());
     }
 
     /**
@@ -150,18 +162,6 @@ class FilesManager
         if (false == empty($content)) {
             $fs->dumpFile($fullFileDirectory, $content);
         }
-    }
-
-    /**
-     * @param DumpableInterface $item
-     * @return string
-     * @throws FilesManagerException
-     */
-    protected function getContentFromItemFile(DumpableInterface $item)
-    {
-        $this->checkItemFileExists($item);
-        $fullFileDirectory = $this->getItemDirectoryWithClassNameAndExtension($item);
-        return file_get_contents($fullFileDirectory);
     }
 
     /**
