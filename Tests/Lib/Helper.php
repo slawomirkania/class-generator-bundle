@@ -102,6 +102,7 @@ class Helper
     -
       # default comment
       name: last_post
+      serialized_name: lastPost
       type: AppBundle\Entity\Post
 -
   namespace: \AppBundle\Entity\Post

@@ -36,6 +36,7 @@ class Post implements \AppBundle\Entity\PostInterface
      *
      * @\Symfony\Component\Validator\Constraints\NotBlank()
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("content")
      * @var string
      */
     private \$content;
@@ -44,6 +45,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 'created_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("created_at")
      * @var DateTime
      */
     private \$createdAt;
@@ -52,6 +54,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 'updated_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("updated_at")
      * @var DateTime
      */
     private \$updatedAt;
@@ -154,6 +157,7 @@ class Post implements \AppBundle\Entity\PostInterface
      *
      * @\Symfony\Component\Validator\Constraints\NotBlank()
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("content")
      * @var string
      */
     private \$content;
@@ -162,6 +166,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 'created_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("created_at")
      * @var DateTime
      */
     private \$createdAt;
@@ -170,6 +175,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 'updated_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("updated_at")
      * @var DateTime
      */
     private \$updatedAt;
@@ -179,6 +185,7 @@ class Post implements \AppBundle\Entity\PostInterface
      *
      * @\Symfony\Component\Validator\Constraints\IsTrue()
      * @\JMS\Serializer\Annotation\Type("boolean")
+     * @\JMS\Serializer\Annotation\SerializedName("active")
      * @var boolean
      */
     private \$active;
@@ -279,6 +286,7 @@ class Post implements \AppBundle\Entity\PostInterface
      *
      * @\Symfony\Component\Validator\Constraints\NotBlank()
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("content")
      * @var string
      */
     private \$content;
@@ -287,6 +295,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 'created_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("created_at")
      * @var DateTime
      */
     private \$createdAt;
@@ -295,6 +304,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 'updated_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("updated_at")
      * @var DateTime
      */
     private \$updatedAt;
@@ -396,6 +406,7 @@ class User implements \AppBundle\Entity\UserInterface
      * @\Symfony\Component\Validator\Constraints\NotBlank(message = "Login can not be empty")
      * @\Symfony\Component\Validator\Constraints\NotNull(message = "Login can not be null")
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("username")
      * @var string
      */
     private \$username;
@@ -406,6 +417,7 @@ class User implements \AppBundle\Entity\UserInterface
      * @\Symfony\Component\Validator\Constraints\NotBlank()
      * @\Symfony\Component\Validator\Constraints\Email(message = "Invalid email")
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("email")
      * @var string
      */
     private \$email;
@@ -415,6 +427,7 @@ class User implements \AppBundle\Entity\UserInterface
      *
      * @\Symfony\Component\Validator\Constraints\IsTrue()
      * @\JMS\Serializer\Annotation\Type("boolean")
+     * @\JMS\Serializer\Annotation\SerializedName("active")
      * @var boolean
      */
     private \$active;
@@ -423,6 +436,7 @@ class User implements \AppBundle\Entity\UserInterface
      * User posts
      *
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
+     * @\JMS\Serializer\Annotation\SerializedName("posts")
      * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
      */
     private \$posts;
@@ -431,6 +445,7 @@ class User implements \AppBundle\Entity\UserInterface
      * 'created_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("created_at")
      * @var DateTime
      */
     private \$createdAt;
@@ -439,6 +454,7 @@ class User implements \AppBundle\Entity\UserInterface
      * 'updated_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("updated_at")
      * @var DateTime
      */
     private \$updatedAt;
@@ -447,6 +463,7 @@ class User implements \AppBundle\Entity\UserInterface
      * 'last_post' property
      *
      * @\JMS\Serializer\Annotation\Type("AppBundle\Entity\Post")
+     * @\JMS\Serializer\Annotation\SerializedName("lastPost")
      * @var AppBundle\Entity\Post
      */
     private \$lastPost;
@@ -1126,7 +1143,7 @@ EOT;
     {
         $itemsToRender = new ArrayCollection();
         $itemsToRender->add(Helper::prepareProperty("active", "boolean", "is post active", ["IsTrue()"]));
-        $result = $this->renderer->renderAndPutItemsToContent($this->postClassExpected, $itemsToRender, 35);
+        $result = $this->renderer->renderAndPutItemsToContent($this->postClassExpected, $itemsToRender, 38);
         $this->assertEquals($this->postClassWithNewPropertyExpected, $result);
     }
 
@@ -1141,7 +1158,7 @@ EOT;
         $initProperties->add($initProperty2);
         $initProperties->add($initProperty);
         $constructorManager->setInitProperties($initProperties);
-        $result = $this->renderer->renderAndPutConstructorBodyToContent($this->postClassExpected, $constructorManager, 40);
+        $result = $this->renderer->renderAndPutConstructorBodyToContent($this->postClassExpected, $constructorManager, 43);
         $this->assertEquals($this->postClassWithUpdatedConstructor, $result);
     }
 

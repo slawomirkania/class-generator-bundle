@@ -146,6 +146,9 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
         $filesManager->dump($testClassManager);
         $output->writeln('<question>Processed: '.$classManager->getTestClass()->getNamespace().'</question>');
         $this->outputProcessMethods($output, $testClassManager);
+        if (false == $testClassManager->getMethods()->isEmpty()) {
+            $output->writeln(sprintf('<comment>Complete missing assertions in %s</comment>', $testClassManager->getNamespace()));
+        }
         $output->writeln('');
     }
 

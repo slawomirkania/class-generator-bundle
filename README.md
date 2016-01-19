@@ -1,10 +1,11 @@
 # About
 
 Class Generator Bundle
-- Generate classes, interfaces and PHPUnit test classes from YAML schema.
+- Generate classes, interfaces and PHPUnit test classes from the YAML schema.
 - Generator does not overwrite existing methods or properties, only render new elements.
-- Generated entity class is compatible with JMS Serializer, each property has anotation @Type based on property type.
-- Generator allows to add Symfony constraints to property.
+- Generated entity class is compatible with JMS Serializer, each property has an annotation @Type based on a property type.
+- Also each property has an annotation @SerializedName which can be adjusted like in the example below (last_post).
+- Generator allows to add Symfony constraints to a property.
 
 # Installation
 
@@ -76,6 +77,7 @@ public function registerBundles()
     -
       # default comment
       name: last_post
+      serialized_name: lastPost
       type: AppBundle\Entity\Post
 -
   namespace: \AppBundle\Entity\Post
@@ -124,6 +126,7 @@ class User implements \AppBundle\Entity\UserInterface
      * @\Symfony\Component\Validator\Constraints\NotBlank(message = "Login can not be empty")
      * @\Symfony\Component\Validator\Constraints\NotNull(message = "Login can not be null")
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("username")
      * @var string
      */
     private $username;
@@ -134,6 +137,7 @@ class User implements \AppBundle\Entity\UserInterface
      * @\Symfony\Component\Validator\Constraints\NotBlank()
      * @\Symfony\Component\Validator\Constraints\Email(message = "Invalid email")
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("email")
      * @var string
      */
     private $email;
@@ -143,6 +147,7 @@ class User implements \AppBundle\Entity\UserInterface
      *
      * @\Symfony\Component\Validator\Constraints\IsTrue()
      * @\JMS\Serializer\Annotation\Type("boolean")
+     * @\JMS\Serializer\Annotation\SerializedName("active")
      * @var boolean
      */
     private $active;
@@ -151,6 +156,7 @@ class User implements \AppBundle\Entity\UserInterface
      * User posts
      *
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
+     * @\JMS\Serializer\Annotation\SerializedName("posts")
      * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
      */
     private $posts;
@@ -159,6 +165,7 @@ class User implements \AppBundle\Entity\UserInterface
      * 'created_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("created_at")
      * @var DateTime
      */
     private $createdAt;
@@ -167,6 +174,7 @@ class User implements \AppBundle\Entity\UserInterface
      * 'updated_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("updated_at")
      * @var DateTime
      */
     private $updatedAt;
@@ -175,6 +183,7 @@ class User implements \AppBundle\Entity\UserInterface
      * 'last_post' property
      *
      * @\JMS\Serializer\Annotation\Type("AppBundle\Entity\Post")
+     * @\JMS\Serializer\Annotation\SerializedName("lastPost")
      * @var AppBundle\Entity\Post
      */
     private $lastPost;
@@ -670,6 +679,7 @@ class Post implements \AppBundle\Entity\PostInterface
      *
      * @\Symfony\Component\Validator\Constraints\NotBlank()
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("content")
      * @var string
      */
     private $content;
@@ -678,6 +688,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 'created_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("created_at")
      * @var DateTime
      */
     private $createdAt;
@@ -686,6 +697,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 'updated_at' property
      *
      * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("updated_at")
      * @var DateTime
      */
     private $updatedAt;

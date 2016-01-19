@@ -43,6 +43,11 @@ class Renderer
     const INDENT_4_SPACES = 4;
 
     /**
+     * @var string
+     */
+    const JMS_ANNOTATION_NAMESPACE = "@\\JMS\\Serializer\\Annotation";
+
+    /**
      * Render renderable item
      *
      * @param RenderableInterface $item
@@ -283,8 +288,17 @@ class Renderer
             $comment = sprintf("'%s' property", $property->getName());
         }
 
+        $jmsAnnotationStringArray = [];
+        $jmsAnnotationStringArray[] = sprintf(" * %s\Type(\"%s\")", self::JMS_ANNOTATION_NAMESPACE, $property->getType());
+        if ($property->hasSerializedName()) {
+            $jmsAnnotationStringArray[] = sprintf(" * %s\SerializedName(\"%s\")", self::JMS_ANNOTATION_NAMESPACE, $property->getSerializedName());
+        } else {
+            $jmsAnnotationStringArray[] = sprintf(" * %s\SerializedName(\"%s\")", self::JMS_ANNOTATION_NAMESPACE, $property->getName());
+        }
+
         $args[RenderableInterface::TAG_COMMENT] = $comment;
         $args[RenderableInterface::TAG_CONSTRAINTS] = $constraintsPart;
+        $args[RenderableInterface::TAG_JMS_PART] = $this->addNewLineAfter(Tools::implodeArrayToTemplate($jmsAnnotationStringArray));
         $args[RenderableInterface::TAG_TYPE] = $property->getType();
         $args[RenderableInterface::TAG_NAME] = $property->getPreparedName();
 

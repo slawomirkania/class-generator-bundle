@@ -59,6 +59,14 @@ class PropertyManager implements RenderableInterface
     private $type = '';
 
     /**
+     * Property serialized name, default is property name in snake format eg. for property $lastPost => last_post
+     *
+     * @Type("string")
+     * @Assert\Type("string")
+     */
+    private $serializedName = '';
+
+    /**
      * Constr.
      */
     public function __construct()
@@ -277,6 +285,38 @@ class PropertyManager implements RenderableInterface
     }
 
     /**
+     * Return custom serialized name
+     *
+     * @return string
+     */
+    public function getSerializedName()
+    {
+        return $this->serializedName;
+    }
+
+    /**
+     * Set custom serialized name form property
+     *
+     * @param string $serializedName
+     * @return PropertyManager
+     */
+    public function setSerializedName($serializedName)
+    {
+        $this->serializedName = $serializedName;
+        return $this;
+    }
+
+    /**
+     * Check that property has custom serialized name
+     *
+     * @return boolean
+     */
+    public function hasSerializedName()
+    {
+        return false == empty($this->serializedName);
+    }
+
+    /**
      * Return common element template
      *
      * @return string
@@ -288,7 +328,7 @@ class PropertyManager implements RenderableInterface
             ." * <comment>\n"
             ." *\n"
             ."<constraints>"
-            ." * @\JMS\Serializer\Annotation\Type(\"<type>\")\n"
+            ."<jms_part>"
             ." * @var <type>\n"
             ." */\n"
             ."private $<name>;";
@@ -304,6 +344,7 @@ class PropertyManager implements RenderableInterface
         return [
             self::TAG_COMMENT,
             self::TAG_CONSTRAINTS,
+            self::TAG_JMS_PART,
             self::TAG_TYPE,
             self::TAG_NAME
         ];

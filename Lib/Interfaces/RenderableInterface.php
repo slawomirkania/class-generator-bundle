@@ -31,6 +31,7 @@ interface RenderableInterface
     const TAG_CONSTRUCTOR = '<constructor>';
     const TAG_INIT_PROPERTIES = '<init_properties>';
     const TAG_TEST_METHOD_NAME = '<test_method_name>';
+    const TAG_JMS_PART = '<jms_part>';
 
     /**
      * Return common element template

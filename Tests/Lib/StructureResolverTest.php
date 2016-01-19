@@ -45,6 +45,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      *
      * @\Symfony\Component\Validator\Constraints\NotBlank()
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("full_name")
      * @var string
      */
     private \$fullName;
@@ -54,6 +55,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      *
      * @\Symfony\Component\Validator\Constraints\Email(message = "Invalid email!")
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("email")
      * @var string
      */
     private \$email;
@@ -64,6 +66,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      * @\Symfony\Component\Validator\Constraints\Type(type='boolean')
      * @\Symfony\Component\Validator\Constraints\IsTrue()
      * @\JMS\Serializer\Annotation\Type("boolean")
+     * @\JMS\Serializer\Annotation\SerializedName("active")
      * @var boolean
      */
     private \$active;
@@ -74,6 +77,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      * @\Symfony\Component\Validator\Constraints\NotNull()
      * @\Symfony\Component\Validator\Constraints\Valid()
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
+     * @\JMS\Serializer\Annotation\SerializedName("new_posts")
      * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
      */
     private \$newPosts;
@@ -207,6 +211,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      *
      * @\Symfony\Component\Validator\Constraints\NotBlank()
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("full_name")
      * @var string
      */
     private \$fullName;
@@ -216,6 +221,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      *
      * @\Symfony\Component\Validator\Constraints\Email(message = "Invalid email!")
      * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("email")
      * @var string
      */
     private \$email;
@@ -226,6 +232,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      * @\Symfony\Component\Validator\Constraints\Type(type='boolean')
      * @\Symfony\Component\Validator\Constraints\IsTrue()
      * @\JMS\Serializer\Annotation\Type("boolean")
+     * @\JMS\Serializer\Annotation\SerializedName("active")
      * @var boolean
      */
     private \$active;
@@ -236,6 +243,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      * @\Symfony\Component\Validator\Constraints\NotNull()
      * @\Symfony\Component\Validator\Constraints\Valid()
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
+     * @\JMS\Serializer\Annotation\SerializedName("new_posts")
      * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
      */
     private \$newPosts;
@@ -245,6 +253,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      *
      * @\Symfony\Component\Validator\Constraints\Valid()
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection")
+     * @\JMS\Serializer\Annotation\SerializedName("test_collection")
      * @var Doctrine\Common\Collections\ArrayCollection
      */
     private \$testCollection;
@@ -254,6 +263,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      *
      * @\Symfony\Component\Validator\Constraints\IsTrue()
      * @\JMS\Serializer\Annotation\Type("boolean")
+     * @\JMS\Serializer\Annotation\SerializedName("test_boolean")
      * @var boolean
      */
     private \$testBoolean;
