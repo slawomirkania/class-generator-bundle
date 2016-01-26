@@ -20,7 +20,7 @@ class Tools
      */
     public static function isNamespaceValid($namespace, $mandatoryFirstBackslash = true)
     {
-        if ($mandatoryFirstBackslash && "\\" != substr($namespace, 0, 1)) {
+        if ($mandatoryFirstBackslash && false == self::isFirstCharBackslash($namespace)) {
             return false;
         }
 
@@ -209,5 +209,21 @@ class Tools
         }
 
         return true;
+    }
+
+    /**
+     * If first character of string is backslash then return true
+     *
+     * @param string $string
+     * @return boolean
+     * @throws Exception
+     */
+    public static function isFirstCharBackslash($string)
+    {
+        if (false == is_string($string)) {
+            throw new Exception("Invalid string!");
+        }
+
+        return "\\" == substr((string) $string, 0, 1);
     }
 }

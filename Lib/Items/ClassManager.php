@@ -81,6 +81,13 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
     private $comment = "";
 
     /**
+     * Base class namespace
+     *
+     * @Type("string")
+     */
+    private $extends = "";
+
+    /**
      * Construct
      */
     public function __construct()
@@ -115,6 +122,27 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
      */
     public function isValidNamespace()
     {
+        return Tools::isNamespaceValid($this->getNamespace());
+    }
+
+    /**
+     * @Assert\IsTrue(message = "Invalid base class namespace, check yaml schema! eg. \AppBundle\Vendor\Entity")
+     * @return boolean
+     */
+    public function isValidExtends()
+    {
+        if (false == $this->hasExtends()) {
+            return true;
+        }
+
+        if (false == Tools::isFirstCharBackslash($this->getExtends())) {
+            return false;
+        }
+
+        if (class_exists($this->getExtends())) {
+            return true;
+        }
+
         return Tools::isNamespaceValid($this->getNamespace());
     }
 
@@ -245,6 +273,36 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
     }
 
     /**
+     * Return base class namespace
+     *
+     * @return string
+     */
+    public function getExtends()
+    {
+        return $this->extends;
+    }
+
+    /**
+     * Set base class namespace
+     *
+     * @param string $extends
+     */
+    public function setExtends($extends)
+    {
+        $this->extends = $extends;
+    }
+
+    /**
+     * has set base class namespace
+     *
+     * @return boolean
+     */
+    public function hasExtends()
+    {
+        return false == empty($this->getExtends());
+    }
+
+    /**
      * Check interface exists
      *
      * @return boolean
@@ -322,7 +380,7 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
             ."/**\n"
             ." *<comment>\n"
             ." */\n"
-            ."class <name> <interface>\n"
+            ."class <name><extends><interface>\n"
             ."{\n"
             ."\n"
             ."<properties>"
@@ -345,6 +403,7 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
             self::TAG_NAMESPACE,
             self::TAG_COMMENT,
             self::TAG_NAME,
+            self::TAG_EXTENDS,
             self::TAG_INTERFACE,
             self::TAG_CONSTRUCTOR,
             self::TAG_PROPERTIES,

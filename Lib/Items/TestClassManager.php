@@ -182,7 +182,7 @@ class TestClassManager implements RenderableInterface, DumpableInterface, Struct
             ."    {\n"
             ."        \$this->assertNotNull(\$this->object);\n"
             ."        \$this->assertInstanceof('<interface>', \$this->object);\n"
-            ."        \$this->assertInstanceof('<class>', \$this->object);\n"
+            ."        \$this->assertInstanceof('<class>', \$this->object);\n<extends>"
             ."    }\n"
             ."\n"
             ."<methods>"
@@ -203,6 +203,7 @@ class TestClassManager implements RenderableInterface, DumpableInterface, Struct
             self::TAG_NAME,
             self::TAG_INTERFACE,
             self::TAG_CLASS,
+            self::TAG_EXTENDS,
             self::TAG_METHODS,
         ];
     }

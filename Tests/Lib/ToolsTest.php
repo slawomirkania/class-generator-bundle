@@ -295,7 +295,6 @@ class ToolsTest extends \PHPUnit_Framework_TestCase
             ["@Symfony\Component\Validator\Constraints\Valid()", true],
             ["@Symfony\Component\Validator\Constraints\Valid(message=\"Has to be valid!\")", true],
             ["@Symfony\Component\Validator\Constraints\Valid(sdfgsdfgsdfgsdgsdg)", true], // @todo in the future
-
             ["@Symfony\Component\Validator\Constraints\NotExistConstraint()", false],
             ["@Symfony\Component\Validator\Constraints\Valid", false],
             ["@Symfony\Component\Validator\Constraints\Valid(", false],
@@ -308,6 +307,45 @@ class ToolsTest extends \PHPUnit_Framework_TestCase
             ["4l594276974569-0df70-trt7wre", false],
             ['', false],
             ["@\Symfony\Component\Validator\Constraints\@\Symfony\Component\Validator\Constraints\Valid()", false],
+        ];
+    }
+
+    /**
+     * @dataProvider dataForTestIsFirstCharBackslash
+     */
+    public function testIsFirstCharBackslash($string, $result)
+    {
+        $this->assertEquals($result, Tools::isFirstCharBackslash($string));
+    }
+
+    public function dataForTestIsFirstCharBackslash()
+    {
+        return [
+            ["\\LoremIpsum", true],
+            ["LoremIpsum", false],
+            ["LoremIpsum\\", false],
+            ["Lorem\\Ipsum", false],
+            ["\\", true],
+            ["", false],
+            ['', false],
+        ];
+    }
+
+    /**
+     * @dataProvider dataForTestIsFirstCharBackslashWhenInvalidString
+     * @expectedException \Exception
+     */
+    public function testIsFirstCharBackslashWhenInvalidString($value)
+    {
+        Tools::isFirstCharBackslash($value);
+    }
+
+    public function dataForTestIsFirstCharBackslashWhenInvalidString()
+    {
+        return [
+            [null],
+            [34],
+            [[]],
         ];
     }
 }

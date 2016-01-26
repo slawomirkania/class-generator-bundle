@@ -43,6 +43,13 @@ class Renderer
     const INDENT_4_SPACES = 4;
 
     /**
+     * Two indentions
+     *
+     * @var integer
+     */
+    const INDENT_8_SPACES = 8;
+
+    /**
      * @var string
      */
     const JMS_ANNOTATION_NAMESPACE = "@\\JMS\\Serializer\\Annotation";
@@ -218,19 +225,24 @@ class Renderer
         $properties = [];
         $methods = [];
         $interfacePart = '';
+        $extendsPart = '';
         foreach ($class->getProperties() as $property) {
             $properties[] = $this->render($property);
         }
         foreach ($class->getMethods() as $method) {
             $methods[] = $this->render($method);
         }
+        if ($class->hasExtends()) {
+            $extendsPart = sprintf(" extends %s", $class->getExtends());
+        }
         if ($class->hasInterface()) {
-            $interfacePart = sprintf("implements %s", $class->getInterface()->getNamespace());
+            $interfacePart = sprintf(" implements %s", $class->getInterface()->getNamespace());
         }
 
         $args[RenderableInterface::TAG_NAMESPACE] = $class->getNamespaceWithoutNameAndBackslashPrefix();
         $args[RenderableInterface::TAG_COMMENT] = empty($class->getComment()) ? "" : sprintf(" %s", $class->getComment());
         $args[RenderableInterface::TAG_NAME] = $class->getName();
+        $args[RenderableInterface::TAG_EXTENDS] = $extendsPart;
         $args[RenderableInterface::TAG_INTERFACE] = $interfacePart;
         $args[RenderableInterface::TAG_CONSTRUCTOR] = $this->render($class->getConstructor());
         $args[RenderableInterface::TAG_PROPERTIES] = Tools::implodeArrayToTemplate($properties);
@@ -315,9 +327,15 @@ class Renderer
         $template = $testClass->getTemplate();
         $tags = $testClass->getTemplateTags();
 
+        $extendsTestPart = '';
         $methods = [];
         foreach ($testClass->getMethods() as $method) {
             $methods[] = $this->render($method);
+        }
+
+        if ($testClass->getClassManager()->hasExtends()) {
+            $extendsTest = sprintf("\$this->assertInstanceof('%s', \$this->object);", $testClass->getClassManager()->getExtends());
+            $extendsTestPart = $this->addNewLineAfter($this->addIndentation($extendsTest, self::INDENT_8_SPACES));
         }
 
         $class = $testClass->getClassManager();
@@ -326,6 +344,7 @@ class Renderer
         $args[RenderableInterface::TAG_NAME] = $testClass->getName();
         $args[RenderableInterface::TAG_INTERFACE] = $class->getInterface()->getNamespace();
         $args[RenderableInterface::TAG_CLASS] = $class->getNamespace();
+        $args[RenderableInterface::TAG_EXTENDS] = $extendsTestPart;
         $args[RenderableInterface::TAG_METHODS] = Tools::implodeArrayToTemplate($methods);
 
         return $this->addNewLineAfter($this->replace($tags, $args, $template));

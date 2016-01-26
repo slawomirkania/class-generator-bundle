@@ -4,8 +4,9 @@ Class Generator Bundle
 - Generate classes, interfaces and PHPUnit test classes from the YAML schema.
 - Generator does not overwrite existing methods or properties, only render new elements.
 - Generated entity class is compatible with JMS Serializer, each property has an annotation @Type based on a property type.
-- Also each property has an annotation @SerializedName which can be adjusted like in the example below (last_post).
+- Also each property has an annotation @SerializedName which can be adjusted like in the example below (user_setting).
 - Generator allows to add Symfony constraints to a property.
+- Generator allows to handle inheritance.
 
 # Installation
 
@@ -24,11 +25,11 @@ app/AppKernel.php
 ```php
 public function registerBundles()
 {
-    $bundles = array(
+    if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
         //...
-            new HelloWordPl\SimpleEntityGeneratorBundle\HelloWordPlSimpleEntityGeneratorBundle(),
+            $bundles[] = new HelloWordPl\SimpleEntityGeneratorBundle\HelloWordPlSimpleEntityGeneratorBundle();
         //...
-    );
+    }
     //...
 }
 ```
@@ -39,8 +40,9 @@ public function registerBundles()
 
 ```yml
 -
-  namespace: \AppBundle\Entity\User
-  comment: "New User entity"
+  namespace: \AppBundle\Api\Command\UserUpdate
+  extends: \AppBundle\Api\Command\Request
+  comment: "Update user data command"
   properties:
     -
       name: username
@@ -61,42 +63,34 @@ public function registerBundles()
       type: boolean
       comment: "Wether user is active or not"
       constraints:
-        - IsTrue()
+        - Type(type = "boolean")
     -
-      name: posts
-      type: Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
-      comment: User posts
-    -
-      # default comment
-      name: created_at
-      type: DateTime
+      name: groups
+      type: Doctrine\Common\Collections\ArrayCollection<AppBundle\Api\Param\Group>
+      comment: User groups
     -
       # default comment
-      name: updated_at
-      type: DateTime
-    -
-      # default comment
-      name: last_post
-      serialized_name: lastPost
-      type: AppBundle\Entity\Post
+      name: user_setting
+      serialized_name: userSetting
+      type: AppBundle\Api\Param\Setting
 -
-  namespace: \AppBundle\Entity\Post
+  namespace: \AppBundle\Api\Param\Group
   # no comment
   properties:
     -
-      name: content
+      name: name
       type: string
-      comment: "Post content"
+      comment: "Group name"
       constraints:
         - NotBlank()
     -
-      # default comment
-      name: created_at
-      type: DateTime
-    -
-      # default comment
-      name: updated_at
-      type: DateTime
+      name: description
+      type: string
+      comment: "Group description"
+-
+  namespace: \AppBundle\Api\Param\Setting
+  # no comment
+  # no properties
 ```
 
 Put {file_name_with_extension} YAML file into {bundle_name}\Resources\config\
@@ -106,828 +100,80 @@ Run Symfony command
 ```sh
 $ ./bin/console class_generator:generate {bundle_name} {file_name_with_extension}
 ```
-### Output structures:
 
-- AppBundle/Entity/User.php
+After processing generated tests, by command e.g.
 
-```php
-
-namespace AppBundle\Entity;
-
-/**
- * New User entity
- */
-class User implements \AppBundle\Entity\UserInterface
-{
-
-    /**
-     * Username for login
-     *
-     * @\Symfony\Component\Validator\Constraints\NotBlank(message = "Login can not be empty")
-     * @\Symfony\Component\Validator\Constraints\NotNull(message = "Login can not be null")
-     * @\JMS\Serializer\Annotation\Type("string")
-     * @\JMS\Serializer\Annotation\SerializedName("username")
-     * @var string
-     */
-    private $username;
-
-    /**
-     * User email
-     *
-     * @\Symfony\Component\Validator\Constraints\NotBlank()
-     * @\Symfony\Component\Validator\Constraints\Email(message = "Invalid email")
-     * @\JMS\Serializer\Annotation\Type("string")
-     * @\JMS\Serializer\Annotation\SerializedName("email")
-     * @var string
-     */
-    private $email;
-
-    /**
-     * Wether user is active or not
-     *
-     * @\Symfony\Component\Validator\Constraints\IsTrue()
-     * @\JMS\Serializer\Annotation\Type("boolean")
-     * @\JMS\Serializer\Annotation\SerializedName("active")
-     * @var boolean
-     */
-    private $active;
-
-    /**
-     * User posts
-     *
-     * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
-     * @\JMS\Serializer\Annotation\SerializedName("posts")
-     * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
-     */
-    private $posts;
-
-    /**
-     * 'created_at' property
-     *
-     * @\JMS\Serializer\Annotation\Type("DateTime")
-     * @\JMS\Serializer\Annotation\SerializedName("created_at")
-     * @var DateTime
-     */
-    private $createdAt;
-
-    /**
-     * 'updated_at' property
-     *
-     * @\JMS\Serializer\Annotation\Type("DateTime")
-     * @\JMS\Serializer\Annotation\SerializedName("updated_at")
-     * @var DateTime
-     */
-    private $updatedAt;
-
-    /**
-     * 'last_post' property
-     *
-     * @\JMS\Serializer\Annotation\Type("AppBundle\Entity\Post")
-     * @\JMS\Serializer\Annotation\SerializedName("lastPost")
-     * @var AppBundle\Entity\Post
-     */
-    private $lastPost;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * For property "username"
-     *
-     * @param string $username
-     * @return this
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-        return $this;
-    }
-
-    /**
-     * For property "username"
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * For property "email"
-     *
-     * @param string $email
-     * @return this
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        return $this;
-    }
-
-    /**
-     * For property "email"
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * For property "active"
-     *
-     * @return boolean
-     */
-    public function isActive()
-    {
-        return (bool) $this->active;
-    }
-
-    /**
-     * For property "active"
-     *
-     * @param boolean $active
-     * @return this
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-        return $this;
-    }
-
-    /**
-     * For property "active"
-     *
-     * @return boolean
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * For property "posts"
-     *
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> $posts
-     * @return this
-     */
-    public function setPosts(\Doctrine\Common\Collections\ArrayCollection $posts)
-    {
-        $this->posts = $posts;
-        return $this;
-    }
-
-    /**
-     * For property "posts"
-     *
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
-     */
-    public function getPosts()
-    {
-        return $this->posts;
-    }
-
-    /**
-     * For property "createdAt"
-     *
-     * @param DateTime $createdAt
-     * @return this
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-
-    /**
-     * For property "createdAt"
-     *
-     * @return DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * For property "updatedAt"
-     *
-     * @param DateTime $updatedAt
-     * @return this
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-        return $this;
-    }
-
-    /**
-     * For property "updatedAt"
-     *
-     * @return DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * For property "lastPost"
-     *
-     * @param AppBundle\Entity\Post $lastPost
-     * @return this
-     */
-    public function setLastPost(\AppBundle\Entity\Post $lastPost)
-    {
-        $this->lastPost = $lastPost;
-        return $this;
-    }
-
-    /**
-     * For property "lastPost"
-     *
-     * @return AppBundle\Entity\Post
-     */
-    public function getLastPost()
-    {
-        return $this->lastPost;
-    }
-
-}
-
+```sh
+phpunit {base_url}/src/AppBundle/Tests/
 ```
 
-- AppBundle\Entity\UserInterface.php
+you should see an error because class \AppBundle\Api\Command\Request does not exist.
+Append the following minimalistic code to the YAML structure {bundle_name}\Resources\config\{file_name_with_extension}
 
-```php
+```yml
+-
+  namespace: \AppBundle\Api\Command\Request
+  comment: "Base class for commands"
+  # no properties
+```
+Remove code generated before, because when some class has syntax error, generator can not work properly.
+Run Symfony command again.
+Execute tests again and then you should see something like this:
 
-namespace AppBundle\Entity;
+```sh
+...IIIIIIIIIII.IIII.
 
-/**
- * Interface for entity : \AppBundle\Entity\User
- */
-interface UserInterface
+Time: 124 ms, Memory: 6.75Mb
+```
+Now you can implement missing tests cases.
+
+### Generated files namespaces:
+- AppBundle\Api\Command\Request
+- AppBundle\Api\Command\RequestInterface
+- AppBundle\Tests\Api\Command\RequestTest
+
+- AppBundle\Api\Command\UserUpdate
+- AppBundle\Api\Command\UserUpdateInterface
+- AppBundle\Tests\Api\Command\UserUpdateTest
+
+- AppBundle\Api\Param\Group
+- AppBundle\Api\Param\GroupInterface
+- AppBundle\Tests\Api\Param\GroupTest
+
+- AppBundle\Api\Param\Setting
+- AppBundle\Api\Param\SettingInterface
+- AppBundle\Tests\Api\Param\SettingTest
+
+You can check how deserialization of generated classes works.
+```json
 {
+  "username": "slawomir",
+  "email": "slawomir.kania1@gmail.com",
+  "active": true,
+  "groups": [
+    {
+      "name": "admin",
+      "description": "admin group"
+    },
+    {
+      "name": "guest",
+      "description": "guest group"
+    }
+  ],
+  "userSetting": {
 
-    /**
-     * For property "username"
-     * @param string $username
-     * @return this
-     */
-    public function setUsername($username);
-
-    /**
-     * For property "username"
-     * @return string
-     */
-    public function getUsername();
-
-    /**
-     * For property "email"
-     * @param string $email
-     * @return this
-     */
-    public function setEmail($email);
-
-    /**
-     * For property "email"
-     * @return string
-     */
-    public function getEmail();
-
-    /**
-     * For property "active"
-     *
-     * @return boolean
-     */
-    public function isActive();
-
-    /**
-     * For property "active"
-     * @param boolean $active
-     * @return this
-     */
-    public function setActive($active);
-
-    /**
-     * For property "active"
-     * @return boolean
-     */
-    public function getActive();
-
-    /**
-     * For property "posts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> $posts
-     * @return this
-     */
-    public function setPosts(\Doctrine\Common\Collections\ArrayCollection $posts);
-
-    /**
-     * For property "posts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
-     */
-    public function getPosts();
-
-    /**
-     * For property "createdAt"
-     * @param DateTime $createdAt
-     * @return this
-     */
-    public function setCreatedAt(\DateTime $createdAt);
-
-    /**
-     * For property "createdAt"
-     * @return DateTime
-     */
-    public function getCreatedAt();
-
-    /**
-     * For property "updatedAt"
-     * @param DateTime $updatedAt
-     * @return this
-     */
-    public function setUpdatedAt(\DateTime $updatedAt);
-
-    /**
-     * For property "updatedAt"
-     * @return DateTime
-     */
-    public function getUpdatedAt();
-
-    /**
-     * For property "lastPost"
-     * @param AppBundle\Entity\Post $lastPost
-     * @return this
-     */
-    public function setLastPost(\AppBundle\Entity\Post $lastPost);
-
-    /**
-     * For property "lastPost"
-     * @return AppBundle\Entity\Post
-     */
-    public function getLastPost();
-
+  }
 }
-
 ```
 
-- AppBundle/Tests/Entity/UserTest.php
-
 ```php
-
-namespace AppBundle\Tests\Entity;
-
-/**
- * Test for \AppBundle\Entity\User
- */
-class UserTest extends \PHPUnit_Framework_TestCase
-{
-
-    /**
-     * Entity to test
-     * @var \AppBundle\Entity\UserInterface
-     */
-    private $object = null;
-
-    public function setUp()
-    {
-        $this->object = new \AppBundle\Entity\User();
-    }
-
-    public function testConstructor()
-    {
-        $this->assertNotNull($this->object);
-        $this->assertInstanceof('\AppBundle\Entity\UserInterface', $this->object);
-        $this->assertInstanceof('\AppBundle\Entity\User', $this->object);
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::setUsername
-     */
-    public function testSetUsername()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::getUsername
-     */
-    public function testGetUsername()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::setEmail
-     */
-    public function testSetEmail()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::getEmail
-     */
-    public function testGetEmail()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::isActive
-     */
-    public function testIsActive()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::setActive
-     */
-    public function testSetActive()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::getActive
-     */
-    public function testGetActive()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::setPosts
-     */
-    public function testSetPosts()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::getPosts
-     */
-    public function testGetPosts()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::setCreatedAt
-     */
-    public function testSetCreatedAt()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::getCreatedAt
-     */
-    public function testGetCreatedAt()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::setUpdatedAt
-     */
-    public function testSetUpdatedAt()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::getUpdatedAt
-     */
-    public function testGetUpdatedAt()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::setLastPost
-     */
-    public function testSetLastPost()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\User::getLastPost
-     */
-    public function testGetLastPost()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-}
-
+    ...
+    $json = "{...}";
+    $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+    $userUpdateDeserialized = $serializer->deserialize($json, "AppBundle\Api\Command\UserUpdate", "json");
+    var_dump($userUpdateDeserialized);
+    ...
 ```
-
-- AppBundle/Entity/Post.php
-
-```php
-
-namespace AppBundle\Entity;
-
-/**
- *
- */
-class Post implements \AppBundle\Entity\PostInterface
-{
-
-    /**
-     * Post content
-     *
-     * @\Symfony\Component\Validator\Constraints\NotBlank()
-     * @\JMS\Serializer\Annotation\Type("string")
-     * @\JMS\Serializer\Annotation\SerializedName("content")
-     * @var string
-     */
-    private $content;
-
-    /**
-     * 'created_at' property
-     *
-     * @\JMS\Serializer\Annotation\Type("DateTime")
-     * @\JMS\Serializer\Annotation\SerializedName("created_at")
-     * @var DateTime
-     */
-    private $createdAt;
-
-    /**
-     * 'updated_at' property
-     *
-     * @\JMS\Serializer\Annotation\Type("DateTime")
-     * @\JMS\Serializer\Annotation\SerializedName("updated_at")
-     * @var DateTime
-     */
-    private $updatedAt;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
-     * For property "content"
-     *
-     * @param string $content
-     * @return this
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-        return $this;
-    }
-
-    /**
-     * For property "content"
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * For property "createdAt"
-     *
-     * @param DateTime $createdAt
-     * @return this
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-
-    /**
-     * For property "createdAt"
-     *
-     * @return DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * For property "updatedAt"
-     *
-     * @param DateTime $updatedAt
-     * @return this
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-        return $this;
-    }
-
-    /**
-     * For property "updatedAt"
-     *
-     * @return DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-}
-
-```
-
-- AppBundle/Entity/PostInterface.php
-
-```php
-
-namespace AppBundle\Entity;
-
-/**
- * Interface for entity : \AppBundle\Entity\Post
- */
-interface PostInterface
-{
-
-    /**
-     * For property "content"
-     * @param string $content
-     * @return this
-     */
-    public function setContent($content);
-
-    /**
-     * For property "content"
-     * @return string
-     */
-    public function getContent();
-
-    /**
-     * For property "createdAt"
-     * @param DateTime $createdAt
-     * @return this
-     */
-    public function setCreatedAt(\DateTime $createdAt);
-
-    /**
-     * For property "createdAt"
-     * @return DateTime
-     */
-    public function getCreatedAt();
-
-    /**
-     * For property "updatedAt"
-     * @param DateTime $updatedAt
-     * @return this
-     */
-    public function setUpdatedAt(\DateTime $updatedAt);
-
-    /**
-     * For property "updatedAt"
-     * @return DateTime
-     */
-    public function getUpdatedAt();
-
-}
-
-```
-
-- AppBundle/Tests/Entity/PostTest.php
-
-```php
-
-namespace AppBundle\Tests\Entity;
-
-/**
- * Test for \AppBundle\Entity\Post
- */
-class PostTest extends \PHPUnit_Framework_TestCase
-{
-
-    /**
-     * Entity to test
-     * @var \AppBundle\Entity\PostInterface
-     */
-    private $object = null;
-
-    public function setUp()
-    {
-        $this->object = new \AppBundle\Entity\Post();
-    }
-
-    public function testConstructor()
-    {
-        $this->assertNotNull($this->object);
-        $this->assertInstanceof('\AppBundle\Entity\PostInterface', $this->object);
-        $this->assertInstanceof('\AppBundle\Entity\Post', $this->object);
-    }
-
-    /**
-     * @covers \AppBundle\Entity\Post::setContent
-     */
-    public function testSetContent()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\Post::getContent
-     */
-    public function testGetContent()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\Post::setCreatedAt
-     */
-    public function testSetCreatedAt()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\Post::getCreatedAt
-     */
-    public function testGetCreatedAt()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\Post::setUpdatedAt
-     */
-    public function testSetUpdatedAt()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers \AppBundle\Entity\Post::getUpdatedAt
-     */
-    public function testGetUpdatedAt()
-    {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-}
-
-```
-
 
 License
 ----

@@ -126,6 +126,12 @@ class StructureGenerator
     protected function generateAndFillClassMethods(ClassManager $classManager)
     {
         $methodsForClass = new ArrayCollection();
+
+        // fix - jms serializer does not call ClassManager constructor during deserialization
+        if (false == ($classManager->getProperties() instanceof ArrayCollection)) {
+            $classManager->setProperties(new ArrayCollection());
+        }
+
         foreach ($classManager->getProperties() as $property) {
             if ($property->isTypeBoolean()) {
                 $methodsForClass->add((new MethodGetterBooleanManager($classManager))->setProperty($property));

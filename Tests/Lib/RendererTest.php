@@ -397,7 +397,7 @@ namespace AppBundle\Entity;
 /**
  * New User entity
  */
-class User implements \AppBundle\Entity\UserInterface
+class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInterface
 {
 
     /**
@@ -847,6 +847,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         \$this->assertNotNull(\$this->object);
         \$this->assertInstanceof('\AppBundle\Entity\UserInterface', \$this->object);
         \$this->assertInstanceof('\AppBundle\Entity\User', \$this->object);
+        \$this->assertInstanceof('\AppBundle\Entity\Base', \$this->object);
     }
 
     /**

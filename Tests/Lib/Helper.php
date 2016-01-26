@@ -65,6 +65,7 @@ class Helper
         return '
 -
   namespace: \AppBundle\Entity\User
+  extends: \AppBundle\Entity\Base
   comment: "New User entity"
   properties:
     -
