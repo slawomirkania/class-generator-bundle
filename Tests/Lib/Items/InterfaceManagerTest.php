@@ -53,7 +53,7 @@ class InterfaceManagerTest extends BaseManager
     {
         $this->interfaceManager->setClassManager(new ClassManager());
         $errors = $this->getValidator()->validate($this->interfaceManager);
-        $this->assertEquals(6, $errors->count());
+        $this->assertEquals(4, $errors->count());
     }
 
     public function testValidManagerWhenInvalidMethod()

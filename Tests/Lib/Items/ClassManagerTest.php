@@ -56,7 +56,7 @@ class ClassManagerTest extends BaseManager
     public function testValidManagerWhenEmptyClassManager()
     {
         $errors = $this->getValidator()->validate(new ClassManager());
-        $this->assertEquals(5, $errors->count());
+        $this->assertEquals(3, $errors->count());
     }
 
     public function testValidManagerWhenInvalidMethod()

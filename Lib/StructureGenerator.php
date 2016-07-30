@@ -3,6 +3,7 @@
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Lib;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\ClassConfig;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassConstructorManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\InitPropertyManager;
@@ -77,10 +78,12 @@ class StructureGenerator
      * Build Entities Class Structures from array array('{"data":"data"}', '{"data":"data"}')
      *
      * @param ArrayCollection $entitiesData
+     * @param ClassConfig $classConfig
      * @return ArrayCollection
      */
-    public function buildEntitiesClassStructure(ArrayCollection $entitiesData)
+    public function buildEntitiesClassStructure(ArrayCollection $entitiesData, ClassConfig $classConfig = null)
     {
+        $classConfig = $this->getDefaultClassConfigIfNeed($classConfig);
         $classesManagers = new ArrayCollection();
         foreach ($entitiesData->toArray() as $jsonData) {
             $classesManagers->add($this->deserializeJsonDataToClassManager($jsonData));
@@ -88,7 +91,7 @@ class StructureGenerator
 
         // building class environment
         foreach ($classesManagers->toArray() as $classManager) {
-            $this->preapareClassManager($classManager); // reference
+            $this->preapareClassManager($classManager, $classConfig); // reference
         }
 
         return $classesManagers;
@@ -98,20 +101,28 @@ class StructureGenerator
      * Generate class components
      *
      * @param ClassManager $classManager
+     * @param ClassConfig $classConfig
      * @return ClassManager
      */
-    public function preapareClassManager(ClassManager $classManager)
+    public function preapareClassManager(ClassManager $classManager, ClassConfig $classConfig = null)
     {
-        $interface = new InterfaceManager($classManager);
+        $classConfig = $this->getDefaultClassConfigIfNeed($classConfig);
         $constructor = new ClassConstructorManager($classManager);
-        $testClass = new TestClassManager($classManager);
         $this->generateAndFillClassMethods($classManager);
         $this->prepareAndFillInitProperties($constructor);
-        $this->generateAndFillInterfaceMethods($interface);
-        $this->generateAndFillTestClassMethods($testClass);
         $classManager->setConstructor($constructor);
-        $classManager->setInterface($interface);
-        $classManager->setTestClass($testClass);
+
+        if (false == $classConfig->isNoInterface()) {
+            $interface = new InterfaceManager($classManager);
+            $this->generateAndFillInterfaceMethods($interface);
+            $classManager->setInterface($interface);
+        }
+
+        if (false == $classConfig->isNoPHPUnitClass()) {
+            $testClass = new TestClassManager($classManager);
+            $this->generateAndFillTestClassMethods($testClass);
+            $classManager->setTestClass($testClass);
+        }
 
         return $classManager;
     }
@@ -250,5 +261,18 @@ class StructureGenerator
     protected function getParser()
     {
         return $this->parser;
+    }
+
+    /**
+     * @param mixed $classConfig
+     * @return ClassConfig
+     */
+    private function getDefaultClassConfigIfNeed($classConfig)
+    {
+        if (false == ($classConfig instanceof ClassConfig)) {
+            $classConfig = new ClassConfig();
+        }
+
+        return $classConfig;
     }
 }

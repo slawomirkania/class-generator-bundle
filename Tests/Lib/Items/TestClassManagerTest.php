@@ -62,6 +62,6 @@ class TestClassManagerTest extends BaseManager
     {
         $this->testClassManager->setClassManager(new ClassManager());
         $errors = $this->getValidator()->validate($this->testClassManager);
-        $this->assertEquals(5, $errors->count());
+        $this->assertEquals(3, $errors->count());
     }
 }

@@ -342,7 +342,7 @@ class Renderer
         $args[RenderableInterface::TAG_NAMESPACE] = $testClass->getNamespaceWithoutNameAndBackslashPrefix();
         $args[RenderableInterface::TAG_COMMENT] = $testClass->getComment();
         $args[RenderableInterface::TAG_NAME] = $testClass->getName();
-        $args[RenderableInterface::TAG_INTERFACE] = $class->getInterface()->getNamespace();
+        $args[RenderableInterface::TAG_INTERFACE] = $class->hasInterface() ? $class->getInterface()->getNamespace() : null;
         $args[RenderableInterface::TAG_CLASS] = $class->getNamespace();
         $args[RenderableInterface::TAG_EXTENDS] = $extendsTestPart;
         $args[RenderableInterface::TAG_METHODS] = Tools::implodeArrayToTemplate($methods);

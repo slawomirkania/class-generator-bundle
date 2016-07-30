@@ -53,6 +53,6 @@ class MethodGetterBooleanInterfaceManagerTest extends BaseManager
     {
         $this->methodGetterBooleanInterfaceManager->setClassManager(new ClassManager());
         $errors = $this->getValidator()->validate($this->methodGetterBooleanInterfaceManager);
-        $this->assertEquals(5, $errors->count());
+        $this->assertEquals(3, $errors->count());
     }
 }

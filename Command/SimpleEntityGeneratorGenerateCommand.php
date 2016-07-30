@@ -4,11 +4,13 @@ namespace HelloWordPl\SimpleEntityGeneratorBundle\Command;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Exception;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\ClassConfig;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\StructureWithMethodsInterface;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -19,6 +21,9 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
 
     const PARAM_BUNDLE_NAME = 'bundle_name';
     const PARAM_FILE_NAME = 'file_name';
+    const OPTION_NO_INTERFACES = 'no-interfaces';
+    const OPTION_NO_PHPUNIT_CLASSES = 'no-phpunit-classes';
+    const OPTION_ONLY_SIMULATE_FILE = 'only-simulate-file';
 
     protected function configure()
     {
@@ -26,12 +31,20 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
             ->setName('class_generator:generate')
             ->setDescription('Generate entities from yaml bundle config file')
             ->addArgument(self::PARAM_BUNDLE_NAME, InputArgument::REQUIRED, 'Name of bundle where config file is placed eg. AppBundle')
-            ->addArgument(self::PARAM_FILE_NAME, InputArgument::REQUIRED, sprintf('Name of yaml config file eg. entities.yml placed in /{%s}/Resources/config/{%s}', self::PARAM_BUNDLE_NAME, self::PARAM_FILE_NAME));
+            ->addArgument(self::PARAM_FILE_NAME, InputArgument::REQUIRED, sprintf('Name of yaml config file eg. entities.yml placed in /{%s}/Resources/config/{%s}', self::PARAM_BUNDLE_NAME, self::PARAM_FILE_NAME))
+            ->addOption(self::OPTION_NO_INTERFACES, null, InputOption::VALUE_NONE, 'Switches off interfaces generating')
+            ->addOption(self::OPTION_NO_PHPUNIT_CLASSES, null, InputOption::VALUE_NONE, 'Switches off PHPUnit classes generating')
+            ->addOption(self::OPTION_ONLY_SIMULATE_FILE, null, InputOption::VALUE_NONE, 'Simulation of generating classes form file and show summary');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
+            $classConfig = new ClassConfig();
+            $classConfig->setNoInterface($input->getOption(self::OPTION_NO_INTERFACES));
+            $classConfig->setNoPHPUnitClass($input->getOption(self::OPTION_NO_PHPUNIT_CLASSES));
+            $onlySimulate = $input->getOption(self::OPTION_ONLY_SIMULATE_FILE);
+
             $bundleName = $input->getArgument(self::PARAM_BUNDLE_NAME);
             $fileName = $input->getArgument(self::PARAM_FILE_NAME);
 
@@ -40,16 +53,21 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
 
             $fileContent = $filesManager->loadFileContent($bundleName, $fileName);
             $entitiesData = $structureGenerator->parseToArray($fileContent);
-            $classManagers = $structureGenerator->buildEntitiesClassStructure($entitiesData);
+            $classManagers = $structureGenerator->buildEntitiesClassStructure($entitiesData, $classConfig);
+
             $this->checkClassesDuplicate($classManagers);
             $this->validateClasses($classManagers);
 
-            $output->writeln('ClassGenerator by Slawomir Kania and contributors.');
+            $output->writeln('ClassGenerator 1.1.0 by Slawomir Kania and contributors.');
             $output->writeln('');
-            $output->writeln(sprintf('<info>Start generating classes from config file: %s, in bundle: %s. Please wait...</info>', $fileName, $bundleName));
+            if ($onlySimulate) {
+                $output->writeln(sprintf('<comment>[Generating and updating classes is disabled] Simulation for file: %s, in bundle: %s started. Please wait for summary...</comment>', $fileName, $bundleName));
+            } else {
+                $output->writeln(sprintf('<info>Start generating classes from config file: %s, in bundle: %s. Please wait...</info>', $fileName, $bundleName));
+            }
             $output->writeln('');
 
-            $this->processStructures($output, $classManagers);
+            $this->processStructures($output, $classManagers, $onlySimulate);
 
             $output->writeln('<info>Finished!</info>');
         } catch (Exception $ex) {
@@ -64,7 +82,7 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
      * @param ArrayCollection $classManagers
      * @throws Exception
      */
-    protected function processStructures(OutputInterface $output, ArrayCollection $classManagers)
+    protected function processStructures(OutputInterface $output, ArrayCollection $classManagers, $onlySimulate = false)
     {
         foreach ($classManagers as $classManager) {
             /* @var $classManager \HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager */
@@ -72,9 +90,9 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
                 throw new Exception(sprintf("Invalid entity: %s", get_class($classManager)));
             }
 
-            $this->processInterface($output, $classManager);
-            $this->processClass($output, $classManager);
-            $this->processTestClass($output, $classManager);
+            $this->processInterface($output, $classManager, $onlySimulate);
+            $this->processClass($output, $classManager, $onlySimulate);
+            $this->processTestClass($output, $classManager, $onlySimulate);
 
             $output->writeln('');
         }
@@ -85,17 +103,22 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
      *
      * @param OutputInterface $output
      * @param ClassManager $classManager
+     * @param boolean $onlySimulate
      * @return
      */
-    protected function processInterface(OutputInterface $output, ClassManager $classManager)
+    protected function processInterface(OutputInterface $output, ClassManager $classManager, $onlySimulate = false)
     {
         if (false == $classManager->hasInterface()) {
             return;
         }
 
-        $filesManager = $this->getFilesManager();
         $interfaceManager = $classManager->getInterface();
-        $filesManager->dump($interfaceManager);
+
+        if (false == $onlySimulate) {
+            $filesManager = $this->getFilesManager();
+            $filesManager->dump($interfaceManager);
+        }
+
         $output->writeln('<question>Processed: '.$interfaceManager->getNamespace()."</question>");
         $this->outputProcessMethods($output, $interfaceManager);
 
@@ -107,12 +130,15 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
      *
      * @param OutputInterface $output
      * @param ClassManager $classManager
+     * @param boolean $onlySimulate
      */
-    protected function processClass(OutputInterface $output, ClassManager $classManager)
+    protected function processClass(OutputInterface $output, ClassManager $classManager, $onlySimulate = false)
     {
+        if (false == $onlySimulate) {
+            $filesManager = $this->getFilesManager();
+            $filesManager->dump($classManager);
+        }
 
-        $filesManager = $this->getFilesManager();
-        $filesManager->dump($classManager);
         $output->writeln('<question>Processed: '.$classManager->getNamespace().'</question>');
         if ($classManager->getProperties()->isEmpty()) {
             $output->writeln('No properties to add');
@@ -133,17 +159,22 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
      *
      * @param OutputInterface $output
      * @param ClassManager $classManager
-     * @return type
+     * @param boolean $onlySimulate
+     * @return
      */
-    protected function processTestClass(OutputInterface $output, ClassManager $classManager)
+    protected function processTestClass(OutputInterface $output, ClassManager $classManager, $onlySimulate = false)
     {
         if (false == $classManager->hasTestClass()) {
             return;
         }
 
         $testClassManager = $classManager->getTestClass();
-        $filesManager = $this->getFilesManager();
-        $filesManager->dump($testClassManager);
+
+        if (false == $onlySimulate) {
+            $filesManager = $this->getFilesManager();
+            $filesManager->dump($testClassManager);
+        }
+
         $output->writeln('<question>Processed: '.$classManager->getTestClass()->getNamespace().'</question>');
         $this->outputProcessMethods($output, $testClassManager);
         if (false == $testClassManager->getMethods()->isEmpty()) {

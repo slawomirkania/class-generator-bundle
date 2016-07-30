@@ -56,7 +56,6 @@ class TestMethodManager implements RenderableInterface, MethodInterface
      */
     public function getTemplate()
     {
-
         return ""
             ."/**\n"
             ." * @covers <class>::<method_name>\n"

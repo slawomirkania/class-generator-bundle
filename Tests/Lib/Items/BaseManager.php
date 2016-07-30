@@ -2,7 +2,6 @@
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Items;
 
-
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Helper;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

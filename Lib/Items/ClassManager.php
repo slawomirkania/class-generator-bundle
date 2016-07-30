@@ -41,7 +41,6 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
      * Interface namespace
      *
      * @var InterfaceManager
-     * @Assert\NotNull(message="Class Interface can not be empty!")
      * @Assert\Valid()
      */
     private $interface = null;
@@ -59,7 +58,6 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
      * Test Class
      *
      * @var TestClassManager
-     * @Assert\NotNull(message="Test Class can not be empty!")
      * @Assert\Valid()
      * @var TestClassManager
      */

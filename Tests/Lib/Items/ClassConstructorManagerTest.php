@@ -45,6 +45,6 @@ class ClassConstructorManagerTest extends BaseManager
         $emptyClassManager = new ClassManager();
         $this->constructorManager->setClassManager($emptyClassManager);
         $errors = $this->getValidator()->validate($this->constructorManager);
-        $this->assertEquals(5, $errors->count());
+        $this->assertEquals(3, $errors->count());
     }
 }

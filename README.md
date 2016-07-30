@@ -100,8 +100,16 @@ Run Symfony command
 ```sh
 $ ./bin/console class_generator:generate {bundle_name} {file_name_with_extension}
 ```
+Options (optional)
 
-After processing generated tests, by command e.g.
+--no-interfaces - Switches off interfaces generating
+
+--no-phpunit-classes - Switches off PHPUnit classes generating
+
+```sh
+$ ./bin/console class_generator:generate {bundle_name} {file_name_with_extension} --no-interfaces --no-phpunit-classes
+```
+After processing generated tests (if test classes generated), by command e.g.
 
 ```sh
 phpunit {base_url}/src/AppBundle/Tests/
@@ -129,20 +137,20 @@ Now you can implement missing tests cases.
 
 ### Generated files namespaces:
 - AppBundle\Api\Command\Request
-- AppBundle\Api\Command\RequestInterface
-- AppBundle\Tests\Api\Command\RequestTest
+- AppBundle\Api\Command\RequestInterface (when no --no-interfaces option)
+- AppBundle\Tests\Api\Command\RequestTest (when no --no-phpunit-classes option)
 
 - AppBundle\Api\Command\UserUpdate
-- AppBundle\Api\Command\UserUpdateInterface
-- AppBundle\Tests\Api\Command\UserUpdateTest
+- AppBundle\Api\Command\UserUpdateInterface (when no --no-interfaces option)
+- AppBundle\Tests\Api\Command\UserUpdateTest (when no --no-phpunit-classes option)
 
 - AppBundle\Api\Param\Group
-- AppBundle\Api\Param\GroupInterface
-- AppBundle\Tests\Api\Param\GroupTest
+- AppBundle\Api\Param\GroupInterface (when no --no-interfaces option)
+- AppBundle\Tests\Api\Param\GroupTest (when no --no-phpunit-classes option)
 
 - AppBundle\Api\Param\Setting
-- AppBundle\Api\Param\SettingInterface
-- AppBundle\Tests\Api\Param\SettingTest
+- AppBundle\Api\Param\SettingInterface (when no --no-interfaces option)
+- AppBundle\Tests\Api\Param\SettingTest (when no --no-phpunit-classes option)
 
 You can check how deserialization of generated classes works.
 ```json
