@@ -5,6 +5,7 @@ namespace HelloWordPl\SimpleEntityGeneratorBundle\Lib;
 use Doctrine\Common\Collections\ArrayCollection;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Exceptions\RendererException;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Exceptions\UnrecognizedItemToRenderException;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\MultilineCommentableInterface;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\RenderableInterface;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\SetterMethodInterface;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassConstructorManager;
@@ -247,6 +248,7 @@ class Renderer
         $args[RenderableInterface::TAG_CONSTRUCTOR] = $this->render($class->getConstructor());
         $args[RenderableInterface::TAG_PROPERTIES] = Tools::implodeArrayToTemplate($properties);
         $args[RenderableInterface::TAG_METHODS] = Tools::implodeArrayToTemplate($methods);
+        $args[RenderableInterface::TAG_MULTILINE_COMMENT] = $this->prepareMultilineCommentForElement($class);
 
         return $this->addNewLineAfter($this->replace($tags, $args, $template));
     }
@@ -313,6 +315,7 @@ class Renderer
         $args[RenderableInterface::TAG_JMS_PART] = $this->addNewLineAfter(Tools::implodeArrayToTemplate($jmsAnnotationStringArray));
         $args[RenderableInterface::TAG_TYPE] = $property->getType();
         $args[RenderableInterface::TAG_NAME] = $property->getPreparedName();
+        $args[RenderableInterface::TAG_MULTILINE_COMMENT] = $this->prepareMultilineCommentForElement($property);
 
         return $this->addNewLineAfter($this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES));
     }
@@ -455,5 +458,24 @@ class Renderer
         }
 
         return sprintf("%s\n", $content);
+    }
+
+    /**
+     * @param \HelloWordPl\SimpleEntityGeneratorBundle\Lib\MultilineCommentableInterface $element
+     * @return string
+     */
+    protected function prepareMultilineCommentForElement(MultilineCommentableInterface $element)
+    {
+        if ($element->getMultilineComment()->isEmpty()) {
+            return "";
+        }
+
+        $multilineCommentPrepared = [];
+        $multilineCommentPrepared[] = "\n *";
+        foreach ($element->getMultilineComment() as $row) {
+            $multilineCommentPrepared[] = sprintf(" * %s", $row);
+        }
+
+        return Tools::implodeArrayToTemplate($multilineCommentPrepared);
     }
 }

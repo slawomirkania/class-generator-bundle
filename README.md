@@ -43,6 +43,11 @@ public function registerBundles()
   namespace: \AppBundle\Api\Command\UserUpdate
   extends: \AppBundle\Api\Command\Request
   comment: "Update user data command"
+  # in multiline comment you can put whatever you want eg. annotations, poems etc.
+  multiline_comment:
+    - 'lorem ispum'
+    - 'second row'
+    - '@\Doctrine\Common\Annotations\Entity()'
   properties:
     -
       name: username
@@ -55,6 +60,10 @@ public function registerBundles()
       name: email
       type: string
       comment: "User email"
+      multiline_comment:
+        - '@\Doctrine\Common\Annotations\Column()'
+        - 'lorem ispum'
+        - 'third row'
       constraints:
         - NotBlank()
         - Email(message = "Invalid email")

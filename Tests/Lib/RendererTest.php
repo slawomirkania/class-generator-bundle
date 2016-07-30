@@ -396,6 +396,10 @@ namespace AppBundle\Entity;
 
 /**
  * New User entity
+ *
+ * lorem ispum
+ * second row
+ * @\Doctrine\Common\Annotations\Entity()
  */
 class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInterface
 {
@@ -413,6 +417,10 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * User email
+     *
+     * @\Doctrine\Common\Annotations\Column()
+     * lorem ispum
+     * third row
      *
      * @\Symfony\Component\Validator\Constraints\NotBlank()
      * @\Symfony\Component\Validator\Constraints\Email(message = "Invalid email")

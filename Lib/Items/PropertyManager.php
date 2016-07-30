@@ -2,23 +2,26 @@
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Util\Inflector;
 use Exception;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\MultilineCommentableInterface;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\RenderableInterface;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\PropertyManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Tools;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Traits\MultilineCommentTrait;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\TypeParser;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * PropertyManager
  *
  * @author Sławomir Kania <slawomir.kania1@gmail.com>
  */
-class PropertyManager implements RenderableInterface
+class PropertyManager implements RenderableInterface, MultilineCommentableInterface
 {
+    use MultilineCommentTrait;
 
     /**
      * Property predefined types
@@ -325,7 +328,7 @@ class PropertyManager implements RenderableInterface
     {
         return ""
             ."/**\n"
-            ." * <comment>\n"
+            ." * <comment><multiline_comment>\n"
             ." *\n"
             ."<constraints>"
             ."<jms_part>"
@@ -346,7 +349,8 @@ class PropertyManager implements RenderableInterface
             self::TAG_CONSTRAINTS,
             self::TAG_JMS_PART,
             self::TAG_TYPE,
-            self::TAG_NAME
+            self::TAG_NAME,
+            self::TAG_MULTILINE_COMMENT,
         ];
     }
 }

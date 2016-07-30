@@ -67,6 +67,10 @@ class Helper
   namespace: \AppBundle\Entity\User
   extends: \AppBundle\Entity\Base
   comment: "New User entity"
+  multiline_comment:
+      - \'lorem ispum\'
+      - \'second row\'
+      - \'@\Doctrine\Common\Annotations\Entity()\'
   properties:
     -
       name: username
@@ -79,6 +83,10 @@ class Helper
       name: email
       type: string
       comment: "User email"
+      multiline_comment:
+        - \'@\Doctrine\Common\Annotations\Column()\'
+        - \'lorem ispum\'
+        - \'third row\'
       constraints:
         - NotBlank()
         - Email(message = "Invalid email")

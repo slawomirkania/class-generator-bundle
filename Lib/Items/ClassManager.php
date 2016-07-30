@@ -5,9 +5,11 @@ namespace HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items;
 use Doctrine\Common\Collections\ArrayCollection;
 use Exception;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\DumpableInterface;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\MultilineCommentableInterface;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\RenderableInterface;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\StructureWithMethodsInterface;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Tools;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Traits\MultilineCommentTrait;
 use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -16,8 +18,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @author Sławomir Kania <slawomir.kania1@gmail.com>
  */
-class ClassManager implements RenderableInterface, DumpableInterface, StructureWithMethodsInterface
+class ClassManager implements RenderableInterface, DumpableInterface, StructureWithMethodsInterface, MultilineCommentableInterface
 {
+    use MultilineCommentTrait;
 
     /**
      * Collection of MethodManager
@@ -376,7 +379,7 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
             ."namespace <namespace>;\n"
             ."\n"
             ."/**\n"
-            ." *<comment>\n"
+            ." *<comment><multiline_comment>\n"
             ." */\n"
             ."class <name><extends><interface>\n"
             ."{\n"
@@ -406,6 +409,7 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
             self::TAG_CONSTRUCTOR,
             self::TAG_PROPERTIES,
             self::TAG_METHODS,
+            self::TAG_MULTILINE_COMMENT,
         ];
     }
 }
