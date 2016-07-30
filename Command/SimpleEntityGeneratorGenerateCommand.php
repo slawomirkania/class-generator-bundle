@@ -34,7 +34,7 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
             ->addArgument(self::PARAM_FILE_NAME, InputArgument::REQUIRED, sprintf('Name of yaml config file eg. entities.yml placed in /{%s}/Resources/config/{%s}', self::PARAM_BUNDLE_NAME, self::PARAM_FILE_NAME))
             ->addOption(self::OPTION_NO_INTERFACES, null, InputOption::VALUE_NONE, 'Switches off interfaces generating')
             ->addOption(self::OPTION_NO_PHPUNIT_CLASSES, null, InputOption::VALUE_NONE, 'Switches off PHPUnit classes generating')
-            ->addOption(self::OPTION_ONLY_SIMULATE_FILE, null, InputOption::VALUE_NONE, 'Simulation of generating classes form file and show summary');
+            ->addOption(self::OPTION_ONLY_SIMULATE_FILE, null, InputOption::VALUE_NONE, 'Simulation of generating classes from file and show summary');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

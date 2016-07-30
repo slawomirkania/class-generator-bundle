@@ -106,6 +106,8 @@ Options (optional)
 
 --no-phpunit-classes - Switches off PHPUnit classes generating
 
+--only-simulate-file - Simulation of generating classes from file and show summary
+
 ```sh
 $ ./bin/console class_generator:generate {bundle_name} {file_name_with_extension} --no-interfaces --no-phpunit-classes
 ```
