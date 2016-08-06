@@ -45,7 +45,7 @@ public function registerBundles()
   comment: "Update user data command"
   # in multiline comment you can put whatever you want eg. annotations, poems etc.
   multiline_comment:
-    - 'lorem ispum'
+    - 'lorem ipsum'
     - 'second row'
     - '@\Doctrine\Common\Annotations\Entity()'
   properties:
@@ -62,7 +62,7 @@ public function registerBundles()
       comment: "User email"
       multiline_comment:
         - '@\Doctrine\Common\Annotations\Column()'
-        - 'lorem ispum'
+        - 'lorem ipsum'
         - 'third row'
       constraints:
         - NotBlank()
