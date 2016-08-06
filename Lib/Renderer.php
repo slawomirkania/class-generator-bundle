@@ -330,25 +330,41 @@ class Renderer
         $template = $testClass->getTemplate();
         $tags = $testClass->getTemplateTags();
 
-        $extendsTestPart = '';
+        $constructTestMethodBody = "";
         $methods = [];
         foreach ($testClass->getMethods() as $method) {
             $methods[] = $this->render($method);
         }
 
-        if ($testClass->getClassManager()->hasExtends()) {
-            $extendsTest = sprintf("\$this->assertInstanceof('%s', \$this->object);", $testClass->getClassManager()->getExtends());
-            $extendsTestPart = $this->addNewLineAfter($this->addIndentation($extendsTest, self::INDENT_8_SPACES));
+        $class = $testClass->getClassManager();
+
+        $constructTestMethodBody .= $this->addNewLineAfter("\$this->assertNotNull(\$this->object);");
+
+        if ($testClass->getClassManager()->hasInterface()) {
+            $interfaceTestAssert = sprintf("\$this->assertInstanceof('%s', \$this->object);", $testClass->getClassManager()->getInterface()->getNamespace());
+            $constructTestMethodBody .= $this->addNewLineAfter($this->addIndentation($interfaceTestAssert, self::INDENT_8_SPACES));
         }
 
-        $class = $testClass->getClassManager();
+        $classTestAssert = sprintf("\$this->assertInstanceof('%s', \$this->object);", $class->getNamespace());
+        $constructTestMethodBody .= $this->addNewLineAfter($this->addIndentation($classTestAssert, self::INDENT_8_SPACES));
+
+        if ($testClass->getClassManager()->hasExtends()) {
+            $extendsTestAssert = sprintf("\$this->assertInstanceof('%s', \$this->object);", $testClass->getClassManager()->getExtends());
+            $constructTestMethodBody .= $this->addNewLineAfter($this->addIndentation($extendsTestAssert, self::INDENT_8_SPACES));
+        }
+
+        $testObjectType = $class->getNamespace();
+        if ($class->hasInterface()) {
+            $testObjectType = $class->getInterface()->getNamespace();
+        }
+
         $args[RenderableInterface::TAG_NAMESPACE] = $testClass->getNamespaceWithoutNameAndBackslashPrefix();
         $args[RenderableInterface::TAG_COMMENT] = $testClass->getComment();
         $args[RenderableInterface::TAG_NAME] = $testClass->getName();
-        $args[RenderableInterface::TAG_INTERFACE] = $class->hasInterface() ? $class->getInterface()->getNamespace() : null;
         $args[RenderableInterface::TAG_CLASS] = $class->getNamespace();
-        $args[RenderableInterface::TAG_EXTENDS] = $extendsTestPart;
         $args[RenderableInterface::TAG_METHODS] = Tools::implodeArrayToTemplate($methods);
+        $args[RenderableInterface::TAG_TEST_OBJECT_TYPE] = $testObjectType;
+        $args[RenderableInterface::TAG_METHOD_BODY] = $constructTestMethodBody;
 
         return $this->addNewLineAfter($this->replace($tags, $args, $template));
     }

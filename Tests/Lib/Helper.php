@@ -68,7 +68,7 @@ class Helper
   extends: \AppBundle\Entity\Base
   comment: "New User entity"
   multiline_comment:
-      - \'lorem ispum\'
+      - \'lorem ipsum\'
       - \'second row\'
       - \'@\Doctrine\Common\Annotations\Entity()\'
   properties:
@@ -85,7 +85,7 @@ class Helper
       comment: "User email"
       multiline_comment:
         - \'@\Doctrine\Common\Annotations\Column()\'
-        - \'lorem ispum\'
+        - \'lorem ipsum\'
         - \'third row\'
       constraints:
         - NotBlank()

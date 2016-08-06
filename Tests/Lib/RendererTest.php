@@ -8,6 +8,7 @@ use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\InitPropertyManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Renderer;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\ClassConfig;
 
 /**
  * Renderer Test
@@ -397,7 +398,7 @@ namespace AppBundle\Entity;
 /**
  * New User entity
  *
- * lorem ispum
+ * lorem ipsum
  * second row
  * @\Doctrine\Common\Annotations\Entity()
  */
@@ -419,7 +420,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
      * User email
      *
      * @\Doctrine\Common\Annotations\Column()
-     * lorem ispum
+     * lorem ipsum
      * third row
      *
      * @\Symfony\Component\Validator\Constraints\NotBlank()
@@ -1107,6 +1108,216 @@ class PostTest extends \PHPUnit_Framework_TestCase
 }
 
 EOT;
+    private $postClassWithoutInterface = <<<EOT
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ *
+ */
+class Post
+{
+
+    /**
+     * Post content
+     *
+     * @\Symfony\Component\Validator\Constraints\NotBlank()
+     * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("content")
+     * @var string
+     */
+    private \$content;
+
+    /**
+     * 'created_at' property
+     *
+     * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("created_at")
+     * @var DateTime
+     */
+    private \$createdAt;
+
+    /**
+     * 'updated_at' property
+     *
+     * @\JMS\Serializer\Annotation\Type("DateTime")
+     * @\JMS\Serializer\Annotation\SerializedName("updated_at")
+     * @var DateTime
+     */
+    private \$updatedAt;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * For property "content"
+     *
+     * @param string \$content
+     * @return this
+     */
+    public function setContent(\$content)
+    {
+        \$this->content = \$content;
+        return \$this;
+    }
+
+    /**
+     * For property "content"
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return \$this->content;
+    }
+
+    /**
+     * For property "createdAt"
+     *
+     * @param DateTime \$createdAt
+     * @return this
+     */
+    public function setCreatedAt(\DateTime \$createdAt)
+    {
+        \$this->createdAt = \$createdAt;
+        return \$this;
+    }
+
+    /**
+     * For property "createdAt"
+     *
+     * @return DateTime
+     */
+    public function getCreatedAt()
+    {
+        return \$this->createdAt;
+    }
+
+    /**
+     * For property "updatedAt"
+     *
+     * @param DateTime \$updatedAt
+     * @return this
+     */
+    public function setUpdatedAt(\DateTime \$updatedAt)
+    {
+        \$this->updatedAt = \$updatedAt;
+        return \$this;
+    }
+
+    /**
+     * For property "updatedAt"
+     *
+     * @return DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return \$this->updatedAt;
+    }
+
+}
+
+EOT;
+
+    /**
+     * @var string
+     */
+    private $postTestClassWithoutInterface = <<<EOT
+<?php
+
+namespace AppBundle\Tests\Entity;
+
+/**
+ * Test for \AppBundle\Entity\Post
+ */
+class PostTest extends \PHPUnit_Framework_TestCase
+{
+
+    /**
+     * Entity to test
+     * @var \AppBundle\Entity\Post
+     */
+    private \$object = null;
+
+    public function setUp()
+    {
+        \$this->object = new \AppBundle\Entity\Post();
+    }
+
+    public function testConstructor()
+    {
+        \$this->assertNotNull(\$this->object);
+        \$this->assertInstanceof('\AppBundle\Entity\Post', \$this->object);
+    }
+
+    /**
+     * @covers \AppBundle\Entity\Post::setContent
+     */
+    public function testSetContent()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\Post::getContent
+     */
+    public function testGetContent()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\Post::setCreatedAt
+     */
+    public function testSetCreatedAt()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\Post::getCreatedAt
+     */
+    public function testGetCreatedAt()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\Post::setUpdatedAt
+     */
+    public function testSetUpdatedAt()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\Post::getUpdatedAt
+     */
+    public function testGetUpdatedAt()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+}
+
+EOT;
 
     /**
      * @var Renderer
@@ -1171,10 +1382,36 @@ EOT;
         $this->assertEquals($this->postClassWithUpdatedConstructor, $result);
     }
 
-    private function initDataFromYaml()
+    public function testRenderClassWithoutInterface()
+    {
+        $class = $this->initDataFromYamlAndGetSecondClassWithoutInterface();
+        $result = $this->renderer->render($class);
+        $this->assertEquals($this->postClassWithoutInterface, $result);
+    }
+
+    public function testRenderTestClassForClassWithoutInterface()
+    {
+        $class = $this->initDataFromYamlAndGetSecondClassWithoutInterface();
+        $result = $this->renderer->render($class->getTestClass());
+        $this->assertEquals($this->postTestClassWithoutInterface, $result);
+    }
+
+    /**
+     * @return ClassManager
+     */
+    private function initDataFromYamlAndGetSecondClassWithoutInterface()
+    {
+        $classConfig = new ClassConfig();
+        $classConfig->setNoInterface(true);
+        $this->initDataFromYaml($classConfig);
+
+        return $this->classManagers[1];
+    }
+
+    private function initDataFromYaml(ClassConfig $classConfig = null)
     {
         self::bootKernel();
         $structureGenerator = self::$kernel->getContainer()->get('seg.structure_generator');
-        $this->classManagers = $structureGenerator->buildEntitiesClassStructure($structureGenerator->parseToArray(Helper::getStructureYaml()));
+        $this->classManagers = $structureGenerator->buildEntitiesClassStructure($structureGenerator->parseToArray(Helper::getStructureYaml()), $classConfig);
     }
 }

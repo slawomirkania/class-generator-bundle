@@ -34,6 +34,8 @@ interface RenderableInterface
     const TAG_JMS_PART = '<jms_part>';
     const TAG_EXTENDS = '<extends>';
     const TAG_MULTILINE_COMMENT = '<multiline_comment>';
+    const TAG_TEST_OBJECT_TYPE = '<test_object_type>';
+    const TAG_METHOD_BODY = '<method_body>';
 
     /**
      * Return common element template
