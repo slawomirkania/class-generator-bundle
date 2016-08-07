@@ -2,10 +2,12 @@
     "name" : "slawomirkania/class-generator-bundle",
     "description" : "Class Generator",
     "type" : "symfony-bundle",
-    "authors" : [{
-        "name" : "Slawomir Kania",
-        "email" : "slawomir.kania1@gmail.com"
-    }],
+    "authors" : [
+        {
+            "name" : "Slawomir Kania",
+            "email" : "slawomir.kania1@gmail.com"
+        }
+    ],
     "keywords" : [
         "class", "entity", "generator", "test", "interface"
     ],
@@ -31,8 +33,10 @@
         }
     },
     "target-dir" : "HelloWordPl/SimpleEntityGeneratorBundle",
-    "repositories" : [{
-    }],
+    "repositories" : [
+        {
+        }
+    ],
     "extra" : {
         "branch-alias" : {
             "dev-master" : "1.x.x-dev"
