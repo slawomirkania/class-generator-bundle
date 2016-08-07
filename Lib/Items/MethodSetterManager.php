@@ -52,7 +52,7 @@ class MethodSetterManager extends MethodManager implements SetterMethodInterface
             ." * @param <property_type> $<property_name>\n"
             ." * @return this\n"
             ." */\n"
-            ."public function <method_name>(<type_hinting>$<property_name>)\n"
+            ."public function <method_name>(<type_hinting>$<property_name><optional_part>)\n"
             ."{\n"
             ."    \$this-><property_name> = $<property_name>;\n"
             ."    return \$this;\n"
@@ -72,6 +72,7 @@ class MethodSetterManager extends MethodManager implements SetterMethodInterface
             self::TAG_TYPE_HINTING,
             self::TAG_METHOD_NAME,
             self::TAG_PROPERTY_NAME,
+            self::TAG_OPTIONAL_PART,
         ];
     }
 }

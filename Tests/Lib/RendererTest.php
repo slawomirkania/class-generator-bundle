@@ -633,7 +633,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
      * @param AppBundle\Entity\Post \$lastPost
      * @return this
      */
-    public function setLastPost(\AppBundle\Entity\Post \$lastPost)
+    public function setLastPost(\AppBundle\Entity\Post \$lastPost = null)
     {
         \$this->lastPost = \$lastPost;
         return \$this;
@@ -757,7 +757,7 @@ interface UserInterface
      * @param AppBundle\Entity\Post \$lastPost
      * @return this
      */
-    public function setLastPost(\AppBundle\Entity\Post \$lastPost);
+    public function setLastPost(\AppBundle\Entity\Post \$lastPost = null);
 
     /**
      * For property "lastPost"

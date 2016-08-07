@@ -82,6 +82,8 @@ public function registerBundles()
       name: user_setting
       serialized_name: userSetting
       type: AppBundle\Api\Param\Setting
+      # Setter allows 'null' value. Default 'false'.
+      optional: true
 -
   namespace: \AppBundle\Api\Param\Group
   # no comment

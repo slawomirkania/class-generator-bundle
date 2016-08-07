@@ -200,11 +200,17 @@ class Renderer
                     $typeHintitng = sprintf('\%s ', $property->getTypeName());
                 }
 
+                $optionalPart = '';
+                if ($property->isOptional()) {
+                    $optionalPart = ' = null';
+                }
+
                 $args[RenderableInterface::TAG_COMMENT] = $comment;
                 $args[RenderableInterface::TAG_PROPERTY_TYPE] = $property->getType();
                 $args[RenderableInterface::TAG_TYPE_HINTING] = $typeHintitng;
                 $args[RenderableInterface::TAG_METHOD_NAME] = $methodName;
                 $args[RenderableInterface::TAG_PROPERTY_NAME] = $propertyName;
+                $args[RenderableInterface::TAG_OPTIONAL_PART] = $optionalPart;
                 break;
             default:
                 throw $this->getExceptionUnrecognizedItem($method);

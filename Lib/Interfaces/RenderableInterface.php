@@ -36,6 +36,7 @@ interface RenderableInterface
     const TAG_MULTILINE_COMMENT = '<multiline_comment>';
     const TAG_TEST_OBJECT_TYPE = '<test_object_type>';
     const TAG_METHOD_BODY = '<method_body>';
+    const TAG_OPTIONAL_PART = '<optional_part>';
 
     /**
      * Return common element template

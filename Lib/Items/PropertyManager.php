@@ -21,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class PropertyManager implements RenderableInterface, MultilineCommentableInterface
 {
+
     use MultilineCommentTrait;
 
     /**
@@ -68,6 +69,12 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
      * @Assert\Type("string")
      */
     private $serializedName = '';
+
+    /**
+     * @Type("boolean")
+     * @Assert\Type("boolean")
+     */
+    private $optional = false;
 
     /**
      * Constr.
@@ -317,6 +324,22 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
     public function hasSerializedName()
     {
         return false == empty($this->serializedName);
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isOptional()
+    {
+        return $this->optional;
+    }
+
+    /**
+     * @param boolean $optional
+     */
+    public function setOptional($optional)
+    {
+        $this->optional = $optional;
     }
 
     /**

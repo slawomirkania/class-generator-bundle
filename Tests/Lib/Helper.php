@@ -113,6 +113,7 @@ class Helper
       name: last_post
       serialized_name: lastPost
       type: AppBundle\Entity\Post
+      optional: true
 -
   namespace: \AppBundle\Entity\Post
   # no comment
