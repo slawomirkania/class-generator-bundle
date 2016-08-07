@@ -10,7 +10,7 @@ branches:
     - 1.x.x-dev
 
 install:
-- composer install --dev
+- composer install
 
 script:
 - php vendor/bin/phpunit -c phpunit.xml.dist
