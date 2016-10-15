@@ -1,3 +1,7 @@
+| Unit Tests |
+| ---------- |
+| [![Build Status](https://api.travis-ci.org/slawomirkania/class-generator-bundle.png?branch=1.x.x-dev)](https://travis-ci.org/slawomirkania/class-generator-bundle) |
+
 # About
 
 Class Generator Bundle
