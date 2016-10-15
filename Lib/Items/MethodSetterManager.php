@@ -31,11 +31,7 @@ class MethodSetterManager extends MethodManager implements SetterMethodInterface
      */
     public function canAddTypeHinting()
     {
-        if (class_exists($this->getProperty()->getTypeName())) {
-            return true;
-        }
-
-        return Tools::isNamespaceValid($this->getProperty()->getType(), false);
+        return Tools::isNamespaceValid($this->getProperty()->getType(), false) || class_exists($this->getProperty()->getTypeName());
     }
 
     /**

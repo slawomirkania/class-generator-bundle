@@ -1,11 +1,11 @@
 <?php
 
-namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
+namespace Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies;
 
 /**
  * User dummy class for StructureResolver tests
  */
-class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterface
+class User implements \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\UserInterface
 {
 
     /**

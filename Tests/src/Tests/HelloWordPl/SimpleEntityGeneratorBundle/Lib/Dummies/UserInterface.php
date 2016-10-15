@@ -1,6 +1,6 @@
 <?php
 
-namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
+namespace Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies;
 
 /**
  * User dummy interface for StructureResolver tests

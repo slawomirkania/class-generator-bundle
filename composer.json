@@ -22,14 +22,16 @@
         "jms/serializer": "~1.0",
         "symfony/console": "~2.3|~3.0",
         "symfony/filesystem": "~2.3|~3.0",
-        "symfony/yaml": "~2.2|~3.0"
+        "symfony/yaml": "~2.2|~3.0",
+        "symfony/validator": "~3.1"
     },
     "require-dev" : {
         "phpunit/phpunit": "~4.0"
     },
     "autoload" : {
         "psr-0" : {
-            "HelloWordPl\\SimpleEntityGeneratorBundle" : ""
+            "HelloWordPl\\SimpleEntityGeneratorBundle\\" : "",
+            "Tests\\HelloWordPl\\SimpleEntityGeneratorBundle\\" : "Tests/src"
         }
     },
     "target-dir" : "HelloWordPl/SimpleEntityGeneratorBundle",

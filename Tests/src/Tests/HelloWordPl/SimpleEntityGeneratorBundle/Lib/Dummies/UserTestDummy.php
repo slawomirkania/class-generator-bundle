@@ -1,6 +1,6 @@
 <?php
 
-namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
+namespace Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies;
 
 /**
  * User dummy test class for StructureResolver tests
@@ -10,24 +10,24 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
 
     /**
      * Entity to test
-     * @var \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterface
+     * @var \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\UserInterface
      */
     private $object = null;
 
     public function setUp()
     {
-        $this->object = new \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User();
+        $this->object = new \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User();
     }
 
     public function testConstructor()
     {
         $this->assertNotNull($this->object);
-        $this->assertInstanceof('\HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterface', $this->object);
-        $this->assertInstanceof('\HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User', $this->object);
+        $this->assertInstanceof('\Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\UserInterface', $this->object);
+        $this->assertInstanceof('\Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User', $this->object);
     }
 
     /**
-     * @covers \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User::setFullName
+     * @covers \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User::setFullName
      */
     public function testSetFullName()
     {
@@ -37,7 +37,7 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User::getFullName
+     * @covers \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User::getFullName
      */
     public function testGetFullName()
     {
@@ -47,7 +47,7 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User::setEmail
+     * @covers \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User::setEmail
      */
     public function testSetEmail()
     {
@@ -57,7 +57,7 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User::getEmail
+     * @covers \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User::getEmail
      */
     public function testGetEmail()
     {
@@ -67,7 +67,7 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User::isActive
+     * @covers \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User::isActive
      */
     public function testIsActive()
     {
@@ -77,7 +77,7 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User::setActive
+     * @covers \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User::setActive
      */
     public function testSetActive()
     {
@@ -87,7 +87,7 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User::getActive
+     * @covers \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User::getActive
      */
     public function testGetActive()
     {
@@ -97,7 +97,7 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User::setNewPosts
+     * @covers \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User::setNewPosts
      */
     public function testSetNewPosts()
     {
@@ -107,7 +107,7 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User::getNewPosts
+     * @covers \Tests\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Dummies\User::getNewPosts
      */
     public function testGetNewPosts()
     {
