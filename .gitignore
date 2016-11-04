@@ -2,6 +2,6 @@ phpunit.xml
 vendor
 composer.lock
 composer.phar
-/nbproject/private/
-/Tests/app/cache
-/Tests/app/logs
+nbproject/
+Tests/app/cache
+Tests/app/logs
