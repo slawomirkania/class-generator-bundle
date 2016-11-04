@@ -200,6 +200,11 @@ You can check how deserialization of generated classes works.
     ...
 ```
 
+# Changelog
+
+- multiline comments for class and property supported
+- optional parameter for setter
+
 License
 ----
 
