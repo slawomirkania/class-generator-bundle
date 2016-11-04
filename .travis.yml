@@ -8,6 +8,7 @@ php:
 branches:
   only:
     - 1.x.x-dev
+    - master
 
 install:
 - composer install
