@@ -1,0 +1,28 @@
+<?php
+
+namespace <namespace>;
+
+/**
+ * <comment>
+ */
+class <name> extends \PHPUnit_Framework_TestCase
+{
+    
+    /**
+     * Entity to test
+     * @var <test_object_type>
+     */
+    private $object = null;
+
+    public function setUp()
+    {
+        $this->object = new <class>();
+    }
+
+    public function testConstructor()
+    {
+        <method_body>
+    }
+
+    <methods>
+}

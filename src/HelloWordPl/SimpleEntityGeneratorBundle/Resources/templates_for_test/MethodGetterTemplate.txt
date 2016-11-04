@@ -1,0 +1,13 @@
+/**
+ * <comment>
+ * My own getter template, I can do everything
+ * @return <property_type>
+ */
+public function <method_name>($defaultValue = "default")
+{
+    if (empty($this-><property_name>)) {
+        return $defaultValue;
+    }
+
+    return $this-><property_name>;
+}

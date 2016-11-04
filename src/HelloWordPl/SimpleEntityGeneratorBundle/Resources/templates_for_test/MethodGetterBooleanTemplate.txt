@@ -1,0 +1,8 @@
+/**
+ * <comment> My own getter boolean template
+ * @return <property_type>
+ */
+public function <method_name>()
+{
+    return (bool) $this-><property_name>;
+}

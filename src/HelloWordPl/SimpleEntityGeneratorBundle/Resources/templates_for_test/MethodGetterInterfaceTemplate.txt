@@ -1,0 +1,5 @@
+/**
+ * <comment> My own protected getter interface template
+ * @return <property_type>
+ */
+protected function <method_name>();

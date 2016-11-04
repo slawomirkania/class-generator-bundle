@@ -1,0 +1,8 @@
+/**
+ * <comment>
+ * <multiline_comment>
+ * <constraints>
+ * <jms_part>
+ * @var <type>
+ */
+private $<name>;

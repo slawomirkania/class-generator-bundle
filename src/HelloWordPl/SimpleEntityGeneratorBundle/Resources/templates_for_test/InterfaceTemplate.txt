@@ -1,0 +1,12 @@
+<?php
+
+namespace <namespace>;
+
+/**
+ * My own interface template
+ * <comment>
+ */
+interface <name>
+{
+    <methods>
+}

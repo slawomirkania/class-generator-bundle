@@ -1,0 +1,11 @@
+/**
+ * <comment>
+ * @param <property_type> $<property_name>
+ * @return this
+ */
+final public function <method_name>(<type_hinting>$<property_name><optional_part>)
+{
+    // this is final setter
+    $this-><property_name> = $<property_name>;
+    return $this;
+}

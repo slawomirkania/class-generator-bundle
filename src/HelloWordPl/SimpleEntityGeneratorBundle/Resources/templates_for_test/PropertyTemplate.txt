@@ -1,0 +1,9 @@
+/**
+ * My own protected property
+ * <comment>
+ * <multiline_comment>
+ * <constraints>
+ * <jms_part>
+ * @var <type>
+ */
+protected $<name>;

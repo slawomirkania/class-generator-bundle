@@ -1,0 +1,10 @@
+/**
+ * @covers <class>::<method_name>
+ */
+public function <test_method_name>()
+{
+    $this->markTestIncomplete(
+        'This test has not been implemented yet. Some.'
+    );
+    // My own test method!!
+}

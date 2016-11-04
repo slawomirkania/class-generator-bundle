@@ -1,0 +1,1 @@
+$this-><property_name> = new <property_type>();

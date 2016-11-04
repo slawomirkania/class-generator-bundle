@@ -1,0 +1,9 @@
+/**
+ * Constructor.
+ * My own CONSTRUCT with parameter
+ */
+public function __construct($zm)
+{
+    $zm1 = $zm;
+    <init_properties>
+}

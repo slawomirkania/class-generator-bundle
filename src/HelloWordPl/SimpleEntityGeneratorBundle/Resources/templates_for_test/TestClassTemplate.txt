@@ -1,0 +1,11 @@
+<?php
+
+namespace <namespace>;
+
+/**
+ * I do not want to init object!
+ */
+class <name> extends \PHPUnit_Framework_TestCase
+{
+    <methods>
+}

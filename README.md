@@ -52,6 +52,11 @@ public function registerBundles()
     - 'lorem ipsum'
     - 'second row'
     - '@\Doctrine\Common\Annotations\Entity()'
+  # you can overwrite default template for specific class, constructor, interface and test class
+  class_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnClassManagerTemplate.txt'
+  class_constructor_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnClassConstructorManagerTemplate.txt'
+  interface_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnInterfaceManagerTemplate.txt'
+  test_class_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnTestClassManagerTemplate.txt'
   properties:
     -
       name: username
@@ -60,6 +65,13 @@ public function registerBundles()
       constraints:
         - NotBlank(message = "Login can not be empty")
         - NotNull(message = "Login can not be null")
+      # you can overwrite default template for specific property, setter, getter etc.
+      property_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnPropertyManagerTemplate.txt'
+      test_class_method_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnTestClassManagerTemplate.txt'
+      method_getter_boolean_interface_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnMethodGetterBooleanInterfaceManagerTemplate.txt'
+      method_getter_boolean_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnMethodGetterBooleanManagerTemplate.txt'
+      method_getter_interface_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnMethodGetterInterfaceManagerTemplate.txt'
+      method_getter_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnMethodGetterManagerTemplate.txt'
     -
       name: email
       type: string
@@ -77,6 +89,9 @@ public function registerBundles()
       comment: "Wether user is active or not"
       constraints:
         - Type(type = "boolean")
+      # you can overwrite default template for specific property, setter, getter etc.
+      method_setter_interface_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnMethodSetterInterfaceManagerTemplate.txt'
+      method_setter_manager_template_path: 'YourOwnBundle/Resources/templates/YourOwnMethodSetterManagerTemplate.txt'
     -
       name: groups
       type: Doctrine\Common\Collections\ArrayCollection<AppBundle\Api\Param\Group>
@@ -151,6 +166,7 @@ Execute tests again and then you should see something like this:
 Time: 124 ms, Memory: 6.75Mb
 ```
 Now you can implement missing tests cases.
+Tip: For better code format quality use PHP-CS-Fixer on generated files
 
 ### Generated files namespaces:
 - AppBundle\Api\Command\Request
@@ -200,10 +216,58 @@ You can check how deserialization of generated classes works.
     ...
 ```
 
-# Changelog
+You can override default template for each element in generator.
+Templates are placed in src/HelloWordPl/SimpleEntityGeneratorBundle/Resources/templates/ directory.
 
-- multiline comments for class and property supported
-- optional parameter for setter
+ClassConstructorManagerTemplatePath - Constructor template
+ClassManagerTemplatePath - Class template
+InitPropertyManagerTemplatePath - Initialization ArrayCollection property in constructor template
+InterfaceManagerTemplatePath - Interface template
+MethodGetterBooleanInterfaceManagerTemplatePath - Interface boolean getter template
+MethodGetterBooleanManagerTemplatePath - Class boolean getter template
+MethodGetterInterfaceManagerTemplatePath - Interface common getter template
+MethodGetterManagerTemplatePath - Class getter template
+MethodSetterInterfaceManagerTemplatePath - Interface boolean setter template
+MethodSetterManagerTemplatePath - Class setter template
+PropertyManagerTemplatePath - Class property template
+TestClassManagerTemplatePath - PHPUnit class template
+TestMethodManagerTemplatePath - PHPUnit class method template
+
+If you want to replace default itme template you have to create your own template (take a look at methods getTemplateTags in each Item Manager src/HelloWordPl/SimpleEntityGeneratorBundle/Lib/Items/*.php, for tags which you can use in your own template)...
+
+```php
+/**
+ * My own template for interface getter
+ *
+ * <comment>
+ * @return <property_type>
+ */
+final public function <method_name>MyImagination();
+```
+
+...and set proper template directory (in parameters.yml) which consists of bundle name and path inside this bundle, e.g.
+
+```yml
+parameters:
+    ...
+    MethodGetterInterfaceManagerTemplatePath: 'YourOwnBundle/Resources/templates/YourOwnMethodGetterInterfaceTemplate.txt'
+    ...
+```
+
+You can also overwrite all methods in Renderer, by creating new Renderer class which extends default renderer class.
+All you need to do is set new Renderer class namespace in parameters.yml
+
+```yml
+parameters:
+    ...
+    SegRendererClass: "YourOwnBundle\\Lib\\OwnRendererClass"
+    ...
+```
+
+# Changelog
+- Item template overwriting supported
+- Multiline comments for class and property supported
+- Optional parameter for setter
 
 License
 ----

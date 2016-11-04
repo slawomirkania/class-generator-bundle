@@ -1,0 +1,8 @@
+/**
+ * <comment>
+ * @return <property_type>
+ */
+public function <method_name>()
+{
+    return $this-><property_name>;
+}

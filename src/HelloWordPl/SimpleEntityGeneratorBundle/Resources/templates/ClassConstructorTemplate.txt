@@ -1,0 +1,7 @@
+/**
+ * Constructor.
+ */
+public function __construct()
+{
+    <init_properties>
+}

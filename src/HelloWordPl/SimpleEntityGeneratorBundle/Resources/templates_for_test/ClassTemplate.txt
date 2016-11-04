@@ -1,0 +1,23 @@
+<?php
+
+namespace <namespace>;
+
+/**
+ * My own class template
+ * <comment>
+ * <multiline_comment>
+ */
+class <name><extends><interface>
+{
+    <properties>
+    <constructor>
+    <methods>
+
+    /**
+     * nothing to do
+     */
+    public function __toString()
+    {
+        return sprintf("class: %s", __CLASS__);
+    }
+}

@@ -1,0 +1,11 @@
+<?php
+
+namespace <namespace>;
+
+/**
+ * <comment>
+ */
+interface <name>
+{
+    <methods>
+}

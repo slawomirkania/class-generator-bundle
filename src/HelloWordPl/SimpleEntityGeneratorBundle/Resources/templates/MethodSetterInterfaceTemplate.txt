@@ -1,0 +1,6 @@
+/**
+ * <comment>
+ * @param <property_type> $<property_name>
+ * @return this
+ */
+public function <method_name>(<type_hinting>$<property_name><optional_part>);
