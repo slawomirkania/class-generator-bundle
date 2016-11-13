@@ -46,6 +46,9 @@ public function registerBundles()
 -
   namespace: \AppBundle\Api\Command\UserUpdate
   extends: \AppBundle\Api\Command\Request
+  configuration:
+    no_interface: true
+    no_phpunit_class: true
   comment: "Update user data command"
   # in multiline comment you can put whatever you want eg. annotations, poems etc.
   multiline_comment:
@@ -137,6 +140,8 @@ Options (optional)
 --no-phpunit-classes - Switches off PHPUnit classes generating
 
 --only-simulate-file - Simulation of generating classes from file and show summary
+
+You can also define configuration for specific class, see \AppBundle\Api\Command\UserUpdate in YAML definition above.
 
 ```sh
 $ ./bin/console class_generator:generate {bundle_name} {file_name_with_extension} --no-interfaces --no-phpunit-classes
@@ -265,6 +270,7 @@ parameters:
 ```
 
 # Changelog
+- Ability to disable/enable interface and/or test class generating per class 
 - Item template overwriting supported
 - Multiline comments for class and property supported
 - Optional parameter for setter

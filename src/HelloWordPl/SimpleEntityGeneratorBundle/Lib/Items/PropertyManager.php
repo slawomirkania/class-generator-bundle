@@ -561,4 +561,29 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
         $this->methodSetterManagerTemplatePath = $methodSetterManagerTemplatePath;
         return $this;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isObjectType()
+    {
+        if (class_exists($this->getTypeName())) {
+            return true;
+        }
+
+        return Tools::isNamespaceValid($this->getType(), false);
+    }
+
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function getTypeNameAbsoluteIfIsObjectTypeOrThrowException()
+    {
+        if (false == $this->isObjectType()) {
+            throw new Exception("This is not object type");
+        }
+
+        return "\\".$this->getTypeName();
+    }
 }

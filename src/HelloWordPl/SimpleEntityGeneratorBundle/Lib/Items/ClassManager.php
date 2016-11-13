@@ -122,6 +122,14 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
     private $testClassManagerTemplatePath = "";
 
     /**
+     * @Type("HelloWordPl\SimpleEntityGeneratorBundle\Lib\ClassConfig")
+     * @SerializedName("configuration")
+     * @Assert\Valid()
+     * @var \HelloWordPl\SimpleEntityGeneratorBundle\Lib\ClassConfig 
+     */
+    private $configuration;
+
+    /**
      * Construct
      */
     public function __construct()
@@ -488,6 +496,24 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
     public function setTestClassManagerTemplatePath($testClassManagerTemplatePath)
     {
         $this->testClassManagerTemplatePath = $testClassManagerTemplatePath;
+        return $this;
+    }
+
+    /**
+     * @return \HelloWordPl\SimpleEntityGeneratorBundle\Lib\ClassConfig
+     */
+    public function getConfiguration()
+    {
+        return $this->configuration;
+    }
+
+    /**
+     * @param \HelloWordPl\SimpleEntityGeneratorBundle\Lib\ClassConfig $configuration
+     * @return \HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager
+     */
+    public function setConfiguration(\HelloWordPl\SimpleEntityGeneratorBundle\Lib\ClassConfig $configuration)
+    {
+        $this->configuration = $configuration;
         return $this;
     }
 }

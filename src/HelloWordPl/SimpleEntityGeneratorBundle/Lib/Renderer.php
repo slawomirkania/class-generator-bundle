@@ -217,9 +217,9 @@ class Renderer
                 $args[RenderableInterface::TAG_METHOD_NAME] = $methodName;
                 break;
             case $method instanceof SetterMethodInterface:
-                $typeHintitng = '';
+                $typeHintitngPart = '';
                 if ($method->canAddTypeHinting()) {
-                    $typeHintitng = sprintf('\%s ', $property->getTypeName());
+                    $typeHintitngPart = sprintf('%s ', $property->getTypeNameAbsoluteIfIsObjectTypeOrThrowException());
                 }
 
                 $optionalPart = '';
@@ -229,7 +229,7 @@ class Renderer
 
                 $args[RenderableInterface::TAG_COMMENT] = $comment;
                 $args[RenderableInterface::TAG_PROPERTY_TYPE] = $property->getType();
-                $args[RenderableInterface::TAG_TYPE_HINTING] = $typeHintitng;
+                $args[RenderableInterface::TAG_TYPE_HINTING] = $typeHintitngPart;
                 $args[RenderableInterface::TAG_METHOD_NAME] = $methodName;
                 $args[RenderableInterface::TAG_PROPERTY_NAME] = $propertyName;
                 $args[RenderableInterface::TAG_OPTIONAL_PART] = $optionalPart;

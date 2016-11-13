@@ -1669,6 +1669,65 @@ class UserTest extends \PHPUnit_Framework_TestCase
 EOT;
 
     /**
+     * @var string
+     */
+    private $postClassWithoutInterfaceExpected = <<<EOT
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * 
+ * 
+ */
+class Post
+{
+    
+    /**
+     * 'id' property
+     * 
+     * 
+     * @\JMS\Serializer\Annotation\Type("integer")
+     * @\JMS\Serializer\Annotation\SerializedName("id")
+     * @var integer
+     */
+    private \$id;
+
+    
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        
+    }
+
+    
+    /**
+     * For property "id"
+     * @param integer \$id
+     * @return this
+     */
+    public function setId(\$id)
+    {
+        \$this->id = \$id;
+        return \$this;
+    }
+
+    /**
+     * For property "id"
+     * @return integer
+     */
+    public function getId()
+    {
+        return \$this->id;
+    }
+
+}
+
+EOT;
+
+    /**
      * @dataProvider dataForTestRender
      */
     public function testRender($item, $expectedOutput)
@@ -1681,6 +1740,7 @@ EOT;
     {
         $classManagers = $this->generateDataFromYamlHelper();
         $anotherClassManagers = $this->generateClassManagersFromYaml(Helper::getStructureYamlForTemplateChangeTest());
+        $classManagersWithInlineConfiguration = $this->generateClassManagersFromYaml(Helper::getStructureYamlForTestInlineClassConfuration());
 
         return [
             [$classManagers[0], $this->userClassExpected],
@@ -1692,6 +1752,7 @@ EOT;
             [$anotherClassManagers[0], $this->userClassWithTemplatesSetExpected],
             [$anotherClassManagers[0]->getInterface(), $this->userInterfaceWithTemplatesSetExpected],
             [$anotherClassManagers[0]->getTestClass(), $this->userTestClassWithTemplatesSetExpected],
+            [$classManagersWithInlineConfiguration[0], $this->postClassWithoutInterfaceExpected],
         ];
     }
 

@@ -3,7 +3,10 @@
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\ClassConfig;
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\InterfaceManager;
+use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\TestClassManager;
 use HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Helper;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -15,23 +18,9 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 class StructureGeneratorTest extends KernelTestCase
 {
 
-    /**
-     * @var Symfony\Component\DependencyInjection\ContainerInterface
-     */
-    private $container;
-
-    public function setUp()
-    {
-        self::bootKernel();
-        $this->container = self::$kernel->getContainer();
-    }
-
     public function testParseToArray()
     {
-        $structureGenerator = $this->container->get('seg.structure_generator');
-        $result = $structureGenerator->parseToArray(Helper::getStructureYaml());
-        $this->assertEquals(2, count($result));
-        $classesManagers = $structureGenerator->buildEntitiesClassStructure($result);
+        $classesManagers = $this->getStructureFromYaml(Helper::getStructureYaml());
         $this->assertEquals(2, count($classesManagers));
 
         foreach ($classesManagers as $classManager) {
@@ -58,6 +47,60 @@ class StructureGeneratorTest extends KernelTestCase
 
         $postEntityTestClass = $postEntity->getTestClass();
         $this->assertEquals(6, $postEntityTestClass->getMethods()->count());
+    }
+
+    /**
+     * @dataProvider dataForTestClassManagerWithInlineConfiguration
+     */
+    public function testClassManagerWithInlineConfiguration(ClassManager $classManager, ClassConfig $expectedInlineClassConfig)
+    {
+        /* @var $item ClassManager */
+        /* @var $classConfig ClassConfig */
+        $classConfig = $classManager->getConfiguration();
+        $this->assertInstanceOf(ClassConfig::class, $classConfig);
+        $this->assertEquals($expectedInlineClassConfig->isNoInterface(), $classConfig->isNoInterface());
+        $this->assertEquals($expectedInlineClassConfig->isNoPHPUnitClass(), $classConfig->isNoPHPUnitClass());
+
+        if ($expectedInlineClassConfig->isNoInterface()) {
+            $this->assertNull($classManager->getInterface());
+        } else {
+            $this->assertInstanceOf(InterfaceManager::class, $classManager->getInterface());
+        }
+
+        if ($expectedInlineClassConfig->isNoPHPUnitClass()) {
+            $this->assertNull($classManager->getTestClass());
+        } else {
+            $this->assertInstanceOf(TestClassManager::class, $classManager->getTestClass());
+        }
+    }
+
+    public function dataForTestClassManagerWithInlineConfiguration()
+    {
+        $classManagersOne = $this->getStructureFromYaml(Helper::getStructureYamlForTestInlineClassConfuration());
+        $classManagersTwo = $this->getStructureFromYaml(Helper::getStructureYamlForTemplateChangeTest());
+
+        return [
+            [$classManagersOne[0], new ClassConfig(true, true)],
+            [$classManagersTwo[0], new ClassConfig(false, false)]
+        ];
+    }
+
+    public function testInlineConfiguration()
+    {
+        $classesManagers = $this->getStructureFromYaml(Helper::getStructureYamlForTestInlineClassConfuration());
+        $this->assertEquals(1, count($classesManagers));
+        $classManager = $classesManagers->first();
+        $this->assertInstanceOf(ClassManager::class, $classManager);
+        $this->assertFalse($classManager->hasInterface());
+        $this->assertFalse($classManager->hasTestClass());
+    }
+
+    protected function getStructureFromYaml($yamlStructure)
+    {
+        self::bootKernel();
+        $structureGenerator = self::$kernel->getContainer()->get('seg.structure_generator');
+        $resultArray = $structureGenerator->parseToArray($yamlStructure);
+        return $structureGenerator->buildEntitiesClassStructure($resultArray);
     }
 
     private function checkCommonClassManager(ClassManager $classManager)

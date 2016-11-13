@@ -2,6 +2,10 @@
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Lib;
 
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Class config, additional parameters
  *
@@ -12,13 +16,29 @@ class ClassConfig
 
     /**
      * @var boolean
+     * @Type("boolean")
+     * @Assert\Type("boolean")
+     * @SerializedName("no_interface")
      */
     private $noInterface = false;
 
     /**
      * @var boolean
+     * @Type("boolean")
+     * @Assert\Type("boolean")
+     * @SerializedName("no_phpunit_class")
      */
     private $noPHPUnitClass = false;
+
+    /**
+     * @param boolean $noInterface
+     * @param boolean $noPHPUnitClass
+     */
+    public function __construct($noInterface = false, $noPHPUnitClass = false)
+    {
+        $this->noInterface = $noInterface;
+        $this->noPHPUnitClass = $noPHPUnitClass;
+    }
 
     /**
      * @return boolean

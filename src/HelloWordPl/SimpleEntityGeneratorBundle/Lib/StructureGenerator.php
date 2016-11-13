@@ -106,19 +106,30 @@ class StructureGenerator
      */
     public function preapareClassManager(ClassManager $classManager, ClassConfig $classConfig = null)
     {
-        $classConfig = $this->getDefaultClassConfigIfNeed($classConfig);
+        $inClassConfiguration = $classManager->getConfiguration();
+        $defaultClassConfiguration = $this->getDefaultClassConfigIfNeed($classConfig);
         $constructor = new ClassConstructorManager($classManager);
         $this->generateAndFillClassMethods($classManager);
         $this->prepareAndFillInitProperties($constructor);
         $classManager->setConstructor($constructor);
 
-        if (false == $classConfig->isNoInterface()) {
+        // inline config is more important
+        $canAddInterface = true;
+        $canPHPUnitClass = true;
+        if ($inClassConfiguration instanceof ClassConfig) {
+            $canAddInterface = !$inClassConfiguration->isNoInterface();
+            $canPHPUnitClass = !$inClassConfiguration->isNoPHPUnitClass();
+        } else {
+            $canAddInterface = !$defaultClassConfiguration->isNoInterface();
+            $canPHPUnitClass = !$defaultClassConfiguration->isNoPHPUnitClass();
+        }
+
+        if ($canAddInterface) {
             $interface = new InterfaceManager($classManager);
             $this->generateAndFillInterfaceMethods($interface);
             $classManager->setInterface($interface);
         }
-
-        if (false == $classConfig->isNoPHPUnitClass()) {
+        if ($canPHPUnitClass) {
             $testClass = new TestClassManager($classManager);
             $this->generateAndFillTestClassMethods($testClass);
             $classManager->setTestClass($testClass);

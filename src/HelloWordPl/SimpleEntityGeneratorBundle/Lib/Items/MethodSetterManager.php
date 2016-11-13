@@ -3,7 +3,6 @@
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items;
 
 use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\SetterMethodInterface;
-use HelloWordPl\SimpleEntityGeneratorBundle\Lib\Tools;
 
 /**
  * Setter Method Manager
@@ -25,15 +24,14 @@ class MethodSetterManager extends MethodManager implements SetterMethodInterface
 
     /**
      * If type is callable object or in namespace then can render type hinting in setter
-     * @todo refactor
      *
      * @return boolean
      */
     public function canAddTypeHinting()
     {
-        return Tools::isNamespaceValid($this->getProperty()->getType(), false) || class_exists($this->getProperty()->getTypeName());
+        return $this->getProperty()->isObjectType();
     }
-    
+
     /**
      * Return set of tags used in template
      *

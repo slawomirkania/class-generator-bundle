@@ -144,6 +144,9 @@ class Helper
   namespace: \AppBundle\Entity\User
   extends: \AppBundle\Entity\Base
   comment: "New User entity"
+  configuration:
+    no_interface: false
+    no_phpunit_class: false
   multiline_comment:
       - \'lorem ipsum\'
       - \'second row\'
@@ -182,5 +185,19 @@ class Helper
       method_getter_boolean_interface_manager_template_path: HelloWordPlSimpleEntityGeneratorBundle/Resources/templates_for_test/MethodGetterBooleanInterfaceTemplate.txt
       method_getter_boolean_manager_template_path: HelloWordPlSimpleEntityGeneratorBundle/Resources/templates_for_test/MethodGetterBooleanTemplate.txt
       method_getter_manager_template_path: HelloWordPlSimpleEntityGeneratorBundle/Resources/templates_for_test/EmptyTemplate.txt';
+    }
+
+    public static function getStructureYamlForTestInlineClassConfuration()
+    {
+        return '
+-
+  namespace: \AppBundle\Entity\Post
+  configuration:
+    no_interface: true
+    no_phpunit_class: true
+  properties:
+    -
+      name: id
+      type: integer';
     }
 }
