@@ -17,7 +17,7 @@ class ClassConstructorManagerTest extends BaseManager
     /**
      * @var ClassConstructorManager
      */
-    private $constructorManager = null;
+    protected $constructorManager = null;
 
     /**
      * SET UP

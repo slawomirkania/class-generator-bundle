@@ -20,7 +20,7 @@ class RendererTest extends KernelTestCase
     /**
      * @var string
      */
-    private $postClassWithUpdatedConstructor = <<<EOT
+    protected $postClassWithUpdatedConstructor = <<<EOT
 <?php
 
 namespace AppBundle\Entity;
@@ -141,7 +141,7 @@ EOT;
     /**
      * @var string
      */
-    private $postClassWithNewPropertyExpected = <<<EOT
+    protected $postClassWithNewPropertyExpected = <<<EOT
 <?php
 
 namespace AppBundle\Entity;
@@ -270,7 +270,7 @@ EOT;
     /**
      * @var string
      */
-    private $postClassExpected = <<<EOT
+    protected $postClassExpected = <<<EOT
 <?php
 
 namespace AppBundle\Entity;
@@ -389,7 +389,7 @@ EOT;
     /**
      * @var string
      */
-    private $userClassExpected = <<<EOT
+    protected $userClassExpected = <<<EOT
 <?php
 
 namespace AppBundle\Entity;
@@ -643,7 +643,7 @@ EOT;
     /**
      * @var string
      */
-    private $userInterfaceExpected = <<<EOT
+    protected $userInterfaceExpected = <<<EOT
 <?php
 
 namespace AppBundle\Entity;
@@ -758,7 +758,7 @@ EOT;
     /**
      * @var string
      */
-    private $postInterfaceExpected = <<<EOT
+    protected $postInterfaceExpected = <<<EOT
 <?php
 
 namespace AppBundle\Entity;
@@ -815,7 +815,7 @@ EOT;
     /**
      * @var string
      */
-    private $userTestClassExpected = <<<EOT
+    protected $userTestClassExpected = <<<EOT
 <?php
 
 namespace AppBundle\Tests\Entity;
@@ -1003,7 +1003,7 @@ EOT;
     /**
      * @var string
      */
-    private $postTestClassExpected = <<<EOT
+    protected $postTestClassExpected = <<<EOT
 <?php
 
 namespace AppBundle\Tests\Entity;
@@ -1096,7 +1096,7 @@ class PostTest extends \PHPUnit_Framework_TestCase
 }
 
 EOT;
-    private $postClassWithoutInterface = <<<EOT
+    protected $postClassWithoutInterface = <<<EOT
 <?php
 
 namespace AppBundle\Entity;
@@ -1215,7 +1215,7 @@ EOT;
     /**
      * @var string
      */
-    private $postTestClassWithoutInterface = <<<EOT
+    protected $postTestClassWithoutInterface = <<<EOT
 <?php
 
 namespace AppBundle\Tests\Entity;
@@ -1311,7 +1311,7 @@ EOT;
     /**
      * @var string 
      */
-    private $userClassWithTemplatesSetExpected = <<<EOT
+    protected $userClassWithTemplatesSetExpected = <<<EOT
 <?php
 
 namespace AppBundle\Entity;
@@ -1483,7 +1483,7 @@ EOT;
     /**
      * @var string 
      */
-    private $userInterfaceWithTemplatesSetExpected = <<<EOT
+    protected $userInterfaceWithTemplatesSetExpected = <<<EOT
 <?php
 
 namespace AppBundle\Entity;
@@ -1561,7 +1561,7 @@ EOT;
     /**
      * @var string 
      */
-    private $userTestClassWithTemplatesSetExpected = <<<EOT
+    protected $userTestClassWithTemplatesSetExpected = <<<EOT
 <?php
 
 namespace AppBundle\Tests\Entity;
@@ -1671,7 +1671,7 @@ EOT;
     /**
      * @var string
      */
-    private $postClassWithoutInterfaceExpected = <<<EOT
+    protected $postClassWithoutInterfaceExpected = <<<EOT
 <?php
 
 namespace AppBundle\Entity;
@@ -1796,7 +1796,7 @@ EOT;
     /**
      * @return ClassManager
      */
-    private function initDataFromYamlAndGetSecondClassWithoutInterface()
+    protected function initDataFromYamlAndGetSecondClassWithoutInterface()
     {
         $classConfig = new ClassConfig();
         $classConfig->setNoInterface(true);
@@ -1804,19 +1804,19 @@ EOT;
         return $classManagers[1];
     }
 
-    private function generateDataFromYamlHelper(ClassConfig $classConfig = null)
+    protected function generateDataFromYamlHelper(ClassConfig $classConfig = null)
     {
         return $this->generateClassManagersFromYaml(Helper::getStructureYaml(), $classConfig);
     }
 
-    private function generateClassManagersFromYaml($yaml, ClassConfig $classConfig = null)
+    protected function generateClassManagersFromYaml($yaml, ClassConfig $classConfig = null)
     {
         self::bootKernel();
         $structureGenerator = self::$kernel->getContainer()->get('seg.structure_generator');
         return $structureGenerator->buildEntitiesClassStructure($structureGenerator->parseToArray($yaml), $classConfig);
     }
 
-    private function getRenderer()
+    protected function getRenderer()
     {
         self::bootKernel();
         return self::$kernel->getContainer()->get('seg.renderer');

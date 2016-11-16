@@ -13,13 +13,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @author Sławomir Kania <slawomir.kania1@gmail.com>
  */
-class BaseManager extends KernelTestCase
+abstract class BaseManager extends KernelTestCase
 {
 
     /**
      * @var ContainerInterface
      */
-    private $container;
+    protected $container;
 
     /**
      * SET UP

@@ -17,7 +17,7 @@ class TestMethodManagerTest extends BaseManager
     /**
      * @var TestMethodManager
      */
-    private $testMethodManager = null;
+    protected $testMethodManager = null;
 
     /**
      * SET UP

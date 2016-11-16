@@ -18,7 +18,7 @@ class InterfaceManagerTest extends BaseManager
     /**
      * @var InterfaceManager
      */
-    private $interfaceManager = null;
+    protected $interfaceManager = null;
 
     /**
      * SET UP

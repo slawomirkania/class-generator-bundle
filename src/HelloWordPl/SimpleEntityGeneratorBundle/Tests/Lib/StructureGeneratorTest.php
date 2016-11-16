@@ -103,7 +103,7 @@ class StructureGeneratorTest extends KernelTestCase
         return $structureGenerator->buildEntitiesClassStructure($resultArray);
     }
 
-    private function checkCommonClassManager(ClassManager $classManager)
+    protected function checkCommonClassManager(ClassManager $classManager)
     {
         $this->assertInstanceOf("\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager", $classManager);
         $this->assertInstanceOf("\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Interfaces\RenderableInterface", $classManager);
@@ -127,7 +127,7 @@ class StructureGeneratorTest extends KernelTestCase
         $this->checkAllTestMethods($classManager->getTestClass()->getMethods());
     }
 
-    private function checkAllProperties(ArrayCollection $properties)
+    protected function checkAllProperties(ArrayCollection $properties)
     {
         foreach ($properties as $property) {
             $this->assertInstanceOf("\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\PropertyManager", $property);
@@ -135,7 +135,7 @@ class StructureGeneratorTest extends KernelTestCase
         }
     }
 
-    private function checkAllMethods(ArrayCollection $methods)
+    protected function checkAllMethods(ArrayCollection $methods)
     {
         foreach ($methods as $method) {
             $this->assertInstanceOf("\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\MethodManager", $method);
@@ -146,7 +146,7 @@ class StructureGeneratorTest extends KernelTestCase
         }
     }
 
-    private function checkAllTestMethods(ArrayCollection $methods)
+    protected function checkAllTestMethods(ArrayCollection $methods)
     {
         foreach ($methods as $method) {
             $this->assertInstanceOf("\HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\TestMethodManager", $method);

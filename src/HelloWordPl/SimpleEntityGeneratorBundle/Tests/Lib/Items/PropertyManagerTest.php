@@ -15,7 +15,7 @@ class PropertyManagerTest extends BaseManager
     /**
      * @var PropertyManager
      */
-    private $propertyManager = null;
+    protected $propertyManager = null;
 
     /**
      * SET UP
