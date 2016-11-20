@@ -16,7 +16,7 @@ class MethodSetterInterfaceManagerTest extends BaseManager
     /**
      * @var MethodSetterManager
      */
-    private $methodSetterInterfaceManager = null;
+    protected $methodSetterInterfaceManager = null;
 
     /**
      * SET UP

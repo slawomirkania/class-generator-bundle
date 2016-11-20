@@ -17,7 +17,7 @@ class InitPropertyManagerTest extends BaseManager
     /**
      * @var InitPropertyManager
      */
-    private $initPropertyManager = null;
+    protected $initPropertyManager = null;
 
     /**
      * SET UP

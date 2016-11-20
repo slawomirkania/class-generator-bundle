@@ -20,7 +20,7 @@ class ClassManagerTest extends BaseManager
     /**
      * @var ClassManager
      */
-    private $classManager = null;
+    protected $classManager = null;
 
     /**
      * SET UP

@@ -17,7 +17,7 @@ class MethodGetterBooleanInterfaceManagerTest extends BaseManager
     /**
      * @var MethodGetterBooleanInterfaceManager
      */
-    private $methodGetterBooleanInterfaceManager = null;
+    protected $methodGetterBooleanInterfaceManager = null;
 
     /**
      * SET UP

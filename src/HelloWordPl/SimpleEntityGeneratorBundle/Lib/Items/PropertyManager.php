@@ -567,11 +567,7 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
      */
     public function isObjectType()
     {
-        if (class_exists($this->getTypeName())) {
-            return true;
-        }
-
-        return Tools::isNamespaceValid($this->getType(), false);
+        return Tools::isNamespaceValid($this->getType(), false) || class_exists($this->getTypeName());
     }
 
     /**
@@ -584,6 +580,6 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
             throw new Exception("This is not object type");
         }
 
-        return "\\".$this->getTypeName();
+        return "\\" . $this->getTypeName();
     }
 }

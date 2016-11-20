@@ -18,7 +18,7 @@ class TestClassManagerTest extends BaseManager
     /**
      * @var TestClassManager
      */
-    private $testClassManager = null;
+    protected $testClassManager = null;
 
     /**
      * SET UP

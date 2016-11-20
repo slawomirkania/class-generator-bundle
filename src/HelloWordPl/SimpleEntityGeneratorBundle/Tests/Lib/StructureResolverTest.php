@@ -19,7 +19,7 @@ class StructureResolverTest extends KernelTestCase
     /**
      * @var Symfony\Component\DependencyInjection\ContainerInterface
      */
-    private $container;
+    protected $container;
 
     public function setUp()
     {
@@ -30,7 +30,7 @@ class StructureResolverTest extends KernelTestCase
     /**
      * @var string
      */
-    private $classContentBeforeUpdate = <<<EOT
+    protected $classContentBeforeUpdate = <<<EOT
 <?php
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
@@ -183,7 +183,7 @@ EOT;
     /**
      * @var string
      */
-    private $classContentAfterUpdate = <<<EOT
+    protected $classContentAfterUpdate = <<<EOT
 <?php
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
@@ -406,7 +406,7 @@ EOT;
     /**
      * @var string
      */
-    private $interfaceContentBeforeUpdate = <<<EOT
+    protected $interfaceContentBeforeUpdate = <<<EOT
 <?php
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
@@ -478,7 +478,7 @@ interface UserInterface
 }
 
 EOT;
-    private $interfaceContentAfterUpdate = <<<EOT
+    protected $interfaceContentAfterUpdate = <<<EOT
 <?php
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
@@ -586,7 +586,7 @@ EOT;
     /**
      * @var string
      */
-    private $testClassContentBeforeUpdate = <<<EOT
+    protected $testClassContentBeforeUpdate = <<<EOT
 <?php
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
@@ -712,7 +712,7 @@ EOT;
     /**
      * @var string
      */
-    private $testClassContentAfterUpdate = <<<EOT
+    protected $testClassContentAfterUpdate = <<<EOT
 <?php
 
 namespace HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
@@ -928,7 +928,7 @@ EOT;
      * @param $newProperties ArrayCollection
      * @return ClassManager
      */
-    private function preapareClassManager()
+    protected function preapareClassManager()
     {
         $pureClassManager = Helper::prepareBasicClassManager("\HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User");
         $properties = $pureClassManager->getProperties();
@@ -946,7 +946,7 @@ EOT;
      * @param DumpableInterface $itemOrDirectory
      * @return string
      */
-    private function getContentFile($itemOrDirectory)
+    protected function getContentFile($itemOrDirectory)
     {
         $filesManager = $this->getFilesManager();
         if ($itemOrDirectory instanceof DumpableInterface) {
@@ -964,7 +964,7 @@ EOT;
      * @param DumpableInterface $itemOrNamespace
      * @return ReflectionClass
      */
-    private function getReflectionClass($itemOrNamespace)
+    protected function getReflectionClass($itemOrNamespace)
     {
         $filesManager = $this->getFilesManager();
         if ($itemOrNamespace instanceof DumpableInterface) {
@@ -981,7 +981,7 @@ EOT;
     /**
      * @return \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\FilesManager
      */
-    private function getFilesManager()
+    protected function getFilesManager()
     {
         return $this->container->get('seg.files_manager');
     }
@@ -989,7 +989,7 @@ EOT;
     /**
      * @return \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\StructureResolver
      */
-    private function getStructureResolver()
+    protected function getStructureResolver()
     {
         return $this->container->get('seg.structure_resolver');
     }
@@ -997,7 +997,7 @@ EOT;
     /**
      * @return \Symfony\Component\HttpKernel\KernelInterface
      */
-    private function getKernel()
+    protected function getKernel()
     {
         return $this->container->get('kernel');
     }
