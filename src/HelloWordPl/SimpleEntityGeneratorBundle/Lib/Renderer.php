@@ -196,24 +196,24 @@ class Renderer
         switch (true) {
             case $method instanceof MethodGetterManager:
                 $args[RenderableInterface::TAG_COMMENT] = $comment;
-                $args[RenderableInterface::TAG_PROPERTY_TYPE] = $property->getType();
+                $args[RenderableInterface::TAG_PROPERTY_TYPE] = $this->getScalarTypeOrAbsoluteObjectTypeFromProperty($property);
                 $args[RenderableInterface::TAG_METHOD_NAME] = $methodName;
                 $args[RenderableInterface::TAG_PROPERTY_NAME] = $propertyName;
                 break;
             case $method instanceof MethodGetterInterfaceManager:
                 $args[RenderableInterface::TAG_COMMENT] = $comment;
-                $args[RenderableInterface::TAG_PROPERTY_TYPE] = $property->getType();
+                $args[RenderableInterface::TAG_PROPERTY_TYPE] = $this->getScalarTypeOrAbsoluteObjectTypeFromProperty($property);
                 $args[RenderableInterface::TAG_METHOD_NAME] = $methodName;
                 break;
             case $method instanceof MethodGetterBooleanManager:
                 $args[RenderableInterface::TAG_COMMENT] = $comment;
-                $args[RenderableInterface::TAG_PROPERTY_TYPE] = $property->getType();
+                $args[RenderableInterface::TAG_PROPERTY_TYPE] = $this->getScalarTypeOrAbsoluteObjectTypeFromProperty($property);
                 $args[RenderableInterface::TAG_METHOD_NAME] = $methodName;
                 $args[RenderableInterface::TAG_PROPERTY_NAME] = $propertyName;
                 break;
             case $method instanceof MethodGetterBooleanInterfaceManager:
                 $args[RenderableInterface::TAG_COMMENT] = $comment;
-                $args[RenderableInterface::TAG_PROPERTY_TYPE] = $property->getType();
+                $args[RenderableInterface::TAG_PROPERTY_TYPE] = $this->getScalarTypeOrAbsoluteObjectTypeFromProperty($property);
                 $args[RenderableInterface::TAG_METHOD_NAME] = $methodName;
                 break;
             case $method instanceof SetterMethodInterface:
@@ -226,9 +226,9 @@ class Renderer
                 if ($property->isOptional()) {
                     $optionalPart = ' = null';
                 }
-
+                
                 $args[RenderableInterface::TAG_COMMENT] = $comment;
-                $args[RenderableInterface::TAG_PROPERTY_TYPE] = $property->getType();
+                $args[RenderableInterface::TAG_PROPERTY_TYPE] = $this->getScalarTypeOrAbsoluteObjectTypeFromProperty($property);
                 $args[RenderableInterface::TAG_TYPE_HINTING] = $typeHintitngPart;
                 $args[RenderableInterface::TAG_METHOD_NAME] = $methodName;
                 $args[RenderableInterface::TAG_PROPERTY_NAME] = $propertyName;
@@ -330,7 +330,7 @@ class Renderer
         $args[RenderableInterface::TAG_COMMENT] = $comment;
         $args[RenderableInterface::TAG_CONSTRAINTS] = $this->prepareMultilineCommentForCollection($property->getConstraintAnnotationCollection());
         $args[RenderableInterface::TAG_JMS_PART] = $this->prepareMultilineCommentForCollection($jmsCollection);
-        $args[RenderableInterface::TAG_TYPE] = $property->getType();
+        $args[RenderableInterface::TAG_TYPE] = $this->getScalarTypeOrAbsoluteObjectTypeFromProperty($property);
         $args[RenderableInterface::TAG_NAME] = $property->getPreparedName();
         $args[RenderableInterface::TAG_MULTILINE_COMMENT] = $this->prepareMultilineCommentForCollection($property->getMultilineComment());
 
@@ -529,5 +529,19 @@ class Renderer
         }
 
         return Tools::implodeArrayToTemplate($multilinePrepared);
+    }
+    
+    /**
+     * @param PropertyManager $property
+     * @return string
+     * @throws \Exception
+     */
+    protected function getScalarTypeOrAbsoluteObjectTypeFromProperty(PropertyManager $property)
+    {
+        if ($property->isObjectType()) {
+            return $property->getTypeNameAbsoluteIfIsObjectTypeOrThrowException();
+        } else {
+           return $property->getTypeName(); 
+        }
     }
 }

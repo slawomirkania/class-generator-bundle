@@ -75,7 +75,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      * @\Symfony\Component\Validator\Constraints\Valid()
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
      * @\JMS\Serializer\Annotation\SerializedName("new_posts")
-     * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private \$newPosts;
 
@@ -158,7 +158,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
 
     /**
      * For property "newPosts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> \$newPosts
+     * @param \Doctrine\Common\Collections\ArrayCollection \$newPosts
      * @return this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection \$newPosts)
@@ -169,7 +169,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
 
     /**
      * For property "newPosts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getNewPosts()
     {
@@ -228,7 +228,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      * @\Symfony\Component\Validator\Constraints\Valid()
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
      * @\JMS\Serializer\Annotation\SerializedName("new_posts")
-     * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private \$newPosts;
 
@@ -238,7 +238,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      * @\Symfony\Component\Validator\Constraints\Valid()
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection")
      * @\JMS\Serializer\Annotation\SerializedName("test_collection")
-     * @var Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private \$testCollection;
 
@@ -332,7 +332,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
 
     /**
      * For property "newPosts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> \$newPosts
+     * @param \Doctrine\Common\Collections\ArrayCollection \$newPosts
      * @return this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection \$newPosts)
@@ -343,7 +343,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
 
     /**
      * For property "newPosts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getNewPosts()
     {
@@ -352,7 +352,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
 
     /**
      * For property "testCollection"
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getTestCollection()
     {
@@ -361,7 +361,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
 
     /**
      * For property "testCollection"
-     * @param Doctrine\Common\Collections\ArrayCollection \$testCollection
+     * @param \Doctrine\Common\Collections\ArrayCollection \$testCollection
      * @return this
      */
     public function setTestCollection(\Doctrine\Common\Collections\ArrayCollection \$testCollection)
@@ -464,14 +464,14 @@ interface UserInterface
 
     /**
      * For property "newPosts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> \$newPosts
+     * @param \Doctrine\Common\Collections\ArrayCollection \$newPosts
      * @return this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection \$newPosts);
 
     /**
      * For property "newPosts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getNewPosts();
 
@@ -536,26 +536,26 @@ interface UserInterface
 
     /**
      * For property "newPosts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> \$newPosts
+     * @param \Doctrine\Common\Collections\ArrayCollection \$newPosts
      * @return this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection \$newPosts);
 
     /**
      * For property "newPosts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getNewPosts();
 
     /**
      * For property "testCollection"
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getTestCollection();
 
     /**
      * For property "testCollection"
-     * @param Doctrine\Common\Collections\ArrayCollection \$testCollection
+     * @param \Doctrine\Common\Collections\ArrayCollection \$testCollection
      * @return this
      */
     public function setTestCollection(\Doctrine\Common\Collections\ArrayCollection \$testCollection);

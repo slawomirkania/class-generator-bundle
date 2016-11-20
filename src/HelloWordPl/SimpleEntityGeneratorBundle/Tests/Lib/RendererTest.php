@@ -48,7 +48,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @\JMS\Serializer\Annotation\SerializedName("created_at")
-     * @var DateTime
+     * @var \DateTime
      */
     private \$createdAt;
 
@@ -58,7 +58,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @\JMS\Serializer\Annotation\SerializedName("updated_at")
-     * @var DateTime
+     * @var \DateTime
      */
     private \$updatedAt;
 
@@ -96,7 +96,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "createdAt"
-     * @param DateTime \$createdAt
+     * @param \DateTime \$createdAt
      * @return this
      */
     public function setCreatedAt(\DateTime \$createdAt)
@@ -107,7 +107,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "createdAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -116,7 +116,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "updatedAt"
-     * @param DateTime \$updatedAt
+     * @param \DateTime \$updatedAt
      * @return this
      */
     public function setUpdatedAt(\DateTime \$updatedAt)
@@ -127,7 +127,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "updatedAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -169,7 +169,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @\JMS\Serializer\Annotation\SerializedName("created_at")
-     * @var DateTime
+     * @var \DateTime
      */
     private \$createdAt;
 
@@ -179,7 +179,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @\JMS\Serializer\Annotation\SerializedName("updated_at")
-     * @var DateTime
+     * @var \DateTime
      */
     private \$updatedAt;
 
@@ -225,7 +225,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "createdAt"
-     * @param DateTime \$createdAt
+     * @param \DateTime \$createdAt
      * @return this
      */
     public function setCreatedAt(\DateTime \$createdAt)
@@ -236,7 +236,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "createdAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -245,7 +245,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "updatedAt"
-     * @param DateTime \$updatedAt
+     * @param \DateTime \$updatedAt
      * @return this
      */
     public function setUpdatedAt(\DateTime \$updatedAt)
@@ -256,7 +256,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "updatedAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -298,7 +298,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @\JMS\Serializer\Annotation\SerializedName("created_at")
-     * @var DateTime
+     * @var \DateTime
      */
     private \$createdAt;
 
@@ -308,7 +308,7 @@ class Post implements \AppBundle\Entity\PostInterface
      * 
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @\JMS\Serializer\Annotation\SerializedName("updated_at")
-     * @var DateTime
+     * @var \DateTime
      */
     private \$updatedAt;
 
@@ -344,7 +344,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "createdAt"
-     * @param DateTime \$createdAt
+     * @param \DateTime \$createdAt
      * @return this
      */
     public function setCreatedAt(\DateTime \$createdAt)
@@ -355,7 +355,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "createdAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -364,7 +364,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "updatedAt"
-     * @param DateTime \$updatedAt
+     * @param \DateTime \$updatedAt
      * @return this
      */
     public function setUpdatedAt(\DateTime \$updatedAt)
@@ -375,7 +375,7 @@ class Post implements \AppBundle\Entity\PostInterface
 
     /**
      * For property "updatedAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -443,7 +443,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
      * 
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
      * @\JMS\Serializer\Annotation\SerializedName("posts")
-     * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private \$posts;
 
@@ -453,7 +453,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
      * 
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @\JMS\Serializer\Annotation\SerializedName("created_at")
-     * @var DateTime
+     * @var \DateTime
      */
     private \$createdAt;
 
@@ -463,7 +463,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
      * 
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @\JMS\Serializer\Annotation\SerializedName("updated_at")
-     * @var DateTime
+     * @var \DateTime
      */
     private \$updatedAt;
 
@@ -473,7 +473,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
      * 
      * @\JMS\Serializer\Annotation\Type("AppBundle\Entity\Post")
      * @\JMS\Serializer\Annotation\SerializedName("lastPost")
-     * @var AppBundle\Entity\Post
+     * @var \AppBundle\Entity\Post
      */
     private \$lastPost;
 
@@ -558,7 +558,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * For property "posts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> \$posts
+     * @param \Doctrine\Common\Collections\ArrayCollection \$posts
      * @return this
      */
     public function setPosts(\Doctrine\Common\Collections\ArrayCollection \$posts)
@@ -569,7 +569,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * For property "posts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getPosts()
     {
@@ -578,7 +578,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * For property "createdAt"
-     * @param DateTime \$createdAt
+     * @param \DateTime \$createdAt
      * @return this
      */
     public function setCreatedAt(\DateTime \$createdAt)
@@ -589,7 +589,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * For property "createdAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -598,7 +598,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * For property "updatedAt"
-     * @param DateTime \$updatedAt
+     * @param \DateTime \$updatedAt
      * @return this
      */
     public function setUpdatedAt(\DateTime \$updatedAt)
@@ -609,7 +609,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * For property "updatedAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -618,7 +618,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * For property "lastPost"
-     * @param AppBundle\Entity\Post \$lastPost
+     * @param \AppBundle\Entity\Post \$lastPost
      * @return this
      */
     public function setLastPost(\AppBundle\Entity\Post \$lastPost = null)
@@ -629,7 +629,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * For property "lastPost"
-     * @return AppBundle\Entity\Post
+     * @return \AppBundle\Entity\Post
      */
     public function getLastPost()
     {
@@ -701,53 +701,53 @@ interface UserInterface
 
     /**
      * For property "posts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> \$posts
+     * @param \Doctrine\Common\Collections\ArrayCollection \$posts
      * @return this
      */
     public function setPosts(\Doctrine\Common\Collections\ArrayCollection \$posts);
 
     /**
      * For property "posts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getPosts();
 
     /**
      * For property "createdAt"
-     * @param DateTime \$createdAt
+     * @param \DateTime \$createdAt
      * @return this
      */
     public function setCreatedAt(\DateTime \$createdAt);
 
     /**
      * For property "createdAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreatedAt();
 
     /**
      * For property "updatedAt"
-     * @param DateTime \$updatedAt
+     * @param \DateTime \$updatedAt
      * @return this
      */
     public function setUpdatedAt(\DateTime \$updatedAt);
 
     /**
      * For property "updatedAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdatedAt();
 
     /**
      * For property "lastPost"
-     * @param AppBundle\Entity\Post \$lastPost
+     * @param \AppBundle\Entity\Post \$lastPost
      * @return this
      */
     public function setLastPost(\AppBundle\Entity\Post \$lastPost = null);
 
     /**
      * For property "lastPost"
-     * @return AppBundle\Entity\Post
+     * @return \AppBundle\Entity\Post
      */
     public function getLastPost();
 
@@ -784,27 +784,27 @@ interface PostInterface
 
     /**
      * For property "createdAt"
-     * @param DateTime \$createdAt
+     * @param \DateTime \$createdAt
      * @return this
      */
     public function setCreatedAt(\DateTime \$createdAt);
 
     /**
      * For property "createdAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreatedAt();
 
     /**
      * For property "updatedAt"
-     * @param DateTime \$updatedAt
+     * @param \DateTime \$updatedAt
      * @return this
      */
     public function setUpdatedAt(\DateTime \$updatedAt);
 
     /**
      * For property "updatedAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdatedAt();
 
@@ -1124,7 +1124,7 @@ class Post
      * 
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @\JMS\Serializer\Annotation\SerializedName("created_at")
-     * @var DateTime
+     * @var \DateTime
      */
     private \$createdAt;
 
@@ -1134,7 +1134,7 @@ class Post
      * 
      * @\JMS\Serializer\Annotation\Type("DateTime")
      * @\JMS\Serializer\Annotation\SerializedName("updated_at")
-     * @var DateTime
+     * @var \DateTime
      */
     private \$updatedAt;
 
@@ -1170,7 +1170,7 @@ class Post
 
     /**
      * For property "createdAt"
-     * @param DateTime \$createdAt
+     * @param \DateTime \$createdAt
      * @return this
      */
     public function setCreatedAt(\DateTime \$createdAt)
@@ -1181,7 +1181,7 @@ class Post
 
     /**
      * For property "createdAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -1190,7 +1190,7 @@ class Post
 
     /**
      * For property "updatedAt"
-     * @param DateTime \$updatedAt
+     * @param \DateTime \$updatedAt
      * @return this
      */
     public function setUpdatedAt(\DateTime \$updatedAt)
@@ -1201,7 +1201,7 @@ class Post
 
     /**
      * For property "updatedAt"
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -1354,7 +1354,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
      * 
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
      * @\JMS\Serializer\Annotation\SerializedName("posts")
-     * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private \$posts;
 
@@ -1428,7 +1428,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * For property "posts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> \$posts
+     * @param \Doctrine\Common\Collections\ArrayCollection \$posts
      * @return this
      */
     public function setPosts(\Doctrine\Common\Collections\ArrayCollection \$posts)
@@ -1439,7 +1439,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
 
     /**
      * For property "posts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getPosts()
     {
@@ -1524,14 +1524,14 @@ interface UserInterface
 
     /**
      * For property "posts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> \$posts
+     * @param \Doctrine\Common\Collections\ArrayCollection \$posts
      * @return this
      */
     public function setPosts(\Doctrine\Common\Collections\ArrayCollection \$posts);
 
     /**
      * For property "posts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getPosts();
 

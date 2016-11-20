@@ -55,14 +55,14 @@ interface UserInterface
 
     /**
      * For property "newPosts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> $newPosts
+     * @param \Doctrine\Common\Collections\ArrayCollection $newPosts
      * @return this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection $newPosts);
 
     /**
      * For property "newPosts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getNewPosts();
 

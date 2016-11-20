@@ -42,7 +42,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
      * @\Symfony\Component\Validator\Constraints\Valid()
      * @\JMS\Serializer\Annotation\Type("Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>")
      * @\JMS\Serializer\Annotation\SerializedName("new_posts")
-     * @var Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private $newPosts;
 
@@ -125,7 +125,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
 
     /**
      * For property "newPosts"
-     * @param Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post> $newPosts
+     * @param \Doctrine\Common\Collections\ArrayCollection $newPosts
      * @return this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection $newPosts)
@@ -136,7 +136,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
 
     /**
      * For property "newPosts"
-     * @return Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getNewPosts()
     {
