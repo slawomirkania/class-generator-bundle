@@ -1743,28 +1743,34 @@ EOT;
         $classManagersWithInlineConfiguration = $this->generateClassManagersFromYaml(Helper::getStructureYamlForTestInlineClassConfuration());
 
         return [
-            [$classManagers[0], $this->userClassExpected],
-            [$classManagers[1], $this->postClassExpected],
-            [$classManagers[0]->getInterface(), $this->userInterfaceExpected],
-            [$classManagers[1]->getInterface(), $this->postInterfaceExpected],
-            [$classManagers[0]->getTestClass(), $this->userTestClassExpected],
-            [$classManagers[1]->getTestClass(), $this->postTestClassExpected],
-            [$anotherClassManagers[0], $this->userClassWithTemplatesSetExpected],
-            [$anotherClassManagers[0]->getInterface(), $this->userInterfaceWithTemplatesSetExpected],
-            [$anotherClassManagers[0]->getTestClass(), $this->userTestClassWithTemplatesSetExpected],
-            [$classManagersWithInlineConfiguration[0], $this->postClassWithoutInterfaceExpected],
+                [$classManagers[0], $this->userClassExpected],
+                [$classManagers[1], $this->postClassExpected],
+                [$classManagers[0]->getInterface(), $this->userInterfaceExpected],
+                [$classManagers[1]->getInterface(), $this->postInterfaceExpected],
+                [$classManagers[0]->getTestClass(), $this->userTestClassExpected],
+                [$classManagers[1]->getTestClass(), $this->postTestClassExpected],
+                [$anotherClassManagers[0], $this->userClassWithTemplatesSetExpected],
+                [$anotherClassManagers[0]->getInterface(), $this->userInterfaceWithTemplatesSetExpected],
+                [$anotherClassManagers[0]->getTestClass(), $this->userTestClassWithTemplatesSetExpected],
+                [$classManagersWithInlineConfiguration[0], $this->postClassWithoutInterfaceExpected],
         ];
     }
 
-    public function testRenderAndPutItemsToContent()
+    /**
+     * @dataProvider dataForTestRenderAndPutItemsToContent
+     */
+    public function testRenderAndPutItemsToContent($postClassExpected, $postClassWithNewPropertyExpected, $newItemPositionOffset)
     {
         $itemsToRender = new ArrayCollection();
         $itemsToRender->add(Helper::prepareProperty("active", "boolean", "is post active", ["IsTrue()"]));
-        $result = $this->getRenderer()->renderAndPutItemsToContent($this->postClassExpected, $itemsToRender, 41);
-        $this->assertEquals($this->postClassWithNewPropertyExpected, $result);
+        $result = $this->getRenderer()->renderAndPutItemsToContent($postClassExpected, $itemsToRender, $newItemPositionOffset);
+        $this->assertEquals($postClassWithNewPropertyExpected, $result);
     }
 
-    public function testRenderAndPutConstructorBodyToContent()
+    /**
+     * @dataProvider dataForTestRenderAndPutConstructorBodyToContent
+     */
+    public function testRenderAndPutConstructorBodyToContent($postClassExpected, $postClassWithUpdatedConstructor, $newItemPositionOffset)
     {
         $constructorManager = new ClassConstructorManager(new ClassManager());
         $initProperties = new ArrayCollection();
@@ -1775,8 +1781,8 @@ EOT;
         $initProperties->add($initProperty2);
         $initProperties->add($initProperty);
         $constructorManager->setInitProperties($initProperties);
-        $result = $this->getRenderer()->renderAndPutConstructorBodyToContent($this->postClassExpected, $constructorManager, 47);
-        $this->assertEquals($this->postClassWithUpdatedConstructor, $result);
+        $result = $this->getRenderer()->renderAndPutConstructorBodyToContent($postClassExpected, $constructorManager, $newItemPositionOffset);
+        $this->assertEquals($postClassWithUpdatedConstructor, $result);
     }
 
     public function testRenderClassWithoutInterface()
@@ -1791,6 +1797,26 @@ EOT;
         $class = $this->initDataFromYamlAndGetSecondClassWithoutInterface();
         $result = $this->getRenderer()->render($class->getTestClass());
         $this->assertEquals($this->postTestClassWithoutInterface, $result);
+    }
+
+    /**
+     * @return array
+     */
+    public function dataForTestRenderAndPutItemsToContent()
+    {
+        return [
+                [$this->postClassExpected, $this->postClassWithNewPropertyExpected, 41],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function dataForTestRenderAndPutConstructorBodyToContent()
+    {
+        return [
+                [$this->postClassExpected, $this->postClassWithUpdatedConstructor, 47]
+        ];
     }
 
     /**
