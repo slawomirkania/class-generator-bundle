@@ -1,5 +1,5 @@
-[![Build Status](https://api.travis-ci.org/slawomirkania/class-generator-bundle.png)](https://travis-ci.org/slawomirkania/class-generator-bundle)
-[![Coverage Status](https://coveralls.io/repos/github/slawomirkania/class-generator-bundle/badge.svg)](https://coveralls.io/github/slawomirkania/class-generator-bundle)
+[![Build Status](https://api.travis-ci.org/slawomirkania/class-generator-bundle.png?branch=1.x.x-dev)](https://travis-ci.org/slawomirkania/class-generator-bundle)
+[![Coverage Status](https://coveralls.io/repos/github/slawomirkania/class-generator-bundle/badge.svg?branch=1.x.x-dev)](https://coveralls.io/github/slawomirkania/class-generator-bundle?branch=1.x.x-dev)
 
 # About
 
