@@ -5,3 +5,4 @@ composer.phar
 nbproject
 app/cache
 app/logs
+build/logs
