@@ -1,13 +1,14 @@
 [![Build Status](https://api.travis-ci.org/slawomirkania/class-generator-bundle.png?branch=1.x.x-dev)](https://travis-ci.org/slawomirkania/class-generator-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/slawomirkania/class-generator-bundle/badge.svg?branch=1.x.x-dev)](https://coveralls.io/github/slawomirkania/class-generator-bundle?branch=1.x.x-dev)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/slawomirkania/class-generator-bundle/badges/quality-score.png?b=1.x.x-dev)](https://scrutinizer-ci.com/g/slawomirkania/class-generator-bundle/badges/quality-score.png?b=1.x.x-dev)
 
 # About
 
 Class Generator Bundle
 - Generate classes, interfaces and PHPUnit test classes from the YAML schema.
-- Generator does not overwrite existing methods or properties, only render new elements.
+- Generator does not overwrite existing methods or properties, only renders new elements.
 - Generated entity class is compatible with JMS Serializer, each property has an annotation @Type based on a property type.
-- Also each property has an annotation @SerializedName which can be adjusted like in the example below (user_setting).
+- Also each property has an annotation @SerializedName which can be adjusted as in the example below (user_setting).
 - Generator allows to add Symfony constraints to a property.
 - Generator allows to handle inheritance.
 
@@ -237,7 +238,7 @@ PropertyManagerTemplatePath - Class property template
 TestClassManagerTemplatePath - PHPUnit class template
 TestMethodManagerTemplatePath - PHPUnit class method template
 
-If you want to replace default itme template you have to create your own template (take a look at methods getTemplateTags in each Item Manager src/HelloWordPl/SimpleEntityGeneratorBundle/Lib/Items/*.php, for tags which you can use in your own template)...
+If you want to replace default item template you have to create your own template (take a look at methods getTemplateTags in each Item Manager src/HelloWordPl/SimpleEntityGeneratorBundle/Lib/Items/*.php, for tags which you can use in your own template)...
 
 ```php
 /**
