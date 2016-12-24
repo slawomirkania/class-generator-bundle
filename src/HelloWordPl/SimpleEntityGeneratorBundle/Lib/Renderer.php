@@ -484,7 +484,7 @@ class Renderer
      */
     protected function addNewLineAfter($content)
     {
-        if (false == is_string($content)) {
+        if (false === is_string($content)) {
             throw new RendererException("Invalid string!");
         }
 
@@ -500,7 +500,7 @@ class Renderer
      */
     protected function addNewLineBefore($content)
     {
-        if (false == is_string($content)) {
+        if (false === is_string($content)) {
             throw new RendererException("Invalid string!");
         }
 

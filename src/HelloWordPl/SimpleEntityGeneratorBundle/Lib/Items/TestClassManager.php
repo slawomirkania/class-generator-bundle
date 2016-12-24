@@ -179,7 +179,7 @@ class TestClassManager implements RenderableInterface, DumpableInterface, Struct
      */
     protected function appendTestDirectory($namespace)
     {
-        if (false == Tools::isNamespaceValid($namespace)) {
+        if (false === Tools::isNamespaceValid($namespace)) {
             throw new Exception(sprintf("Invalid namespace: %s", $namespace));
         }
 

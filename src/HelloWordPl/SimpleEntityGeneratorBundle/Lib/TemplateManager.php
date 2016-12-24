@@ -46,9 +46,9 @@ class TemplateManager
     {
         $this->resolveAndSetTemplatePathIfCan($item);
         $template = null;
-        if (false == empty($item->getTemplate())) {
+        if (false === empty($item->getTemplate())) {
             $template = $item->getTemplate();
-        } elseif (false == empty($item->getTemplatePath())) {
+        } elseif (false === empty($item->getTemplatePath())) {
             $path = $this->getFileLocator()->locate("@".$item->getTemplatePath()); // may throw exception
             $template = $this->getFilesManager()->loadContentFromFile($path);
         } else {
@@ -56,7 +56,7 @@ class TemplateManager
             $reflect = new \ReflectionClass($item);
             $paramName = $reflect->getShortName()."TemplatePath";
 
-            if (false == $this->kernel->getContainer()->hasParameter($paramName)) {
+            if (false === $this->kernel->getContainer()->hasParameter($paramName)) {
                 throw new \RuntimeException(sprintf("No parameter %s set", $paramName));
             }
 
@@ -128,7 +128,7 @@ class TemplateManager
                 break;
         }
 
-        if (false == empty($templatePath)) {
+        if (false === empty($templatePath)) {
             $item->setTemplatePath($templatePath);
         }
     }

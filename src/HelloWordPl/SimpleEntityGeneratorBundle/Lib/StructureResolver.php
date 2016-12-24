@@ -144,7 +144,7 @@ class StructureResolver
                     break;
                 }
             }
-            if (false == $found) {
+            if (false === $found) {
                 $propertiesToRender->add($itemProperty);
             }
         }
@@ -164,7 +164,7 @@ class StructureResolver
     {
         $methodsToRender = new ArrayCollection();
         foreach ($item->getMethods() as $itemMethod) {
-            if (false == ($itemMethod instanceof MethodInterface)) {
+            if (false === ($itemMethod instanceof MethodInterface)) {
                 throw new StructureResolverException(sprintf("Item %s does not implement Method Interface", get_class($itemMethod)));
             }
 
@@ -175,7 +175,7 @@ class StructureResolver
                     break;
                 }
             }
-            if (false == $found) {
+            if (false === $found) {
                 $methodsToRender->add($itemMethod);
             }
         }

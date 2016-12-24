@@ -86,7 +86,7 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
     {
         foreach ($classManagers as $classManager) {
             /* @var $classManager \HelloWordPl\SimpleEntityGeneratorBundle\Lib\Items\ClassManager */
-            if (false == ($classManager instanceof ClassManager)) {
+            if (false === ($classManager instanceof ClassManager)) {
                 throw new Exception(sprintf("Invalid entity: %s", get_class($classManager)));
             }
 
@@ -108,13 +108,13 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
      */
     protected function processInterface(OutputInterface $output, ClassManager $classManager, $onlySimulate = false)
     {
-        if (false == $classManager->hasInterface()) {
+        if (false === $classManager->hasInterface()) {
             return;
         }
 
         $interfaceManager = $classManager->getInterface();
 
-        if (false == $onlySimulate) {
+        if (false === $onlySimulate) {
             $filesManager = $this->getFilesManager();
             $filesManager->dump($interfaceManager);
         }
@@ -134,7 +134,7 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
      */
     protected function processClass(OutputInterface $output, ClassManager $classManager, $onlySimulate = false)
     {
-        if (false == $onlySimulate) {
+        if (false === $onlySimulate) {
             $filesManager = $this->getFilesManager();
             $filesManager->dump($classManager);
         }
@@ -164,20 +164,20 @@ class SimpleEntityGeneratorGenerateCommand extends ContainerAwareCommand
      */
     protected function processTestClass(OutputInterface $output, ClassManager $classManager, $onlySimulate = false)
     {
-        if (false == $classManager->hasTestClass()) {
+        if (false === $classManager->hasTestClass()) {
             return;
         }
 
         $testClassManager = $classManager->getTestClass();
 
-        if (false == $onlySimulate) {
+        if (false === $onlySimulate) {
             $filesManager = $this->getFilesManager();
             $filesManager->dump($testClassManager);
         }
 
         $output->writeln('<question>Processed: '.$classManager->getTestClass()->getNamespace().'</question>');
         $this->outputProcessMethods($output, $testClassManager);
-        if (false == $testClassManager->getMethods()->isEmpty()) {
+        if (false === $testClassManager->getMethods()->isEmpty()) {
             $output->writeln(sprintf('<comment>Implement missing assertions in %s</comment>', $testClassManager->getNamespace()));
         }
         $output->writeln('');

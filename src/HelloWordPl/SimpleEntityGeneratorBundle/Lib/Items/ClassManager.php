@@ -173,11 +173,11 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
      */
     public function isValidExtends()
     {
-        if (false == $this->hasExtends()) {
+        if (false === $this->hasExtends()) {
             return true;
         }
 
-        if (false == Tools::isFirstCharBackslash($this->getExtends())) {
+        if (false === Tools::isFirstCharBackslash($this->getExtends())) {
             return false;
         }
 
@@ -341,7 +341,7 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
      */
     public function hasExtends()
     {
-        return false == empty($this->getExtends());
+        return false === empty($this->getExtends());
     }
 
     /**

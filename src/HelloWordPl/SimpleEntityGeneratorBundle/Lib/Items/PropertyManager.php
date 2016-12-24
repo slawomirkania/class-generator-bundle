@@ -149,7 +149,7 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
      */
     public function isValidName()
     {
-        if (false == Tools::isValidPropertyNameString($this->getName())) {
+        if (false === Tools::isValidPropertyNameString($this->getName())) {
             return false;
         }
 
@@ -162,7 +162,7 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
      */
     public function isValidType()
     {
-        if (false == Tools::isValidPropertyTypeString($this->getType())) {
+        if (false === Tools::isValidPropertyTypeString($this->getType())) {
             return false;
         }
 
@@ -174,12 +174,12 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
      */
     public function hasAllCallableConstraintIfHasAny()
     {
-        if (false == $this->hasConstraints()) {
+        if (false === $this->hasConstraints()) {
             return true;
         }
 
         foreach ($this->getConstraintAnnotationCollection() as $constraintAnnotation) {
-            if (false == Tools::isCallableConstraintAnnotation($constraintAnnotation)) {
+            if (false === Tools::isCallableConstraintAnnotation($constraintAnnotation)) {
                 return false;
             }
         }
@@ -236,7 +236,7 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
      */
     public function getConstraints()
     {
-        if (false == ($this->constraints instanceof ArrayCollection)) {
+        if (false === ($this->constraints instanceof ArrayCollection)) {
             return new ArrayCollection();
         }
 
@@ -250,7 +250,7 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
      */
     public function hasConstraints()
     {
-        return (false == $this->getConstraints()->isEmpty());
+        return (false === $this->getConstraints()->isEmpty());
     }
 
     /**
@@ -334,7 +334,7 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
         $typeParser = new TypeParser();
         $result = $typeParser->parse($this->getType());
 
-        if (false == array_key_exists("name", $result)) {
+        if (false === array_key_exists("name", $result)) {
             throw new Exception("Invalid type parsing result");
         }
 
@@ -382,7 +382,7 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
      */
     public function hasSerializedName()
     {
-        return false == empty($this->serializedName);
+        return false === empty($this->serializedName);
     }
 
     /**
@@ -576,7 +576,7 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
      */
     public function getTypeNameAbsoluteIfIsObjectTypeOrThrowException()
     {
-        if (false == $this->isObjectType()) {
+        if (false === $this->isObjectType()) {
             throw new Exception("This is not object type");
         }
 

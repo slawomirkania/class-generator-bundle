@@ -150,7 +150,7 @@ class StructureGenerator
         $methodsForClass = new ArrayCollection();
 
         // fix - jms serializer does not call ClassManager constructor during deserialization
-        if (false == ($classManager->getProperties() instanceof ArrayCollection)) {
+        if (false === ($classManager->getProperties() instanceof ArrayCollection)) {
             $classManager->setProperties(new ArrayCollection());
         }
 
@@ -212,7 +212,7 @@ class StructureGenerator
     {
         $initProperties = new ArrayCollection();
         foreach ($classConstructor->getClassManager()->getProperties() as $property) {
-            if (false == $property->isTypeArrayCollection()) {
+            if (false === $property->isTypeArrayCollection()) {
                 continue;
             }
 
@@ -251,7 +251,7 @@ class StructureGenerator
      * Deserialize JSON data to class manager
      *
      * @param string $jsonClassToDeserialize
-     * @return ClassManagerserializeJsonDataToClassManager($jsonClassToDeserialize)
+     * @return ClassManager
      */
     protected function deserializeJsonDataToClassManager($jsonClassToDeserialize)
     {
@@ -280,7 +280,7 @@ class StructureGenerator
      */
     private function getDefaultClassConfigIfNeed($classConfig)
     {
-        if (false == ($classConfig instanceof ClassConfig)) {
+        if (false === ($classConfig instanceof ClassConfig)) {
             $classConfig = new ClassConfig();
         }
 

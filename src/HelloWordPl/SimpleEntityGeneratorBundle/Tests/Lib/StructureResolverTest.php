@@ -17,7 +17,7 @@ class StructureResolverTest extends KernelTestCase
 {
 
     /**
-     * @var Symfony\Component\DependencyInjection\ContainerInterface
+     * @var \Symfony\Component\DependencyInjection\ContainerInterface
      */
     protected $container;
 
@@ -943,7 +943,7 @@ EOT;
     }
 
     /**
-     * @param DumpableInterface $itemOrDirectory
+     * @param mixed $itemOrDirectory
      * @return string
      */
     protected function getContentFile($itemOrDirectory)
@@ -961,7 +961,7 @@ EOT;
     }
 
     /**
-     * @param DumpableInterface $itemOrNamespace
+     * @param mixed $itemOrNamespace
      * @return ReflectionClass
      */
     protected function getReflectionClass($itemOrNamespace)

@@ -49,7 +49,7 @@ class FilesManager
     {
         $fileDirectory = sprintf('%s/../src/%s/Resources/config/%s', $this->getKernel()->getRootDir(), $bundleName, $fileName);
         $result = file_get_contents($fileDirectory);
-        if (is_bool($result) && false == $result) {
+        if (is_bool($result) && false === $result) {
             throw new FilesManagerException(sprintf("Can not load file from: %s", $fileDirectory));
         }
 
@@ -95,7 +95,7 @@ class FilesManager
      */
     public function checkItemFileExists(DumpableInterface $item)
     {
-        if (false == $this->isItemFileExists($item)) {
+        if (false === $this->isItemFileExists($item)) {
             throw new FilesManagerException(sprintf("Item source file does not exist: %s", $item->getNamespace()));
         }
     }
@@ -131,7 +131,7 @@ class FilesManager
     public function loadContentFromFile($path)
     {
         $fs = $this->getFilesystem();
-        if (false == $fs->exists($path)) {
+        if (false === $fs->exists($path)) {
             throw new FilesManagerException(sprintf("Template file %s does not exist", $path));
         }
 
@@ -148,7 +148,7 @@ class FilesManager
         $content = $this->getContentFromItemFile($item);
         $reflectionClass = $this->getReflectionClassForItem($item);
         $updatedContent = $this->getStructureResolver()->getUpdatedItemSourceContent($content, $item, $reflectionClass);
-        if (false == empty($updatedContent)) {
+        if (false === empty($updatedContent)) {
             $fs->dumpFile($this->getItemDirectoryWithClassNameAndExtension($item), $updatedContent);
         }
 
@@ -164,17 +164,17 @@ class FilesManager
         $fs = $this->getFilesystem();
         $fullFileDirectory = $this->getItemDirectoryWithClassNameAndExtension($item);
         $directory = $this->getItemDirectory($item);
-        if (false == $fs->exists($directory)) {
+        if (false === $fs->exists($directory)) {
             $fs->mkdir($directory);
         }
 
         $fs->touch($fullFileDirectory);
-        if (false == $fs->exists($fullFileDirectory)) {
+        if (false === $fs->exists($fullFileDirectory)) {
             throw new FilesManagerException("Structure file can not be created");
         }
 
         $content = $this->getRenderer()->render($item);
-        if (false == empty($content)) {
+        if (false === empty($content)) {
             $fs->dumpFile($fullFileDirectory, $content);
         }
     }
