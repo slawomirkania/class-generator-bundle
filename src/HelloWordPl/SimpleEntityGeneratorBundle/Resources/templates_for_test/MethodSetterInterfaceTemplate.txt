@@ -1,7 +1,7 @@
 /**
  * <comment>
  * @param <property_type> $<property_name>
- * @return this
+ * @return $this
  * My own setter interface, I do not want type hinting and optional part!
  */
 public function <method_name>($<property_name>);

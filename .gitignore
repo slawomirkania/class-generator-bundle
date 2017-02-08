@@ -6,3 +6,4 @@ nbproject
 app/cache
 app/logs
 build/logs
+.idea
