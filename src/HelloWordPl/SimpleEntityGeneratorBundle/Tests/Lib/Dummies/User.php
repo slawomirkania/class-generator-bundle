@@ -57,7 +57,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "fullName"
      * @param string $fullName
-     * @return this
+     * @return $this
      */
     public function setFullName($fullName)
     {
@@ -77,7 +77,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "email"
      * @param string $email
-     * @return this
+     * @return $this
      */
     public function setEmail($email)
     {
@@ -106,7 +106,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "active"
      * @param boolean $active
-     * @return this
+     * @return $this
      */
     public function setActive($active)
     {
@@ -126,7 +126,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "newPosts"
      * @param \Doctrine\Common\Collections\ArrayCollection $newPosts
-     * @return this
+     * @return $this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection $newPosts)
     {

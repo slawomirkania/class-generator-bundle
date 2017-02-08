@@ -77,7 +77,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * For property "content"
      * @param string \$content
-     * @return this
+     * @return \$this
      */
     public function setContent(\$content)
     {
@@ -97,7 +97,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * For property "createdAt"
      * @param \DateTime \$createdAt
-     * @return this
+     * @return \$this
      */
     public function setCreatedAt(\DateTime \$createdAt)
     {
@@ -117,7 +117,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * For property "updatedAt"
      * @param \DateTime \$updatedAt
-     * @return this
+     * @return \$this
      */
     public function setUpdatedAt(\DateTime \$updatedAt)
     {
@@ -206,7 +206,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * For property "content"
      * @param string \$content
-     * @return this
+     * @return \$this
      */
     public function setContent(\$content)
     {
@@ -226,7 +226,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * For property "createdAt"
      * @param \DateTime \$createdAt
-     * @return this
+     * @return \$this
      */
     public function setCreatedAt(\DateTime \$createdAt)
     {
@@ -246,7 +246,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * For property "updatedAt"
      * @param \DateTime \$updatedAt
-     * @return this
+     * @return \$this
      */
     public function setUpdatedAt(\DateTime \$updatedAt)
     {
@@ -325,7 +325,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * For property "content"
      * @param string \$content
-     * @return this
+     * @return \$this
      */
     public function setContent(\$content)
     {
@@ -345,7 +345,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * For property "createdAt"
      * @param \DateTime \$createdAt
-     * @return this
+     * @return \$this
      */
     public function setCreatedAt(\DateTime \$createdAt)
     {
@@ -365,7 +365,7 @@ class Post implements \AppBundle\Entity\PostInterface
     /**
      * For property "updatedAt"
      * @param \DateTime \$updatedAt
-     * @return this
+     * @return \$this
      */
     public function setUpdatedAt(\DateTime \$updatedAt)
     {
@@ -490,7 +490,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "username"
      * @param string \$username
-     * @return this
+     * @return \$this
      */
     public function setUsername(\$username)
     {
@@ -510,7 +510,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "email"
      * @param string \$email
-     * @return this
+     * @return \$this
      */
     public function setEmail(\$email)
     {
@@ -539,7 +539,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "active"
      * @param boolean \$active
-     * @return this
+     * @return \$this
      */
     public function setActive(\$active)
     {
@@ -559,7 +559,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "posts"
      * @param \Doctrine\Common\Collections\ArrayCollection \$posts
-     * @return this
+     * @return \$this
      */
     public function setPosts(\Doctrine\Common\Collections\ArrayCollection \$posts)
     {
@@ -579,7 +579,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "createdAt"
      * @param \DateTime \$createdAt
-     * @return this
+     * @return \$this
      */
     public function setCreatedAt(\DateTime \$createdAt)
     {
@@ -599,7 +599,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "updatedAt"
      * @param \DateTime \$updatedAt
-     * @return this
+     * @return \$this
      */
     public function setUpdatedAt(\DateTime \$updatedAt)
     {
@@ -619,7 +619,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "lastPost"
      * @param \AppBundle\Entity\Post \$lastPost
-     * @return this
+     * @return \$this
      */
     public function setLastPost(\AppBundle\Entity\Post \$lastPost = null)
     {
@@ -657,7 +657,7 @@ interface UserInterface
     /**
      * For property "username"
      * @param string \$username
-     * @return this
+     * @return \$this
      */
     public function setUsername(\$username);
 
@@ -670,7 +670,7 @@ interface UserInterface
     /**
      * For property "email"
      * @param string \$email
-     * @return this
+     * @return \$this
      */
     public function setEmail(\$email);
 
@@ -689,7 +689,7 @@ interface UserInterface
     /**
      * For property "active"
      * @param boolean \$active
-     * @return this
+     * @return \$this
      */
     public function setActive(\$active);
 
@@ -702,7 +702,7 @@ interface UserInterface
     /**
      * For property "posts"
      * @param \Doctrine\Common\Collections\ArrayCollection \$posts
-     * @return this
+     * @return \$this
      */
     public function setPosts(\Doctrine\Common\Collections\ArrayCollection \$posts);
 
@@ -715,7 +715,7 @@ interface UserInterface
     /**
      * For property "createdAt"
      * @param \DateTime \$createdAt
-     * @return this
+     * @return \$this
      */
     public function setCreatedAt(\DateTime \$createdAt);
 
@@ -728,7 +728,7 @@ interface UserInterface
     /**
      * For property "updatedAt"
      * @param \DateTime \$updatedAt
-     * @return this
+     * @return \$this
      */
     public function setUpdatedAt(\DateTime \$updatedAt);
 
@@ -741,7 +741,7 @@ interface UserInterface
     /**
      * For property "lastPost"
      * @param \AppBundle\Entity\Post \$lastPost
-     * @return this
+     * @return \$this
      */
     public function setLastPost(\AppBundle\Entity\Post \$lastPost = null);
 
@@ -772,7 +772,7 @@ interface PostInterface
     /**
      * For property "content"
      * @param string \$content
-     * @return this
+     * @return \$this
      */
     public function setContent(\$content);
 
@@ -785,7 +785,7 @@ interface PostInterface
     /**
      * For property "createdAt"
      * @param \DateTime \$createdAt
-     * @return this
+     * @return \$this
      */
     public function setCreatedAt(\DateTime \$createdAt);
 
@@ -798,7 +798,7 @@ interface PostInterface
     /**
      * For property "updatedAt"
      * @param \DateTime \$updatedAt
-     * @return this
+     * @return \$this
      */
     public function setUpdatedAt(\DateTime \$updatedAt);
 
@@ -1151,7 +1151,7 @@ class Post
     /**
      * For property "content"
      * @param string \$content
-     * @return this
+     * @return \$this
      */
     public function setContent(\$content)
     {
@@ -1171,7 +1171,7 @@ class Post
     /**
      * For property "createdAt"
      * @param \DateTime \$createdAt
-     * @return this
+     * @return \$this
      */
     public function setCreatedAt(\DateTime \$createdAt)
     {
@@ -1191,7 +1191,7 @@ class Post
     /**
      * For property "updatedAt"
      * @param \DateTime \$updatedAt
-     * @return this
+     * @return \$this
      */
     public function setUpdatedAt(\DateTime \$updatedAt)
     {
@@ -1383,7 +1383,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "id"
      * @param integer \$id
-     * @return this
+     * @return \$this
      */
     final public function setId(\$id)
     {
@@ -1409,7 +1409,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "username"
      * @param string \$username
-     * @return this
+     * @return \$this
      */
     public function setUsername(\$username)
     {
@@ -1429,7 +1429,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "posts"
      * @param \Doctrine\Common\Collections\ArrayCollection \$posts
-     * @return this
+     * @return \$this
      */
     public function setPosts(\Doctrine\Common\Collections\ArrayCollection \$posts)
     {
@@ -1458,7 +1458,7 @@ class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInter
     /**
      * For property "active"
      * @param boolean \$active
-     * @return this
+     * @return \$this
      */
     public function setActive(\$active)
     {
@@ -1498,7 +1498,7 @@ interface UserInterface
     /**
      * For property "id"
      * @param integer \$id
-     * @return this
+     * @return \$this
      * My own setter interface, I do not want type hinting and optional part!
      */
     public function setId(\$id);
@@ -1512,7 +1512,7 @@ interface UserInterface
     /**
      * For property "username"
      * @param string \$username
-     * @return this
+     * @return \$this
      */
     public function setUsername(\$username);
 
@@ -1525,7 +1525,7 @@ interface UserInterface
     /**
      * For property "posts"
      * @param \Doctrine\Common\Collections\ArrayCollection \$posts
-     * @return this
+     * @return \$this
      */
     public function setPosts(\Doctrine\Common\Collections\ArrayCollection \$posts);
 
@@ -1544,7 +1544,7 @@ interface UserInterface
     /**
      * For property "active"
      * @param boolean \$active
-     * @return this
+     * @return \$this
      */
     public function setActive(\$active);
 
@@ -1706,7 +1706,7 @@ class Post
     /**
      * For property "id"
      * @param integer \$id
-     * @return this
+     * @return \$this
      */
     public function setId(\$id)
     {

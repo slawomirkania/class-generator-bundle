@@ -90,7 +90,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "fullName"
      * @param string \$fullName
-     * @return this
+     * @return \$this
      */
     public function setFullName(\$fullName)
     {
@@ -110,7 +110,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "email"
      * @param string \$email
-     * @return this
+     * @return \$this
      */
     public function setEmail(\$email)
     {
@@ -139,7 +139,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "active"
      * @param boolean \$active
-     * @return this
+     * @return \$this
      */
     public function setActive(\$active)
     {
@@ -159,7 +159,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "newPosts"
      * @param \Doctrine\Common\Collections\ArrayCollection \$newPosts
-     * @return this
+     * @return \$this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection \$newPosts)
     {
@@ -264,7 +264,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "fullName"
      * @param string \$fullName
-     * @return this
+     * @return \$this
      */
     public function setFullName(\$fullName)
     {
@@ -284,7 +284,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "email"
      * @param string \$email
-     * @return this
+     * @return \$this
      */
     public function setEmail(\$email)
     {
@@ -313,7 +313,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "active"
      * @param boolean \$active
-     * @return this
+     * @return \$this
      */
     public function setActive(\$active)
     {
@@ -333,7 +333,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "newPosts"
      * @param \Doctrine\Common\Collections\ArrayCollection \$newPosts
-     * @return this
+     * @return \$this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection \$newPosts)
     {
@@ -362,7 +362,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "testCollection"
      * @param \Doctrine\Common\Collections\ArrayCollection \$testCollection
-     * @return this
+     * @return \$this
      */
     public function setTestCollection(\Doctrine\Common\Collections\ArrayCollection \$testCollection)
     {
@@ -382,7 +382,7 @@ class User implements \HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies
     /**
      * For property "testBoolean"
      * @param boolean \$testBoolean
-     * @return this
+     * @return \$this
      */
     public function setTestBoolean(\$testBoolean)
     {
@@ -420,7 +420,7 @@ interface UserInterface
     /**
      * For property "fullName"
      * @param string \$fullName
-     * @return this
+     * @return \$this
      */
     public function setFullName(\$fullName);
 
@@ -433,7 +433,7 @@ interface UserInterface
     /**
      * For property "email"
      * @param string \$email
-     * @return this
+     * @return \$this
      */
     public function setEmail(\$email);
 
@@ -452,7 +452,7 @@ interface UserInterface
     /**
      * For property "active"
      * @param boolean \$active
-     * @return this
+     * @return \$this
      */
     public function setActive(\$active);
 
@@ -465,7 +465,7 @@ interface UserInterface
     /**
      * For property "newPosts"
      * @param \Doctrine\Common\Collections\ArrayCollection \$newPosts
-     * @return this
+     * @return \$this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection \$newPosts);
 
@@ -492,7 +492,7 @@ interface UserInterface
     /**
      * For property "fullName"
      * @param string \$fullName
-     * @return this
+     * @return \$this
      */
     public function setFullName(\$fullName);
 
@@ -505,7 +505,7 @@ interface UserInterface
     /**
      * For property "email"
      * @param string \$email
-     * @return this
+     * @return \$this
      */
     public function setEmail(\$email);
 
@@ -524,7 +524,7 @@ interface UserInterface
     /**
      * For property "active"
      * @param boolean \$active
-     * @return this
+     * @return \$this
      */
     public function setActive(\$active);
 
@@ -537,7 +537,7 @@ interface UserInterface
     /**
      * For property "newPosts"
      * @param \Doctrine\Common\Collections\ArrayCollection \$newPosts
-     * @return this
+     * @return \$this
      */
     public function setNewPosts(\Doctrine\Common\Collections\ArrayCollection \$newPosts);
 
@@ -556,7 +556,7 @@ interface UserInterface
     /**
      * For property "testCollection"
      * @param \Doctrine\Common\Collections\ArrayCollection \$testCollection
-     * @return this
+     * @return \$this
      */
     public function setTestCollection(\Doctrine\Common\Collections\ArrayCollection \$testCollection);
 
@@ -569,7 +569,7 @@ interface UserInterface
     /**
      * For property "testBoolean"
      * @param boolean \$testBoolean
-     * @return this
+     * @return \$this
      */
     public function setTestBoolean(\$testBoolean);
 
