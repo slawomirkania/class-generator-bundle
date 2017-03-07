@@ -26,7 +26,7 @@ class InterfaceManagerTest extends BaseManager
     public function setUp()
     {
         parent::setUp();
-        $this->interfaceManager = $this->preapareClassManager()->getInterface();
+        $this->interfaceManager = $this->prepareClassManager()->getInterface();
     }
 
     public function testManger()

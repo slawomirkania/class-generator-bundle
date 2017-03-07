@@ -25,7 +25,7 @@ class MethodSetterInterfaceManagerTest extends BaseManager
     {
         parent::setUp();
 
-        $this->methodSetterInterfaceManager = $this->preapareClassManager()->getInterface()->getMethods()->first();
+        $this->methodSetterInterfaceManager = $this->prepareClassManager()->getInterface()->getMethods()->first();
     }
 
     public function testManger()
@@ -41,7 +41,7 @@ class MethodSetterInterfaceManagerTest extends BaseManager
 
     public function testCanAddTypeHinting()
     {
-        $this->assertTrue($this->preapareClassManager()->getInterface()->getMethods()->get(7)->canAddTypeHinting());
+        $this->assertTrue($this->prepareClassManager()->getInterface()->getMethods()->get(7)->canAddTypeHinting());
     }
 
     public function testValidManagerWhenValid()

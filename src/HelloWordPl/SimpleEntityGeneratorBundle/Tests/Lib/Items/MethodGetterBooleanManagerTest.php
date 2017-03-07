@@ -24,7 +24,7 @@ class MethodGetterBooleanManagerTest extends BaseManager
     public function setUp()
     {
         parent::setUp();
-        $this->methodGetterBooleanManager = $this->preapareClassManager()->getMethods()->get(4);
+        $this->methodGetterBooleanManager = $this->prepareClassManager()->getMethods()->get(4);
     }
 
     public function testManger()

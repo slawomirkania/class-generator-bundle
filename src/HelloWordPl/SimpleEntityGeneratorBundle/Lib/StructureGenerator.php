@@ -91,7 +91,7 @@ class StructureGenerator
 
         // building class environment
         foreach ($classesManagers->toArray() as $classManager) {
-            $this->preapareClassManager($classManager, $classConfig); // reference
+            $this->prepareClassManager($classManager, $classConfig); // reference
         }
 
         return $classesManagers;
@@ -104,7 +104,7 @@ class StructureGenerator
      * @param ClassConfig $classConfig
      * @return ClassManager
      */
-    public function preapareClassManager(ClassManager $classManager, ClassConfig $classConfig = null)
+    public function prepareClassManager(ClassManager $classManager, ClassConfig $classConfig = null)
     {
         $inClassConfiguration = $classManager->getConfiguration();
         $defaultClassConfiguration = $this->getDefaultClassConfigIfNeed($classConfig);

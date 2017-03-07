@@ -43,8 +43,8 @@ abstract class BaseManager extends KernelTestCase
      *
      * @return ClassManager
      */
-    protected function preapareClassManager()
+    protected function prepareClassManager()
     {
-        return $this->container->get('seg.structure_generator')->preapareClassManager(Helper::prepareBasicClassManager());
+        return $this->container->get('seg.structure_generator')->prepareClassManager(Helper::prepareBasicClassManager());
     }
 }

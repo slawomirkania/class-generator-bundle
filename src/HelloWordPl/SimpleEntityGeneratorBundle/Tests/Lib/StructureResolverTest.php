@@ -887,7 +887,7 @@ EOT;
 
     public function testGetUpdatedItemSourceContentForClassManager()
     {
-        $classManager = $this->preapareClassManager();
+        $classManager = $this->prepareClassManager();
         $existingFileContent = $this->getContentFile($classManager);
         $existingClassReflection = $this->getReflectionClass($classManager);
 
@@ -898,7 +898,7 @@ EOT;
 
     public function testGetUpdatedItemSourceContentForInterfaceManager()
     {
-        $classManager = $this->preapareClassManager();
+        $classManager = $this->prepareClassManager();
         $interfaceManager = $classManager->getInterface();
         $existingFileContent = $this->getContentFile($interfaceManager);
         $existingClassReflection = $this->getReflectionClass($interfaceManager);
@@ -910,7 +910,7 @@ EOT;
 
     public function testGetUpdatedItemSourceContentForTestClassManager()
     {
-        $classManager = $this->preapareClassManager();
+        $classManager = $this->prepareClassManager();
         $testClassManager = $classManager->getTestClass();
 
         $testClassNamespace = "\HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserTestDummy";
@@ -928,7 +928,7 @@ EOT;
      * @param $newProperties ArrayCollection
      * @return ClassManager
      */
-    protected function preapareClassManager()
+    protected function prepareClassManager()
     {
         $pureClassManager = Helper::prepareBasicClassManager("\HelloWordPl\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User");
         $properties = $pureClassManager->getProperties();
@@ -936,7 +936,7 @@ EOT;
         $properties->add(Helper::prepareProperty('test_boolean', "boolean", "new boolean property", ["IsTrue()"]));
         $properties->add(Helper::prepareProperty('test_collection', "Doctrine\Common\Collections\ArrayCollection", "new collection property", ["Valid()"]));
 
-        $classManager = $this->container->get('seg.structure_generator')->preapareClassManager($pureClassManager);
+        $classManager = $this->container->get('seg.structure_generator')->prepareClassManager($pureClassManager);
         $errors = $this->container->get('validator')->validate($classManager);
         $this->assertFalse($errors->count() > 0);
         return $classManager;

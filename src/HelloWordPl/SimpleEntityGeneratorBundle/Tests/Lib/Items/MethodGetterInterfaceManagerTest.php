@@ -25,7 +25,7 @@ class MethodGetterInterfaceManagerTest extends BaseManager
     {
         parent::setUp();
 
-        $methods = $this->preapareClassManager()->getInterface()->getMethods();
+        $methods = $this->prepareClassManager()->getInterface()->getMethods();
         $methods->next();
         $this->methodGetterInterfaceManager = $methods->current();
     }

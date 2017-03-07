@@ -24,7 +24,7 @@ class MethodSetterManagerTest extends BaseManager
     public function setUp()
     {
         parent::setUp();
-        $this->methodSetterManager = $this->preapareClassManager()->getMethods()->first();
+        $this->methodSetterManager = $this->prepareClassManager()->getMethods()->first();
     }
 
     public function testManger()
@@ -40,7 +40,7 @@ class MethodSetterManagerTest extends BaseManager
 
     public function testCanAddTypeHinting()
     {
-        $this->assertTrue($this->preapareClassManager()->getMethods()->get(7)->canAddTypeHinting());
+        $this->assertTrue($this->prepareClassManager()->getMethods()->get(7)->canAddTypeHinting());
     }
 
     public function testValidManagerWhenValid()

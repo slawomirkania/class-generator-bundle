@@ -25,7 +25,7 @@ class MethodGetterBooleanInterfaceManagerTest extends BaseManager
     public function setUp()
     {
         parent::setUp();
-        $this->methodGetterBooleanInterfaceManager = $this->preapareClassManager()->getInterface()->getMethods()->get(4);
+        $this->methodGetterBooleanInterfaceManager = $this->prepareClassManager()->getInterface()->getMethods()->get(4);
     }
 
     public function testManger()
@@ -45,7 +45,7 @@ class MethodGetterBooleanInterfaceManagerTest extends BaseManager
 
     public function testValidManagerWhenEmptyProperty()
     {
-        $errors = $this->getValidator()->validate(new MethodGetterBooleanInterfaceManager($this->preapareClassManager()));
+        $errors = $this->getValidator()->validate(new MethodGetterBooleanInterfaceManager($this->prepareClassManager()));
         $this->assertEquals(1, $errors->count());
     }
 

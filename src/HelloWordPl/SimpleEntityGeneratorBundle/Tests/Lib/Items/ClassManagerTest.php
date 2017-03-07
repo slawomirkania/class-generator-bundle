@@ -28,7 +28,7 @@ class ClassManagerTest extends BaseManager
     public function setUp()
     {
         parent::setUp();
-        $this->classManager = $this->preapareClassManager();
+        $this->classManager = $this->prepareClassManager();
     }
 
     public function testManger()

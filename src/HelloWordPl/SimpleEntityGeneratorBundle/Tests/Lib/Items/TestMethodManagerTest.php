@@ -25,7 +25,7 @@ class TestMethodManagerTest extends BaseManager
     public function setUp()
     {
         parent::setUp();
-        $this->testMethodManager = $this->preapareClassManager()->getTestClass()->getMethods()->first();
+        $this->testMethodManager = $this->prepareClassManager()->getTestClass()->getMethods()->first();
     }
 
     public function testManger()
@@ -45,7 +45,7 @@ class TestMethodManagerTest extends BaseManager
     public function testValidManagerWhenEmptyMethod()
     {
         $testMethodManager = $this->testMethodManager;
-        $testMethodManager->setMethod(new MethodGetterManager($this->preapareClassManager()));
+        $testMethodManager->setMethod(new MethodGetterManager($this->prepareClassManager()));
 
         $errors = $this->getValidator()->validate($testMethodManager);
         $this->assertEquals(1, $errors->count());

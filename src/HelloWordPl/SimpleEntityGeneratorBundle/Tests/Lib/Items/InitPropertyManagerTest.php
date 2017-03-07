@@ -25,7 +25,7 @@ class InitPropertyManagerTest extends BaseManager
     public function setUp()
     {
         parent::setUp();
-        $initProperties = $this->preapareClassManager()->getConstructor()->getInitProperties();
+        $initProperties = $this->prepareClassManager()->getConstructor()->getInitProperties();
         $this->initPropertyManager = $initProperties->first();
     }
 

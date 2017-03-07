@@ -23,7 +23,7 @@ class PropertyManagerTest extends BaseManager
     public function setUp()
     {
         parent::setUp();
-        $this->propertyManager = $this->preapareClassManager()->getProperties()->last();
+        $this->propertyManager = $this->prepareClassManager()->getProperties()->last();
     }
 
     public function testManger()
