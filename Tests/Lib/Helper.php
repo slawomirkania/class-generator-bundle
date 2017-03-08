@@ -151,20 +151,20 @@ class Helper
       - \'lorem ipsum\'
       - \'second row\'
       - \'@\Doctrine\Common\Annotations\Entity()\'
-  class_manager_template_path: Resources/templates_for_test/ClassTemplate.txt
-  class_constructor_manager_template_path: Resources/templates_for_test/ClassConstructorTemplate.txt
-  interface_manager_template_path: Resources/templates_for_test/InterfaceTemplate.txt
-  test_class_manager_template_path: Resources/templates_for_test/TestClassTemplate.txt
+  class_manager_template_path: AppBundle/Resources/templates_for_test/ClassTemplate.txt
+  class_constructor_manager_template_path: AppBundle/Resources/templates_for_test/ClassConstructorTemplate.txt
+  interface_manager_template_path: AppBundle/Resources/templates_for_test/InterfaceTemplate.txt
+  test_class_manager_template_path: AppBundle/Resources/templates_for_test/TestClassTemplate.txt
   properties:
     -
       name: id
       type: integer
-      method_setter_interface_manager_template_path: Resources/templates_for_test/MethodSetterInterfaceTemplate.txt
-      method_setter_manager_template_path: Resources/templates_for_test/MethodSetterTemplate.txt
-      property_manager_template_path: Resources/templates_for_test/PropertyTemplate.txt
-      test_class_method_manager_template_path: Resources/templates_for_test/TestMethodTemplate.txt
-      method_getter_interface_manager_template_path: Resources/templates_for_test/MethodGetterInterfaceTemplate.txt
-      method_getter_manager_template_path: Resources/templates_for_test/MethodGetterTemplate.txt
+      method_setter_interface_manager_template_path: AppBundle/Resources/templates_for_test/MethodSetterInterfaceTemplate.txt
+      method_setter_manager_template_path: AppBundle/Resources/templates_for_test/MethodSetterTemplate.txt
+      property_manager_template_path: AppBundle/Resources/templates_for_test/PropertyTemplate.txt
+      test_class_method_manager_template_path: AppBundle/Resources/templates_for_test/TestMethodTemplate.txt
+      method_getter_interface_manager_template_path: AppBundle/Resources/templates_for_test/MethodGetterInterfaceTemplate.txt
+      method_getter_manager_template_path: AppBundle/Resources/templates_for_test/MethodGetterTemplate.txt
     -
       name: username
       type: string
@@ -182,9 +182,9 @@ class Helper
       comment: "Wether user is active or not"
       constraints:
         - IsTrue()
-      method_getter_boolean_interface_manager_template_path: Resources/templates_for_test/MethodGetterBooleanInterfaceTemplate.txt
-      method_getter_boolean_manager_template_path: Resources/templates_for_test/MethodGetterBooleanTemplate.txt
-      method_getter_manager_template_path: Resources/templates_for_test/EmptyTemplate.txt';
+      method_getter_boolean_interface_manager_template_path: AppBundle/Resources/templates_for_test/MethodGetterBooleanInterfaceTemplate.txt
+      method_getter_boolean_manager_template_path: AppBundle/Resources/templates_for_test/MethodGetterBooleanTemplate.txt
+      method_getter_manager_template_path: AppBundle/Resources/templates_for_test/EmptyTemplate.txt';
     }
 
     public static function getStructureYamlForTestInlineClassConfuration()

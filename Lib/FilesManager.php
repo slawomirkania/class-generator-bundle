@@ -4,8 +4,6 @@ namespace SimpleEntityGeneratorBundle\Lib;
 
 use SimpleEntityGeneratorBundle\Lib\Exceptions\FilesManagerException;
 use SimpleEntityGeneratorBundle\Lib\Interfaces\DumpableInterface;
-use SimpleEntityGeneratorBundle\Lib\Renderer;
-use SimpleEntityGeneratorBundle\Lib\StructureResolver;
 use ReflectionClass;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -44,6 +42,7 @@ class FilesManager
      * @param string $bundleName
      * @param string $fileName
      * @return string
+     * @throws FilesManagerException
      */
     public function loadFileContent($bundleName, $fileName)
     {
@@ -60,6 +59,7 @@ class FilesManager
      * Create or update item file
      *
      * @param DumpableInterface $item
+     * @return DumpableInterface
      * @throws FilesManagerException
      */
     public function dump(DumpableInterface $item)
@@ -107,7 +107,9 @@ class FilesManager
      */
     public function getReflectionClassForItem(DumpableInterface $item)
     {
-        $this->checkItemFileExists($item);
+        if(!class_exists($item->getNamespace()) && !interface_exists($item->getNamespace())){
+            throw new FilesManagerException(sprintf("Item source file does not exist: %s", $item->getNamespace()));
+        }
         return new ReflectionClass($item->getNamespace());
     }
 
@@ -140,6 +142,7 @@ class FilesManager
 
     /**
      * @param DumpableInterface $item
+     * @return DumpableInterface
      * @throws FilesManagerException
      */
     protected function updateExistingFile(DumpableInterface $item)

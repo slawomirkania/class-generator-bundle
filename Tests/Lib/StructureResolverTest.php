@@ -892,8 +892,8 @@ EOT;
     public function testGetUpdatedItemSourceContentForClassManager()
     {
         $classManager = $this->prepareClassManager();
-        $existingFileContent = $this->getContentFile($classManager);
         $existingClassReflection = $this->getReflectionClass($classManager);
+        $existingFileContent = $this->getContentFile($existingClassReflection->getFileName());
 
         $this->assertEquals($this->classContentBeforeUpdate, $existingFileContent);
         $updatedContent = $this->getStructureResolver()->getUpdatedItemSourceContent($existingFileContent, $classManager, $existingClassReflection);
@@ -904,8 +904,8 @@ EOT;
     {
         $classManager = $this->prepareClassManager();
         $interfaceManager = $classManager->getInterface();
-        $existingFileContent = $this->getContentFile($interfaceManager);
         $existingClassReflection = $this->getReflectionClass($interfaceManager);
+        $existingFileContent = $this->getContentFile($existingClassReflection->getFileName());
 
         $this->assertEquals($this->interfaceContentBeforeUpdate, $existingFileContent);
         $updatedContent = $this->getStructureResolver()->getUpdatedItemSourceContent($existingFileContent, $interfaceManager, $existingClassReflection);
@@ -917,9 +917,8 @@ EOT;
         $classManager = $this->prepareClassManager();
         $testClassManager = $classManager->getTestClass();
 
-        $testClassNamespace = "\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserTestDummy";
-        $existingFileContent = $this->getContentFile($this->getKernel()->getRootDir()."/../../..".Tools::getDirectoryFromNamespace($testClassNamespace)."/".Tools::getNameFromNamespace($testClassNamespace).".php");
         $existingClassReflection = $this->getReflectionClass(UserTestDummy::class);
+        $existingFileContent = $this->getContentFile($existingClassReflection->getFileName());
 
         $this->assertEquals($this->testClassContentBeforeUpdate, $existingFileContent);
         $updatedContent = $this->getStructureResolver()->getUpdatedItemSourceContent($existingFileContent, $testClassManager, $existingClassReflection);

@@ -30,7 +30,10 @@
         "satooshi/php-coveralls": "~1.0"
     },
     "autoload": {
-        "psr-4": { "SimpleEntityGeneratorBundle\\": "" }
+        "psr-4": {
+            "SimpleEntityGeneratorBundle\\": "",
+            "MockApp\\": "Tests/MockApp/src/"
+        }
     },
     "extra" : {
         "branch-alias" : {

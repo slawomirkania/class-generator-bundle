@@ -9,7 +9,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = [
-            new \SimpleEntityGeneratorBundle\Tests\MockApp\src\AppBundle\AppBundle()
+            new MockApp\AppBundle\AppBundle()
         ];
 
         if (in_array($this->getEnvironment(), array('test'))) {

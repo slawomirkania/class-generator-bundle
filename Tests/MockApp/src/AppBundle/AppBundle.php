@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleEntityGeneratorBundle\Tests\MockApp\src\AppBundle;
+namespace MockApp\AppBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
