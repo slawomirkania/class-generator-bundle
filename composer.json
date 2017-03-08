@@ -30,9 +30,7 @@
         "satooshi/php-coveralls": "~1.0"
     },
     "autoload": {
-        "psr-0": {
-            "HelloWordPl\\": "src/"
-        }
+        "psr-4": { "SimpleEntityGeneratorBundle\\": "" }
     },
     "extra" : {
         "branch-alias" : {

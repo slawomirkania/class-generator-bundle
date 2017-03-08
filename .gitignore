@@ -3,7 +3,7 @@ vendor
 composer.lock
 composer.phar
 nbproject
-app/cache
-app/logs
+Tests/MockApp/app/cache
+Tests/MockApp/app/logs
 build/logs
 .idea

@@ -1,0 +1,19 @@
+services:
+    seg.yaml_parser:
+        class: Symfony\Component\Yaml\Parser
+        public: false
+    seg.files_manager:
+        class: SimpleEntityGeneratorBundle\Lib\FilesManager
+        arguments: ['@kernel']
+    seg.template_manager:
+        class: SimpleEntityGeneratorBundle\Lib\TemplateManager
+        arguments: ['@kernel']
+    seg.renderer:
+        class: '%SegRendererClass%'
+        arguments: ['@seg.template_manager']
+    seg.structure_resolver:
+        class: SimpleEntityGeneratorBundle\Lib\StructureResolver
+        arguments: ['@seg.renderer']
+    seg.structure_generator:
+        class: SimpleEntityGeneratorBundle\Lib\StructureGenerator
+        arguments: ['@seg.yaml_parser']        

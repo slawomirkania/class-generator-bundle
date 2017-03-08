@@ -1,0 +1,15 @@
+parameters:
+    SegRendererClass: "SimpleEntityGeneratorBundle\\Lib\\Renderer"
+    ClassConstructorManagerTemplatePath: 'Resources/templates/ClassConstructorTemplate.txt'
+    ClassManagerTemplatePath: 'Resources/templates/ClassTemplate.txt'
+    InitPropertyManagerTemplatePath: 'Resources/templates/InitPropertyTemplate.txt'
+    InterfaceManagerTemplatePath: 'Resources/templates/InterfaceTemplate.txt'
+    MethodGetterBooleanInterfaceManagerTemplatePath: 'Resources/templates/MethodGetterBooleanInterfaceTemplate.txt'
+    MethodGetterBooleanManagerTemplatePath: 'Resources/templates/MethodGetterBooleanTemplate.txt'
+    MethodGetterInterfaceManagerTemplatePath: 'Resources/templates/MethodGetterInterfaceTemplate.txt'
+    MethodGetterManagerTemplatePath: 'Resources/templates/MethodGetterTemplate.txt'
+    MethodSetterInterfaceManagerTemplatePath: 'Resources/templates/MethodSetterInterfaceTemplate.txt'
+    MethodSetterManagerTemplatePath: 'Resources/templates/MethodSetterTemplate.txt'
+    PropertyManagerTemplatePath: 'Resources/templates/PropertyTemplate.txt'
+    TestClassManagerTemplatePath: 'Resources/templates/TestClassTemplate.txt'
+    TestMethodManagerTemplatePath: 'Resources/templates/TestMethodTemplate.txt'
