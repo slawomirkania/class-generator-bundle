@@ -130,12 +130,21 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
     private $configuration;
 
     /**
+     * @SerializedName("implements")
+     * @Type("Doctrine\Common\Collections\ArrayCollection<string>")
+     * @Assert\Type("Doctrine\Common\Collections\ArrayCollection")
+     * @var ArrayCollection
+     */
+    private $implements;
+
+    /**
      * Construct
      */
     public function __construct()
     {
         $this->properties = new ArrayCollection();
         $this->methods = new ArrayCollection();
+        $this->implements = new ArrayCollection();
     }
 
     /**
@@ -461,7 +470,7 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
 
     /**
      * @param string $classManagerTemplatePath
-     * @return this
+     * @return $this
      */
     public function setClassManagerTemplatePath($classManagerTemplatePath)
     {
@@ -471,7 +480,7 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
 
     /**
      * @param string $classConstructorManagerTemplatePath
-     * @return this
+     * @return $this
      */
     public function setClassConstructorManagerTemplatePath($classConstructorManagerTemplatePath)
     {
@@ -481,7 +490,7 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
 
     /**
      * @param string $interfaceManagerTemplatePath
-     * @return this
+     * @return $this
      */
     public function setInterfaceManagerTemplatePath($interfaceManagerTemplatePath)
     {
@@ -491,7 +500,7 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
 
     /**
      * @param string $testClassManagerTemplatePath
-     * @return this
+     * @return $this
      */
     public function setTestClassManagerTemplatePath($testClassManagerTemplatePath)
     {
@@ -514,6 +523,28 @@ class ClassManager implements RenderableInterface, DumpableInterface, StructureW
     public function setConfiguration(\SimpleEntityGeneratorBundle\Lib\ClassConfig $configuration)
     {
         $this->configuration = $configuration;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getImplements()
+    {
+        // TODO is it possible to deserialize to empty ArrayCollection, when property no provided in yml file?
+        if (is_null($this->implements)) {
+            $this->implements = new ArrayCollection();
+        }
+        return $this->implements;
+    }
+
+    /**
+     * @param ArrayCollection $implements
+     * @return ClassManager
+     */
+    public function setImplements(ArrayCollection $implements)
+    {
+        $this->implements = $implements;
         return $this;
     }
 }

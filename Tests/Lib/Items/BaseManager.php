@@ -5,7 +5,6 @@ namespace SimpleEntityGeneratorBundle\Tests\Lib\Items;
 use SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use SimpleEntityGeneratorBundle\Tests\Lib\Helper;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\Config\Tests\Loader\Validator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -31,7 +30,7 @@ abstract class BaseManager extends KernelTestCase
     }
 
     /**
-     * @return Validator
+     * @return \Symfony\Component\Validator\Validator\ValidatorInterface
      */
     protected function getValidator()
     {

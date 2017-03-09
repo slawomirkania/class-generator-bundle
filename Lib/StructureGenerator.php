@@ -3,7 +3,6 @@
 namespace SimpleEntityGeneratorBundle\Lib;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use SimpleEntityGeneratorBundle\Lib\ClassConfig;
 use SimpleEntityGeneratorBundle\Lib\Items\ClassConstructorManager;
 use SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use SimpleEntityGeneratorBundle\Lib\Items\InitPropertyManager;
@@ -27,13 +26,6 @@ use Symfony\Component\Yaml\Parser;
  */
 class StructureGenerator
 {
-
-    /**
-     * Namespace for Serializer
-     *
-     * @var string
-     */
-    const CLASS_MANAGER_NAMESPACE = "SimpleEntityGeneratorBundle\Lib\Items\ClassManager";
 
     /**
      * @var SerializerInterface
@@ -85,12 +77,12 @@ class StructureGenerator
     {
         $classConfig = $this->getDefaultClassConfigIfNeed($classConfig);
         $classesManagers = new ArrayCollection();
-        foreach ($entitiesData->toArray() as $jsonData) {
+        foreach ($entitiesData as $jsonData) {
             $classesManagers->add($this->deserializeJsonDataToClassManager($jsonData));
         }
 
         // building class environment
-        foreach ($classesManagers->toArray() as $classManager) {
+        foreach ($classesManagers as $classManager) {
             $this->prepareClassManager($classManager, $classConfig); // reference
         }
 
@@ -108,14 +100,13 @@ class StructureGenerator
     {
         $inClassConfiguration = $classManager->getConfiguration();
         $defaultClassConfiguration = $this->getDefaultClassConfigIfNeed($classConfig);
+
         $constructor = new ClassConstructorManager($classManager);
         $this->generateAndFillClassMethods($classManager);
         $this->prepareAndFillInitProperties($constructor);
         $classManager->setConstructor($constructor);
 
         // inline config is more important
-        $canAddInterface = true;
-        $canPHPUnitClass = true;
         if ($inClassConfiguration instanceof ClassConfig) {
             $canAddInterface = !$inClassConfiguration->isNoInterface();
             $canPHPUnitClass = !$inClassConfiguration->isNoPHPUnitClass();
@@ -143,7 +134,8 @@ class StructureGenerator
      * - setters and getters for Class and Interface (optional)
      * - method with prefix is for boolean properties
      *
-     * @param \SimpleEntityGeneratorBundle\Lib\ClassManager $classManager
+     * @param ClassManager $classManager
+     * @return ClassManager
      */
     protected function generateAndFillClassMethods(ClassManager $classManager)
     {
@@ -255,7 +247,7 @@ class StructureGenerator
      */
     protected function deserializeJsonDataToClassManager($jsonClassToDeserialize)
     {
-        return $this->getSerializer()->deserialize($jsonClassToDeserialize, self::CLASS_MANAGER_NAMESPACE, 'json');
+        return $this->getSerializer()->deserialize($jsonClassToDeserialize, ClassManager::class, 'json');
     }
 
     /**

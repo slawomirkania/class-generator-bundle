@@ -5,7 +5,7 @@ namespace SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
 /**
  * User dummy class for StructureResolver tests
  */
-class User implements \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterface
+class User implements \Symfony\Component\Security\Core\User\UserInterface, \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\CredentialsAwareInterface, \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterface
 {
 
     /**
@@ -141,6 +141,54 @@ class User implements \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterfa
     public function getNewPosts()
     {
         return $this->newPosts;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getCredentials()
+    {
+        // TODO: Implement getCredentials() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPassword()
+    {
+        // TODO: Implement getPassword() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 
 }

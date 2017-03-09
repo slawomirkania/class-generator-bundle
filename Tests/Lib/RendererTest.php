@@ -401,7 +401,7 @@ namespace AppBundle\Entity;
  * second row
  * @\Doctrine\Common\Annotations\Entity()
  */
-class User extends \AppBundle\Entity\Base implements \AppBundle\Entity\UserInterface
+class User extends \AppBundle\Entity\Base implements \Symfony\Component\Security\Core\User\UserInterface, \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\CredentialsAwareInterface, \AppBundle\Entity\UserInterface
 {
     
     /**

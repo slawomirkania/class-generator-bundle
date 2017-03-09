@@ -7,7 +7,6 @@ use SimpleEntityGeneratorBundle\Lib\Items\MethodGetterInterfaceManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodGetterManager;
 use SimpleEntityGeneratorBundle\Lib\Items\PropertyManager;
 use SimpleEntityGeneratorBundle\Lib\Items\TestMethodManager;
-use SimpleEntityGeneratorBundle\Tests\Lib\Items\BaseManager;
 
 /**
  * ClassManager Test

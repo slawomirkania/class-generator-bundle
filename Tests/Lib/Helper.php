@@ -51,8 +51,12 @@ class Helper
         $propertiesCollection->add(self::prepareProperty("email", "string", "", ["Email(message = \"Invalid email!\")"]));
         $propertiesCollection->add(self::prepareProperty("active", "boolean", "Wether user active", ["Type(type='boolean')", "IsTrue()"]));
         $propertiesCollection->add(self::prepareProperty("new_posts", "Doctrine\Common\Collections\ArrayCollection<AppBundle\Entity\Post>", "User new posts", ["NotNull()", "Valid()"]));
-
         $classManager->setProperties($propertiesCollection);
+
+        $implementsCollection = new ArrayCollection();
+        $implementsCollection->add('\Symfony\Component\Security\Core\User\UserInterface');
+        $implementsCollection->add('\SimpleEntityGeneratorBundle\Tests\Lib\Dummies\CredentialsAwareInterface');
+        $classManager->setImplements($implementsCollection);
 
         return $classManager;
     }
@@ -71,6 +75,9 @@ class Helper
       - \'lorem ipsum\'
       - \'second row\'
       - \'@\Doctrine\Common\Annotations\Entity()\'
+  implements:
+      - \Symfony\Component\Security\Core\User\UserInterface
+      - \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\CredentialsAwareInterface
   properties:
     -
       name: username

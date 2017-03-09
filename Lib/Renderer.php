@@ -43,7 +43,7 @@ class Renderer
     const INDENT_4_SPACES = 4;
 
     /**
-     * Two indentions
+     * Two indentations
      *
      * @var integer
      */
@@ -226,7 +226,7 @@ class Renderer
                 if ($property->isOptional()) {
                     $optionalPart = ' = null';
                 }
-                
+
                 $args[RenderableInterface::TAG_COMMENT] = $comment;
                 $args[RenderableInterface::TAG_PROPERTY_TYPE] = $this->getScalarTypeOrAbsoluteObjectTypeFromProperty($property);
                 $args[RenderableInterface::TAG_TYPE_HINTING] = $typeHintitngPart;
@@ -253,7 +253,6 @@ class Renderer
 
         $properties = [];
         $methods = [];
-        $interfacePart = '';
         $extendsPart = '';
         foreach ($class->getProperties() as $property) {
             $properties[] = $this->render($property);
@@ -264,21 +263,28 @@ class Renderer
         if ($class->hasExtends()) {
             $extendsPart = sprintf(" extends %s", $class->getExtends());
         }
-        if ($class->hasInterface()) {
-            $interfacePart = sprintf(" implements %s", $class->getInterface()->getNamespace());
-        }
 
         $args[RenderableInterface::TAG_NAMESPACE] = $class->getNamespaceWithoutNameAndBackslashPrefix();
         $args[RenderableInterface::TAG_COMMENT] = empty($class->getComment()) ? "" : $class->getComment();
         $args[RenderableInterface::TAG_NAME] = $class->getName();
         $args[RenderableInterface::TAG_EXTENDS] = $extendsPart;
-        $args[RenderableInterface::TAG_INTERFACE] = $interfacePart;
+        $args[RenderableInterface::TAG_INTERFACE] = $this->renderInterfacePart($class);
         $args[RenderableInterface::TAG_CONSTRUCTOR] = $this->addNewLineBefore($this->render($class->getConstructor()));
         $args[RenderableInterface::TAG_PROPERTIES] = $this->addNewLineBefore(Tools::implodeArrayToTemplate($properties));
         $args[RenderableInterface::TAG_METHODS] = $this->addNewLineBefore(Tools::implodeArrayToTemplate($methods));
         $args[RenderableInterface::TAG_MULTILINE_COMMENT] = $this->prepareMultilineCommentForCollection($class->getMultilineComment());
 
         return $this->addNewLineAfter($this->replace($tags, $args, $template));
+    }
+
+    private function renderInterfacePart(ClassManager $class)
+    {
+        $namespaces = $class->getImplements()->toArray();
+        if ($class->hasInterface()) {
+            $namespaces[] = $class->getInterface()->getNamespace();
+        }
+        $namespacesStr = implode(', ', $namespaces);
+        return $namespacesStr ? sprintf(" implements %s", $namespacesStr) : '';
     }
 
     /**
@@ -425,13 +431,14 @@ class Renderer
      *
      * @param string $template
      * @param integer $spaces
+     * @return string
      */
     protected function addIndentation($template, $spaces = self::INDENT_NO_INDENT)
     {
         $parts = Tools::explodeTemplateStringToArray($template);
         array_walk(
             $parts, function (&$value) use ($spaces) {
-            $value = str_pad($value, strlen($value) + (int) $spaces, " ", STR_PAD_LEFT);
+            $value = str_pad($value, strlen($value) + (int)$spaces, " ", STR_PAD_LEFT);
         }
         );
 
@@ -508,8 +515,9 @@ class Renderer
     }
 
     /**
-     * @param \ArrayCollection $collection
+     * @param ArrayCollection $collection
      * @return string
+     * @throws \Exception
      */
     protected function prepareMultilineCommentForCollection(ArrayCollection $collection)
     {
@@ -530,7 +538,7 @@ class Renderer
 
         return Tools::implodeArrayToTemplate($multilinePrepared);
     }
-    
+
     /**
      * @param PropertyManager $property
      * @return string
@@ -541,7 +549,7 @@ class Renderer
         if ($property->isObjectType()) {
             return $property->getTypeNameAbsoluteIfIsObjectTypeOrThrowException();
         } else {
-           return $property->getTypeName(); 
+            return $property->getTypeName();
         }
     }
 }

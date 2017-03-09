@@ -70,7 +70,7 @@ class ClassConstructorManager implements RenderableInterface
     }
 
     /**
-     * @param ClassManager $initProperties
+     * @param ArrayCollection $initProperties
      */
     public function setInitProperties(ArrayCollection $initProperties)
     {

@@ -23,7 +23,7 @@ trait TemplateTrait
 
     /**
      * @param string $template
-     * @return this
+     * @return $this
      */
     public function setTemplate($template)
     {

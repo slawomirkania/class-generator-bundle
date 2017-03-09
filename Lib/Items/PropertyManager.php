@@ -7,7 +7,6 @@ use Doctrine\Common\Util\Inflector;
 use Exception;
 use SimpleEntityGeneratorBundle\Lib\Interfaces\MultilineCommentableInterface;
 use SimpleEntityGeneratorBundle\Lib\Interfaces\RenderableInterface;
-use SimpleEntityGeneratorBundle\Lib\Items\PropertyManager;
 use SimpleEntityGeneratorBundle\Lib\Tools;
 use SimpleEntityGeneratorBundle\Lib\Traits\MultilineCommentTrait;
 use SimpleEntityGeneratorBundle\Lib\Traits\TemplateTrait;
@@ -293,7 +292,6 @@ class PropertyManager implements RenderableInterface, MultilineCommentableInterf
     /**
      * Return prepared property name eg. name_and_surname => nameAndSurname
      *
-     * @param string $propertyName
      * @return string
      */
     public function getPreparedName()

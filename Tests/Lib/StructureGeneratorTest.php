@@ -27,6 +27,9 @@ class StructureGeneratorTest extends KernelTestCase
             $this->checkCommonClassManager($classManager);
         }
 
+        /**
+         * @var ClassManager $userEntity
+         */
         $userEntity = $classesManagers[0];
         $this->assertEquals(7, $userEntity->getProperties()->count());
         $this->assertEquals(15, $userEntity->getMethods()->count()); // getters + setters + boolean
@@ -37,7 +40,9 @@ class StructureGeneratorTest extends KernelTestCase
         $userEntityTestClass = $userEntity->getTestClass();
         $this->assertEquals(15, $userEntityTestClass->getMethods()->count());
 
-
+        /**
+         * @var ClassManager $postEntity
+         */
         $postEntity = $classesManagers[1];
         $this->assertEquals(3, $postEntity->getProperties()->count());
         $this->assertEquals(6, $postEntity->getMethods()->count()); // getters + setters

@@ -3,6 +3,7 @@
 namespace SimpleEntityGeneratorBundle\Lib\Items;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Exception;
 use SimpleEntityGeneratorBundle\Lib\Interfaces\DumpableInterface;
 use SimpleEntityGeneratorBundle\Lib\Interfaces\RenderableInterface;
 use SimpleEntityGeneratorBundle\Lib\Interfaces\StructureWithMethodsInterface;
