@@ -16,4 +16,4 @@ services:
         arguments: ['@seg.renderer']
     seg.structure_generator:
         class: SimpleEntityGeneratorBundle\Lib\StructureGenerator
-        arguments: ['@seg.yaml_parser']        
+        arguments: ['@seg.yaml_parser']

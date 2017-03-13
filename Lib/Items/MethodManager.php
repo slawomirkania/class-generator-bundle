@@ -4,7 +4,6 @@ namespace SimpleEntityGeneratorBundle\Lib\Items;
 
 use SimpleEntityGeneratorBundle\Lib\Interfaces\MethodInterface;
 use SimpleEntityGeneratorBundle\Lib\Interfaces\RenderableInterface;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 use SimpleEntityGeneratorBundle\Lib\Traits\TemplateTrait;
 
@@ -16,13 +15,6 @@ use SimpleEntityGeneratorBundle\Lib\Traits\TemplateTrait;
 abstract class MethodManager implements RenderableInterface, MethodInterface
 {
     use TemplateTrait;
-
-    /**
-     * @Type("SimpleEntityGeneratorBundle\Lib\Items\PropertyManager")
-     * @Assert\NotNull(message="Property for method can not be empty!")
-     * @Assert\Valid()
-     */
-    private $property = null;
 
     /**
      * @Assert\NotNull(message="Method has to know about class!")
@@ -39,23 +31,6 @@ abstract class MethodManager implements RenderableInterface, MethodInterface
     public function __construct(ClassManager $classManager)
     {
         $this->setClassManager($classManager);
-    }
-
-    /**
-     * @return PropertyManager
-     */
-    public function getProperty()
-    {
-        return $this->property;
-    }
-
-    /**
-     * @param PropertyManager $property
-     */
-    public function setProperty(PropertyManager $property)
-    {
-        $this->property = $property;
-        return $this;
     }
 
     /**
@@ -76,16 +51,6 @@ abstract class MethodManager implements RenderableInterface, MethodInterface
     public function setClassManager(ClassManager $classManager)
     {
         $this->classManager = $classManager;
-    }
-
-    /**
-     * Return prepared method name from property eg. getNameOrSurname
-     *
-     * @return string
-     */
-    public function getPreparedName()
-    {
-        return ucfirst($this->getProperty()->getPreparedName());
     }
 
     /**

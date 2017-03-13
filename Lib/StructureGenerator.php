@@ -3,20 +3,24 @@
 namespace SimpleEntityGeneratorBundle\Lib;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
+use SimpleEntityGeneratorBundle\Lib\Builders\DerivedMethodsBuilder;
 use SimpleEntityGeneratorBundle\Lib\Items\ClassConstructorManager;
 use SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use SimpleEntityGeneratorBundle\Lib\Items\InitPropertyManager;
 use SimpleEntityGeneratorBundle\Lib\Items\InterfaceManager;
+use SimpleEntityGeneratorBundle\Lib\Items\MethodDerivedFromInterfaceManager;
+use SimpleEntityGeneratorBundle\Lib\Items\MethodForPropertyManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodGetterBooleanInterfaceManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodGetterBooleanManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodGetterInterfaceManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodGetterManager;
+use SimpleEntityGeneratorBundle\Lib\Items\MethodManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodSetterInterfaceManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodSetterManager;
 use SimpleEntityGeneratorBundle\Lib\Items\TestClassManager;
 use SimpleEntityGeneratorBundle\Lib\Items\TestMethodManager;
-use JMS\Serializer\SerializerBuilder;
-use JMS\Serializer\SerializerInterface;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -146,9 +150,19 @@ class StructureGenerator
             $classManager->setProperties(new ArrayCollection());
         }
 
+        $this->appendPropertiesMethods($classManager, $methodsForClass);
+        $this->appendMethodsDerivedFromInterface($classManager, $methodsForClass);
+
+        $classManager->setMethods($methodsForClass);
+
+        return $classManager;
+    }
+
+    protected function appendPropertiesMethods(ClassManager $classManager, ArrayCollection $appendTo)
+    {
         foreach ($classManager->getProperties() as $property) {
             if ($property->isTypeBoolean()) {
-                $methodsForClass->add((new MethodGetterBooleanManager($classManager))->setProperty($property));
+                $appendTo->add((new MethodGetterBooleanManager($classManager))->setProperty($property));
             }
 
             $methodSetterManager = new MethodSetterManager($classManager);
@@ -156,13 +170,24 @@ class StructureGenerator
             $methodGetterManager = new MethodGetterManager($classManager);
             $methodGetterManager->setProperty($property);
 
-            $methodsForClass->add($methodSetterManager);
-            $methodsForClass->add($methodGetterManager);
+            $appendTo->add($methodSetterManager);
+            $appendTo->add($methodGetterManager);
         }
+    }
 
-        $classManager->setMethods($methodsForClass);
-
-        return $classManager;
+    protected function appendMethodsDerivedFromInterface(ClassManager $classManager, ArrayCollection $appendTo)
+    {
+        $methodsToSkip = [];
+        foreach($appendTo as $method) {
+            $methodsToSkip[] = $method->getPreparedName();
+        }
+        foreach ($classManager->getImplements() as $namespace) {
+            $builder = new DerivedMethodsBuilder($namespace, $classManager);
+            $builder->setMethodsToSkip($methodsToSkip);
+            foreach($builder->getMethodsDerivedFromInterface() as $derivedMethodManager) {
+                $appendTo->add($derivedMethodManager);
+            }
+        }
     }
 
     /**
@@ -229,14 +254,21 @@ class StructureGenerator
     {
         $testMethods = new ArrayCollection();
         foreach ($testClassManager->getClassManager()->getMethods() as $method) {
-            $testMethod = new TestMethodManager();
-            $testMethod->setMethod($method);
-            $testMethods->add($testMethod);
+            $this->buildAndAppendTestMethodIfNecessary($method, $testMethods);
         }
 
         $testClassManager->setMethods($testMethods);
 
         return $testClassManager;
+    }
+
+    protected function buildAndAppendTestMethodIfNecessary(MethodManager $method, ArrayCollection $appendTo)
+    {
+        if ($method instanceof MethodForPropertyManager) {
+            $testMethod = new TestMethodManager();
+            $testMethod->setMethod($method);
+            $appendTo->add($testMethod);
+        }
     }
 
     /**

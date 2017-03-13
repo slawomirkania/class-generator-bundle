@@ -66,4 +66,17 @@ interface UserInterface
      */
     public function getNewPosts();
 
+    /**
+     * For property "roles"
+     * @param string $roles
+     * @return $this
+     */
+    public function setRoles($roles);
+
+    /**
+     * For property "roles"
+     * @return string
+     */
+    public function getRoles();
+
 }

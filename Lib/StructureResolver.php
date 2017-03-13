@@ -12,10 +12,8 @@ use SimpleEntityGeneratorBundle\Lib\Items\ClassConstructorManager;
 use SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use SimpleEntityGeneratorBundle\Lib\Items\InterfaceManager;
 use SimpleEntityGeneratorBundle\Lib\Items\TestClassManager;
-use SimpleEntityGeneratorBundle\Lib\Renderer;
-use SimpleEntityGeneratorBundle\Lib\Tools;
 use ReflectionClass;
-use UnrecognizedItemToDumpException;
+use SimpleEntityGeneratorBundle\Lib\Exceptions\UnrecognizedItemToDumpException;
 use ReflectionMethod;
 
 /**
@@ -233,7 +231,7 @@ class StructureResolver
 
     /**
      * @param ReflectionClass $reflectionClass
-     * @return type
+     * @return int
      */
     protected function getNewInitPropertyPosition(ReflectionClass $reflectionClass)
     {
@@ -248,7 +246,7 @@ class StructureResolver
 
     /**
      * @param ReflectionClass $reflectionClass
-     * @return type
+     * @return int
      */
     protected function getNewPropertyPosition(ReflectionClass $reflectionClass)
     {

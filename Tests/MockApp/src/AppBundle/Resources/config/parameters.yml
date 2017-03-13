@@ -10,6 +10,7 @@ parameters:
     MethodGetterManagerTemplatePath: 'AppBundle/Resources/templates/MethodGetterTemplate.txt'
     MethodSetterInterfaceManagerTemplatePath: 'AppBundle/Resources/templates/MethodSetterInterfaceTemplate.txt'
     MethodSetterManagerTemplatePath: 'AppBundle/Resources/templates/MethodSetterTemplate.txt'
+    MethodDerivedFromInterfaceManagerTemplatePath: 'AppBundle/Resources/templates/MethodDerivedFromInterfaceTemplate.txt'
     PropertyManagerTemplatePath: 'AppBundle/Resources/templates/PropertyTemplate.txt'
     TestClassManagerTemplatePath: 'AppBundle/Resources/templates/TestClassTemplate.txt'
     TestMethodManagerTemplatePath: 'AppBundle/Resources/templates/TestMethodTemplate.txt'

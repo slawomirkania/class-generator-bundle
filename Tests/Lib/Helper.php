@@ -121,6 +121,10 @@ class Helper
       serialized_name: lastPost
       type: AppBundle\Entity\Post
       optional: true
+    -
+      # default comment
+      name: roles
+      type: string
 -
   namespace: \AppBundle\Entity\Post
   # no comment

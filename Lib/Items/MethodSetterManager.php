@@ -9,7 +9,7 @@ use SimpleEntityGeneratorBundle\Lib\Interfaces\SetterMethodInterface;
  *
  * @author Sławomir Kania <slawomir.kania1@gmail.com>
  */
-class MethodSetterManager extends MethodManager implements SetterMethodInterface
+class MethodSetterManager extends MethodForPropertyManager implements SetterMethodInterface
 {
 
     /**

@@ -47,6 +47,16 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface, \Simp
     private $newPosts;
 
     /**
+     * 'roles' property
+     *
+     *
+     * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("roles")
+     * @var string
+     */
+    private $roles;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -144,19 +154,31 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface, \Simp
     }
 
     /**
-     * @inheritdoc
+     * For property "roles"
+     * @param string $roles
+     * @return $this
      */
-    public function getCredentials()
+    public function setRoles($roles)
     {
-        // TODO: Implement getCredentials() method.
+        $this->roles = $roles;
+        return $this;
+    }
+
+    /**
+     * For property "roles"
+     * @return string
+     */
+    public function getRoles()
+    {
+        return $this->roles;
     }
 
     /**
      * @inheritdoc
      */
-    public function getRoles()
+    public function getCredentials()
     {
-        // TODO: Implement getRoles() method.
+        // TODO: Implement getCredentials() method.
     }
 
     /**

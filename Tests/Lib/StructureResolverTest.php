@@ -42,7 +42,7 @@ namespace SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
 /**
  * User dummy class for StructureResolver tests
  */
-class User implements \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterface
+class User implements \Symfony\Component\Security\Core\User\UserInterface, \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\CredentialsAwareInterface, \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterface
 {
 
     /**
@@ -82,6 +82,16 @@ class User implements \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterfa
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private \$newPosts;
+
+    /**
+     * 'roles' property
+     *
+     *
+     * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("roles")
+     * @var string
+     */
+    private \$roles;
 
     /**
      * Constructor.
@@ -180,6 +190,66 @@ class User implements \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterfa
         return \$this->newPosts;
     }
 
+    /**
+     * For property "roles"
+     * @param string \$roles
+     * @return \$this
+     */
+    public function setRoles(\$roles)
+    {
+        \$this->roles = \$roles;
+        return \$this;
+    }
+
+    /**
+     * For property "roles"
+     * @return string
+     */
+    public function getRoles()
+    {
+        return \$this->roles;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getCredentials()
+    {
+        // TODO: Implement getCredentials() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPassword()
+    {
+        // TODO: Implement getPassword() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
 }
 
 EOT;
@@ -195,7 +265,7 @@ namespace SimpleEntityGeneratorBundle\Tests\Lib\Dummies;
 /**
  * User dummy class for StructureResolver tests
  */
-class User implements \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterface
+class User implements \Symfony\Component\Security\Core\User\UserInterface, \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\CredentialsAwareInterface, \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterface
 {
 
     /**
@@ -235,6 +305,16 @@ class User implements \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterfa
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private \$newPosts;
+
+    /**
+     * 'roles' property
+     *
+     *
+     * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("roles")
+     * @var string
+     */
+    private \$roles;
 
     /**
      * new collection property
@@ -352,6 +432,66 @@ class User implements \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\UserInterfa
     public function getNewPosts()
     {
         return \$this->newPosts;
+    }
+
+    /**
+     * For property "roles"
+     * @param string \$roles
+     * @return \$this
+     */
+    public function setRoles(\$roles)
+    {
+        \$this->roles = \$roles;
+        return \$this;
+    }
+
+    /**
+     * For property "roles"
+     * @return string
+     */
+    public function getRoles()
+    {
+        return \$this->roles;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getCredentials()
+    {
+        // TODO: Implement getCredentials() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPassword()
+    {
+        // TODO: Implement getPassword() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 
     /**
@@ -479,6 +619,19 @@ interface UserInterface
      */
     public function getNewPosts();
 
+    /**
+     * For property "roles"
+     * @param string \$roles
+     * @return \$this
+     */
+    public function setRoles(\$roles);
+
+    /**
+     * For property "roles"
+     * @return string
+     */
+    public function getRoles();
+
 }
 
 EOT;
@@ -550,6 +703,19 @@ interface UserInterface
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getNewPosts();
+
+    /**
+     * For property "roles"
+     * @param string \$roles
+     * @return \$this
+     */
+    public function setRoles(\$roles);
+
+    /**
+     * For property "roles"
+     * @return string
+     */
+    public function getRoles();
 
     /**
      * For property "testCollection"
@@ -709,6 +875,26 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @covers \AppBundle\Entity\User::setRoles
+     */
+    public function testSetRoles()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\User::getRoles
+     */
+    public function testGetRoles()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
 }
 
 EOT;
@@ -829,6 +1015,26 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
      * @covers \SimpleEntityGeneratorBundle\Tests\Lib\Dummies\User::getNewPosts
      */
     public function testGetNewPosts()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\User::setRoles
+     */
+    public function testSetRoles()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\User::getRoles
+     */
+    public function testGetRoles()
     {
         \$this->markTestIncomplete(
             'This test has not been implemented yet.'

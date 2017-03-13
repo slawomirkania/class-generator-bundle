@@ -10,6 +10,7 @@ parameters:
     MethodGetterManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodGetterTemplate.txt'
     MethodSetterInterfaceManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodSetterInterfaceTemplate.txt'
     MethodSetterManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodSetterTemplate.txt'
+    MethodDerivedFromInterfaceManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodDerivedFromInterfaceTemplate.txt'
     PropertyManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/PropertyTemplate.txt'
     TestClassManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/TestClassTemplate.txt'
     TestMethodManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/TestMethodTemplate.txt'

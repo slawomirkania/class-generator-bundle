@@ -6,8 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use SimpleEntityGeneratorBundle\Lib\ClassConfig;
 use SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use SimpleEntityGeneratorBundle\Lib\Items\InterfaceManager;
+use SimpleEntityGeneratorBundle\Lib\Items\MethodForPropertyManager;
 use SimpleEntityGeneratorBundle\Lib\Items\TestClassManager;
-use SimpleEntityGeneratorBundle\Tests\Lib\Helper;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -31,14 +31,14 @@ class StructureGeneratorTest extends KernelTestCase
          * @var ClassManager $userEntity
          */
         $userEntity = $classesManagers[0];
-        $this->assertEquals(7, $userEntity->getProperties()->count());
-        $this->assertEquals(15, $userEntity->getMethods()->count()); // getters + setters + boolean
+        $this->assertEquals(8, $userEntity->getProperties()->count());
+        $this->assertEquals(21, $userEntity->getMethods()->count()); // getters + setters + boolean + derived from interface
 
         $userEntityInterface = $userEntity->getInterface();
-        $this->assertEquals(15, $userEntityInterface->getMethods()->count());
+        $this->assertEquals(17, $userEntityInterface->getMethods()->count());
 
         $userEntityTestClass = $userEntity->getTestClass();
-        $this->assertEquals(15, $userEntityTestClass->getMethods()->count());
+        $this->assertEquals(17, $userEntityTestClass->getMethods()->count());
 
         /**
          * @var ClassManager $postEntity
@@ -146,7 +146,9 @@ class StructureGeneratorTest extends KernelTestCase
             $this->assertInstanceOf("\SimpleEntityGeneratorBundle\Lib\Items\MethodManager", $method);
             $this->assertInstanceOf("\SimpleEntityGeneratorBundle\Lib\Interfaces\RenderableInterface", $method);
             $this->assertInstanceOf("\SimpleEntityGeneratorBundle\Lib\Interfaces\MethodInterface", $method);
-            $this->assertInstanceOf("\SimpleEntityGeneratorBundle\Lib\Items\PropertyManager", $method->getProperty());
+            if ($method instanceof MethodForPropertyManager) {
+                $this->assertInstanceOf("\SimpleEntityGeneratorBundle\Lib\Items\PropertyManager", $method->getProperty());
+            }
             $this->assertInstanceOf("\SimpleEntityGeneratorBundle\Lib\Items\ClassManager", $method->getClassManager());
         }
     }

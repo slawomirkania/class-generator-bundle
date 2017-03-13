@@ -116,4 +116,24 @@ class UserTestDummy extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @covers \AppBundle\Entity\User::setRoles
+     */
+    public function testSetRoles()
+    {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\User::getRoles
+     */
+    public function testGetRoles()
+    {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
 }

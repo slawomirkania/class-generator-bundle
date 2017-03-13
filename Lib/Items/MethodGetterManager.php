@@ -7,7 +7,7 @@ namespace SimpleEntityGeneratorBundle\Lib\Items;
  *
  * @author Sławomir Kania <slawomir.kania1@gmail.com>
  */
-class MethodGetterManager extends MethodManager
+class MethodGetterManager extends MethodForPropertyManager
 {
 
     /**

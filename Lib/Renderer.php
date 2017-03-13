@@ -11,11 +11,12 @@ use SimpleEntityGeneratorBundle\Lib\Items\ClassConstructorManager;
 use SimpleEntityGeneratorBundle\Lib\Items\ClassManager;
 use SimpleEntityGeneratorBundle\Lib\Items\InitPropertyManager;
 use SimpleEntityGeneratorBundle\Lib\Items\InterfaceManager;
+use SimpleEntityGeneratorBundle\Lib\Items\MethodDerivedFromInterfaceManager;
+use SimpleEntityGeneratorBundle\Lib\Items\MethodForPropertyManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodGetterBooleanInterfaceManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodGetterBooleanManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodGetterInterfaceManager;
 use SimpleEntityGeneratorBundle\Lib\Items\MethodGetterManager;
-use SimpleEntityGeneratorBundle\Lib\Items\MethodManager;
 use SimpleEntityGeneratorBundle\Lib\Items\PropertyManager;
 use SimpleEntityGeneratorBundle\Lib\Items\TestClassManager;
 use SimpleEntityGeneratorBundle\Lib\Items\TestMethodManager;
@@ -97,8 +98,10 @@ class Renderer
                 return $this->renderInterface($item);
             case $item instanceof PropertyManager:
                 return $this->renderProperty($item);
-            case $item instanceof MethodManager:
-                return $this->renderMethod($item);
+            case $item instanceof MethodForPropertyManager:
+                return $this->renderMethodForProperty($item);
+            case $item instanceof MethodDerivedFromInterfaceManager:
+                return $this->renderMethodDerivedFromInterface($item);
             case $item instanceof TestClassManager:
                 return $this->renderTestClass($item);
             case $item instanceof TestMethodManager:
@@ -177,12 +180,12 @@ class Renderer
     }
 
     /**
-     * @param MethodManager $method
+     * @param MethodForPropertyManager $method
      * @return string
      * @throws RendererException
      * @throws UnrecognizedItemToRenderException
      */
-    protected function renderMethod(MethodManager $method)
+    protected function renderMethodForProperty(MethodForPropertyManager $method)
     {
         $template = $method->getTemplate();
         $tags = $method->getTemplateTags();
@@ -241,6 +244,16 @@ class Renderer
         return $this->addNewLineAfter($this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES));
     }
 
+    protected function renderMethodDerivedFromInterface(MethodDerivedFromInterfaceManager $method)
+    {
+        $template = $method->getTemplate();
+        $tags = $method->getTemplateTags();
+        $args = [
+            RenderableInterface::TAG_METHOD_NAME => $method->getPreparedName()
+        ];
+        return $this->addNewLineAfter($this->addIndentation($this->replace($tags, $args, $template), self::INDENT_4_SPACES));
+    }
+
     /**
      * @param ClassManager $class
      * @return string
@@ -277,7 +290,7 @@ class Renderer
         return $this->addNewLineAfter($this->replace($tags, $args, $template));
     }
 
-    private function renderInterfacePart(ClassManager $class)
+    protected function renderInterfacePart(ClassManager $class)
     {
         $namespaces = $class->getImplements()->toArray();
         if ($class->hasInterface()) {

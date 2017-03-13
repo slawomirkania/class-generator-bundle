@@ -478,6 +478,16 @@ class User extends \AppBundle\Entity\Base implements \Symfony\Component\Security
      */
     private \$lastPost;
 
+    /**
+     * 'roles' property
+     * 
+     * 
+     * @\JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\SerializedName("roles")
+     * @var string
+     */
+    private \$roles;
+
     
     /**
      * Constructor.
@@ -637,6 +647,58 @@ class User extends \AppBundle\Entity\Base implements \Symfony\Component\Security
         return \$this->lastPost;
     }
 
+    /**
+     * For property "roles"
+     * @param string \$roles
+     * @return \$this
+     */
+    public function setRoles(\$roles)
+    {
+        \$this->roles = \$roles;
+        return \$this;
+    }
+
+    /**
+     * For property "roles"
+     * @return string
+     */
+    public function getRoles()
+    {
+        return \$this->roles;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPassword()
+    {
+        // TODO: Implement getPassword() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getCredentials()
+    {
+        // TODO: Implement getCredentials() method.
+    }
+
 }
 
 EOT;
@@ -751,6 +813,19 @@ interface UserInterface
      * @return \AppBundle\Entity\Post
      */
     public function getLastPost();
+
+    /**
+     * For property "roles"
+     * @param string \$roles
+     * @return \$this
+     */
+    public function setRoles(\$roles);
+
+    /**
+     * For property "roles"
+     * @return string
+     */
+    public function getRoles();
 
 }
 
@@ -991,6 +1066,26 @@ class UserTest extends \PHPUnit_Framework_TestCase
      * @covers \AppBundle\Entity\User::getLastPost
      */
     public function testGetLastPost()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\User::setRoles
+     */
+    public function testSetRoles()
+    {
+        \$this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers \AppBundle\Entity\User::getRoles
+     */
+    public function testGetRoles()
     {
         \$this->markTestIncomplete(
             'This test has not been implemented yet.'
