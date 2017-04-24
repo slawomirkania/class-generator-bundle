@@ -1,0 +1,16 @@
+parameters:
+    SegRendererClass: "SimpleEntityGeneratorBundle\\Lib\\Renderer"
+    ClassConstructorManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/ClassConstructorTemplate.txt'
+    ClassManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/ClassTemplate.txt'
+    InitPropertyManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/InitPropertyTemplate.txt'
+    InterfaceManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/InterfaceTemplate.txt'
+    MethodGetterBooleanInterfaceManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodGetterBooleanInterfaceTemplate.txt'
+    MethodGetterBooleanManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodGetterBooleanTemplate.txt'
+    MethodGetterInterfaceManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodGetterInterfaceTemplate.txt'
+    MethodGetterManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodGetterTemplate.txt'
+    MethodSetterInterfaceManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodSetterInterfaceTemplate.txt'
+    MethodSetterManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodSetterTemplate.txt'
+    MethodDerivedFromInterfaceManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/MethodDerivedFromInterfaceTemplate.txt'
+    PropertyManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/PropertyTemplate.txt'
+    TestClassManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/TestClassTemplate.txt'
+    TestMethodManagerTemplatePath: 'SimpleEntityGeneratorBundle/Resources/templates/TestMethodTemplate.txt'

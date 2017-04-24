@@ -1,13 +1,13 @@
 language: php
 
 php:
-    - 5.5
     - 5.6
     - 7.0
 
 branches:
   only:
     - 1.x.x-dev
+    - 2.x.x-dev
     - master
 
 install:

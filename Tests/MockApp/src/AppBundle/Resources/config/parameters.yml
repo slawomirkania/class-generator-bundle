@@ -1,0 +1,16 @@
+parameters:
+    SegRendererClass: "SimpleEntityGeneratorBundle\\Lib\\Renderer"
+    ClassConstructorManagerTemplatePath: 'AppBundle/Resources/templates/ClassConstructorTemplate.txt'
+    ClassManagerTemplatePath: 'AppBundle/Resources/templates/ClassTemplate.txt'
+    InitPropertyManagerTemplatePath: 'AppBundle/Resources/templates/InitPropertyTemplate.txt'
+    InterfaceManagerTemplatePath: 'AppBundle/Resources/templates/InterfaceTemplate.txt'
+    MethodGetterBooleanInterfaceManagerTemplatePath: 'AppBundle/Resources/templates/MethodGetterBooleanInterfaceTemplate.txt'
+    MethodGetterBooleanManagerTemplatePath: 'AppBundle/Resources/templates/MethodGetterBooleanTemplate.txt'
+    MethodGetterInterfaceManagerTemplatePath: 'AppBundle/Resources/templates/MethodGetterInterfaceTemplate.txt'
+    MethodGetterManagerTemplatePath: 'AppBundle/Resources/templates/MethodGetterTemplate.txt'
+    MethodSetterInterfaceManagerTemplatePath: 'AppBundle/Resources/templates/MethodSetterInterfaceTemplate.txt'
+    MethodSetterManagerTemplatePath: 'AppBundle/Resources/templates/MethodSetterTemplate.txt'
+    MethodDerivedFromInterfaceManagerTemplatePath: 'AppBundle/Resources/templates/MethodDerivedFromInterfaceTemplate.txt'
+    PropertyManagerTemplatePath: 'AppBundle/Resources/templates/PropertyTemplate.txt'
+    TestClassManagerTemplatePath: 'AppBundle/Resources/templates/TestClassTemplate.txt'
+    TestMethodManagerTemplatePath: 'AppBundle/Resources/templates/TestMethodTemplate.txt'
